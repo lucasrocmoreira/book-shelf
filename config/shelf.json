@@ -92,6 +92,18 @@
    "interest": 0,
    "rating": 0,
    "author": "Stephen King"
+  },
+  "ol:OL24593432W": {
+   "kind": "book",
+   "title": "Dungeon Crawler Carl",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL24593432W",
+   "author": "Matt Dinniman",
+   "year": 2020,
+   "cover": "https://covers.openlibrary.org/b/id/15143022-L.jpg"
   }
  }
 }
