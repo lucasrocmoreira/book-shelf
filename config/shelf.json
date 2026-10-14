@@ -267,6 +267,18 @@
    "author": "Brian K. Vaughan",
    "year": 2012,
    "cover": "https://covers.openlibrary.org/b/id/12679639-L.jpg"
+  },
+  "ol:OL16809836W": {
+   "kind": "comic",
+   "title": "Saga: Volume Two",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL16809836W",
+   "author": "Brian K. Vaughan",
+   "year": 2013,
+   "cover": "https://covers.openlibrary.org/b/id/12648950-L.jpg"
   }
  }
 }
