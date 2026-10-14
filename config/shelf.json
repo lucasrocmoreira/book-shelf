@@ -145,13 +145,14 @@
    "kind": "book",
    "title": "Strange Houses",
    "added": "2026-10-14",
-   "status": "unread",
+   "status": "read",
    "interest": 0,
    "rating": 0,
    "ol": "OL42427055W",
    "author": "Uketsu",
    "year": 2025,
-   "cover": "https://covers.openlibrary.org/b/id/15123139-L.jpg"
+   "cover": "https://covers.openlibrary.org/b/id/15123139-L.jpg",
+   "read_on": "2026-10-14"
   },
   "ol:OL44983691W": {
    "kind": "book",
