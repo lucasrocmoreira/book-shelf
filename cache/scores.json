@@ -102,7 +102,7 @@
   "volumes": null
  },
  "al:30042": {
-  "checked": "2026-10-14T06:35:33+00:00",
+  "checked": "2026-10-14T06:39:40+00:00",
   "demographics": [
    "Shounen"
   ],
@@ -151,6 +151,25 @@
   "serialization": [
    "Afternoon"
   ],
+  "v": [
+   2,
+   2
+  ],
+  "volumes": null
+ },
+ "al:43841": {
+  "checked": "2026-10-14T06:37:50+00:00",
+  "demographics": [],
+  "mal_genres": [
+   "Horror"
+  ],
+  "mal_members": 14293,
+  "mal_rank": 6061,
+  "mal_score": 7.24,
+  "mal_themes": [],
+  "mal_url": "https://myanimelist.net/manga/13841",
+  "mal_votes": 7641,
+  "serialization": [],
   "v": [
    2,
    2

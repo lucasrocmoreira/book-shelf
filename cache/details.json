@@ -188,7 +188,7 @@
   ],
   "description": "Dragon Ball follows the adventures of Son Goku from his childhood through adulthood as he trains in martial arts and explores the world in search of the seven mystical orbs known as the Dragon Balls, which can summon a wish-granting dragon when gathered. Along his journey, Goku makes several friends and battles a wide variety of villains, many of whom also seek the Dragon Balls for their own desires. Along the way becoming the strongest warrior in the universe.\n\nPart II of Dragon Ball is also known as \"Dragon Ball Z\" in North America.",
   "end_year": 1995,
-  "fetched": "2026-10-14T06:35:33+00:00",
+  "fetched": "2026-10-14T06:37:48+00:00",
   "genres": [
    "Action",
    "Adventure",
@@ -258,6 +258,45 @@
   "title": "Parasyte",
   "volumes": 10,
   "year": 1989
+ },
+ "al:43841": {
+  "anilist": 43841,
+  "anilist_popularity": 4576,
+  "anilist_score": 69,
+  "anilist_url": "https://anilist.co/manga/43841",
+  "artists": [],
+  "authors": [
+   "Junji Itou",
+   "Hirokatsu Kihara",
+   "Ichiro Nakayama"
+  ],
+  "chapters": 9,
+  "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx43841-bkqyjKWBPRD9.jpg",
+  "demographics": [
+   "Seinen"
+  ],
+  "description": "University student Mimi and her boyfriend Naoto encounter one chilling mystery after another. There’s the enigmatic neighbor woman dressed in black from head to toe—but if she’s so odd, why does it seems like there are many others like her? Then, whose eyes track Mimi’s movements from the cemetery next door? And why does a bizarre red circle drawn on a basement wall change with each passing day?\n\nNine scary stories that really happened, drawn from the famed collection of urban legends Shin Mimibukuro (New Earmuffs), and adapted into manga by horror genius Junji Ito! \n\nChapter 1: On the Utility Pole \n\nChapter 2: The Woman Next Door \n\nChapter 3: Rustling in the Grass \n\nChapter 4: Grave Placement \n\nChapter 5: Seashore \n\nChapter 6: Just the Two of Us \n\nChapter 7: Scarlet Circle \n\nChapter 8: Sign in the Field \n\nChapter 9: Monster Prop",
+  "end_year": 2003,
+  "fetched": "2026-10-14T06:37:50+00:00",
+  "genres": [
+   "Drama",
+   "Horror",
+   "Supernatural"
+  ],
+  "mal_id": 13841,
+  "native_title": "ミミの怪談",
+  "origin": "JP",
+  "original_title": "Mimi no Kaidan",
+  "status": "Finished",
+  "subtype": "Manga",
+  "tags": [
+   "Ghost",
+   "Body Horror",
+   "Female Protagonist"
+  ],
+  "title": "Mimi's Tales of Terror",
+  "volumes": 1,
+  "year": 2002
  },
  "ol:OL16799356W": {
   "authors": [
