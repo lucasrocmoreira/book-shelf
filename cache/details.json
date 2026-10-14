@@ -969,6 +969,37 @@
   "title": "The Hobbit",
   "year": 1937
  },
+ "ol:OL28466499W": {
+  "authors": [
+   "Marguerite Bennett",
+   "Rafael DeLattore"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/14281745-L.jpg",
+  "description": null,
+  "fetched": "2026-10-14T05:46:34+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "9781956731262",
+   "1956731261"
+  ],
+  "languages": [
+   "eng"
+  ],
+  "ol": "OL28466499W",
+  "ol_rating": null,
+  "ol_readers": 0,
+  "ol_votes": 0,
+  "pages": 104,
+  "places": [],
+  "series": null,
+  "subjects": [
+   "Comics & graphic novels, general"
+  ],
+  "subtitle": null,
+  "title": "Animosity Vol 1",
+  "year": 2022
+ },
  "ol:OL2897798W": {
   "authors": [
    "Alan Moore",
