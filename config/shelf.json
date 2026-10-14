@@ -104,6 +104,18 @@
    "author": "Matt Dinniman",
    "year": 2020,
    "cover": "https://covers.openlibrary.org/b/id/15143022-L.jpg"
+  },
+  "ol:OL17076473W": {
+   "kind": "book",
+   "title": "Red Rising",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL17076473W",
+   "author": "Pierce Brown",
+   "year": 2014,
+   "cover": "https://covers.openlibrary.org/b/id/7316188-L.jpg"
   }
  }
 }
