@@ -211,6 +211,15 @@
    "ol": "OL41768708W",
    "author": "Raphael Montes",
    "year": 2012
+  },
+  "q:book:uma mulher no escuro": {
+   "kind": "book",
+   "title": "Uma mulher no escuro",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "author": "Raphael Montes"
   }
  }
 }
