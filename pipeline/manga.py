@@ -100,9 +100,10 @@ def anilist(al_id):
             staff_story.append(name)
         if re.search(r"\bart\b|illustrat", role, re.I) and name not in staff_art:
             staff_art.append(name)
+    demo = [x["name"] for x in m.get("tags") or [] if x.get("name") in ("Shounen", "Seinen", "Shoujo", "Josei", "Kids")]
     tags = [x["name"] for x in sorted(m.get("tags") or [], key=lambda x: -(x.get("rank") or 0))
             if (x.get("rank") or 0) >= 60 and not x.get("isMediaSpoiler") and not x.get("isGeneralSpoiler")
-            and x.get("category") not in ("Sexual Content",)]
+            and x.get("category") not in ("Sexual Content",) and x["name"] not in demo]
     status = STATUS.get(m.get("status"), m.get("status"))
     fmt = m.get("format")
     origin = ORIGIN.get(m.get("countryOfOrigin"), "Comics")
@@ -124,6 +125,7 @@ def anilist(al_id):
         "artists": [a for a in staff_art if a not in staff_story],
         "genres": m.get("genres") or [],
         "tags": tags[:12],
+        "demographics": demo,
         "description": _clean_desc(m.get("description")),
         "cover": cover.get("extraLarge") or cover.get("large"),
         "anilist_score": m.get("averageScore") or m.get("meanScore"),
@@ -133,15 +135,24 @@ def anilist(al_id):
 
 
 def mal(mal_id):
-    """MyAnimeList score (0-10), voters, rank, members, themes, demographic. None on failure."""
+    """MyAnimeList score (0-10), voters, rank, members, themes, demographic. None on failure.
+    Jikan first; if it's down or blocks the request, the public MyAnimeList page."""
     if not mal_id:
         return None
+    return _jikan(mal_id) or _mal_page(mal_id)
+
+
+def _jikan(mal_id):
     r = polite_get(f"{JIKAN}/manga/{int(mal_id)}/full", host_delay=1.2)
     if r is None or r.status_code != 200:
-        if r is not None:
-            log(f"    Jikan {mal_id}: HTTP {r.status_code}")
+        log(f"    Jikan {mal_id}: {'no response' if r is None else 'HTTP ' + str(r.status_code)}; trying the MyAnimeList page")
         return None
-    d = (r.json() or {}).get("data") or {}
+    try:
+        d = (r.json() or {}).get("data") or {}
+    except ValueError:
+        return None
+    if d.get("score") is None and not d.get("members"):
+        return None
     names = lambda key: [x.get("name") for x in d.get(key) or [] if x.get("name")]
     return {
         "mal_score": d.get("score"),
@@ -154,6 +165,43 @@ def mal(mal_id):
         "serialization": names("serializations")[:2],
         "mal_url": d.get("url"),
         "volumes": d.get("volumes"),
+    }
+
+
+def _num(text):
+    try:
+        return int(re.sub(r"[^\d]", "", text)) if text and re.search(r"\d", text) else None
+    except ValueError:
+        return None
+
+
+def _mal_page(mal_id):
+    """Best effort read of https://myanimelist.net/manga/<id> (no API key needed)."""
+    url = f"https://myanimelist.net/manga/{int(mal_id)}"
+    r = polite_get(url, host_delay=3.0)
+    if r is None or r.status_code != 200:
+        log(f"    MyAnimeList page {mal_id}: {'no response' if r is None else 'HTTP ' + str(r.status_code)}")
+        return None
+    html = r.text
+    m = re.search(r'itemprop="ratingValue"[^>]*>\s*([\d.]+)', html)
+    score = float(m.group(1)) if m else None
+    m = re.search(r'itemprop="ratingCount"[^>]*>\s*([\d,]+)', html)
+    votes = _num(m.group(1)) if m else None
+    m = re.search(r"Ranked:</span>\s*#?([\d,]+)", html)
+    rank = _num(m.group(1)) if m else None
+    m = re.search(r"Members:</span>\s*([\d,]+)", html)
+    members = _num(m.group(1)) if m else None
+
+    def side(label):
+        m = re.search(r'<span class="dark_text">' + label + r':</span>(.*?)</div>', html, re.S)
+        return re.findall(r'title="([^"]+)"', m.group(1)) if m else []
+
+    if score is None and members is None:
+        return None
+    return {
+        "mal_score": score, "mal_votes": votes, "mal_rank": rank, "mal_members": members,
+        "mal_themes": side("Themes?"), "mal_genres": side("Genres?"), "demographics": side("Demographic"),
+        "serialization": side("Serialization")[:2], "mal_url": url, "volumes": None,
     }
 
 

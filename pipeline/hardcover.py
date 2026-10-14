@@ -7,11 +7,13 @@ https://docs.hardcover.app/api/getting-started/
 """
 import json
 
+from .titles import base_title, same_work
 from .util import log, session, similarity
 
 ENDPOINT = "https://api.hardcover.app/v1/graphql"
 
 SEARCH = """query($q: String!) { search(query: $q, query_type: "Book", per_page: 8, page: 1) { ids results } }"""
+ISBN = """query($isbns: [String!]) { editions(where: {_or: [{isbn_13: {_in: $isbns}}, {isbn_10: {_in: $isbns}}]}, limit: 1) { book_id } }"""
 DETAIL = """query($id: Int!) { books_by_pk(id: $id) {
   id slug title pages release_year rating ratings_count users_count description
   image { url } cached_tags book_series { position series { name } } } }"""
@@ -72,21 +74,31 @@ class Hardcover:
                 d["id"] = ids[i]
         return docs
 
+    def by_isbn(self, isbns):
+        """Hardcover book id for any of these ISBNs (exact edition match), or None."""
+        isbns = [str(i).replace("-", "") for i in isbns or [] if str(i).strip()][:20]
+        if not isbns:
+            return None
+        rows = self._q(ISBN, isbns=isbns).get("editions") or []
+        return (rows[0] or {}).get("book_id") if rows else None
+
     def best_match(self, title, author=None, isbns=()):
-        """Search by title and author; accept only a close title (and author, when both are known)."""
-        q = f"{title} {author}" if author else title
+        """Search by title and author; accept only the same work (and volume), by a matching author when both are known."""
+        q = f"{base_title(title)} {author}" if author else title
         best = None
         for d in self.search(q):
-            s = similarity(title, d.get("title", ""))
+            s = same_work(title, d.get("title", ""))
+            if not s:
+                continue
             names = d.get("author_names") or []
             if author and names:
-                a = max(similarity(author, n) for n in names)
-                if a < 0.6:
+                if max(similarity(author, n) for n in names) < 0.6:
                     continue
                 s += 0.05
             if isbns and set(isbns) & set(d.get("isbns") or []):
                 s += 0.2
-            if s >= 0.88 and (best is None or s > best[0] or (s == best[0] and (d.get("ratings_count") or 0) > (best[1].get("ratings_count") or 0))):
+            votes = d.get("ratings_count") or 0
+            if best is None or (s, votes) > (best[0], best[1].get("ratings_count") or 0):
                 best = (s, d)
         return best[1] if best else None
 

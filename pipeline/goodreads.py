@@ -10,9 +10,10 @@ import html as htmllib
 import json
 import re
 
-from .util import log, polite_get, similarity
+from .titles import GR_SERIES, same_work, volume
+from .util import log, polite_get
 
-PARSER_VERSION = 1
+PARSER_VERSION = 2
 BASE = "https://www.goodreads.com"
 DELAY = 2.5
 
@@ -95,16 +96,17 @@ def parse_book(page):
 
 
 def _search(title, author):
+    """Goodreads book id from the search page: the first of the top five results whose title is this work."""
     q = f"{title} {author or ''}".strip()
     page, _ = _fetch(f"{BASE}/search?q={_quote(q)}&search_type=books")
     if not page:
         return None
-    for m in re.finditer(r'<a class="bookTitle"[^>]*href="/book/show/(\d+)[^"]*"[^>]*>\s*<span[^>]*>([^<]+)</span>', page):
-        found = htmllib.unescape(m.group(2))
-        base = re.sub(r"\s*\(.*?\)\s*$", "", found)  # "Dune (Dune, #1)" -> "Dune"
-        if max(similarity(title, base), similarity(title, found)) >= 0.85:
+    hits = re.finditer(r'<a class="bookTitle"[^>]*href="/book/show/(\d+)[^"]*"[^>]*>\s*<span[^>]*>([^<]+)</span>', page)
+    for n, m in enumerate(hits):
+        if n >= 5:
+            break
+        if same_work(title, htmllib.unescape(m.group(2))):
             return m.group(1)
-        break  # only trust the top result
     return None
 
 
@@ -114,26 +116,47 @@ def _quote(s):
     return quote_plus(s)
 
 
-def lookup(ids=(), title=None, author=None):
-    """{"gr_rating", "gr_votes", "gr_genres", "gr_id", "gr_guessed"} or None."""
-    guessed = False
-    gid = next(iter(ids), None)
-    if not gid and title:
-        gid, guessed = _search(title, author), True
-    if not gid:
-        return None
-    page, final = _fetch(f"{BASE}/book/show/{gid}")
-    if not page:
-        return None
-    out = parse_book(page)
-    if out["gr_rating"] is None:
-        if not getattr(lookup, "_warned", False):
-            lookup._warned = True
-            log(f"    Goodreads: page loaded but no rating found for /book/show/{gid} (layout may have changed)")
-    if guessed and out.get("gr_title") and title and similarity(re.sub(r"\s*\(.*?\)\s*$", "", out["gr_title"]), title) < 0.8:
-        log(f"    Goodreads: search result '{out['gr_title']}' doesn't look like {title}; skipped")
-        return None
-    m = re.search(r"/book/show/([\w.-]+)", final or "")
-    out["gr_id"] = m.group(1) if m else str(gid)
-    out["gr_guessed"] = guessed
+def lookup(ids=(), isbns=(), title=None, author=None):
+    """{"gr_rating", "gr_votes", "gr_genres", "gr_id", "gr_guessed", "gr_series", "gr_series_pos"} or None.
+    Tries, in order: Open Library's Goodreads ids, the edition's ISBN (Goodreads redirects /book/isbn/<isbn>
+    to the book), then a title + author search."""
+    tries = [(f"{BASE}/book/show/{g}", False) for g in list(ids)[:1]]
+    tries += [(f"{BASE}/book/isbn/{i}", False) for i in _isbn_order(isbns)[:2]]
+    if title:
+        tries.append((None, True))
+    for url, guessed in tries:
+        if url is None:
+            gid = _search(title, author)
+            if not gid:
+                continue
+            url = f"{BASE}/book/show/{gid}"
+        page, final = _fetch(url)
+        if not page or "/book/show/" not in (final or url):
+            continue
+        out = parse_book(page)
+        if out["gr_rating"] is None:
+            if not getattr(lookup, "_warned", False):
+                lookup._warned = True
+                log(f"    Goodreads: page loaded but no rating found at {final or url} (layout may have changed)")
+            continue
+        if guessed and out.get("gr_title") and title and not same_work(title, out["gr_title"], 0.8):
+            log(f"    Goodreads: search result '{out['gr_title']}' doesn't look like {title}; skipped")
+            continue
+        m = re.search(r"/book/show/([\w.-]+)", final or url)
+        out["gr_id"] = m.group(1) if m else None
+        out["gr_guessed"] = guessed
+        t = out.get("gr_title") or ""
+        sm = GR_SERIES.search(t)
+        out["gr_series"], out["gr_series_pos"] = (sm.group(1).strip(), volume(t)) if sm else (None, None)
+        return out
+    return None
+
+
+def _isbn_order(isbns):
+    """ISBN-13s first (they redirect more reliably), each once."""
+    seen, out = set(), []
+    for i in sorted((str(x).replace("-", "") for x in isbns or []), key=lambda x: len(x) != 13):
+        if i not in seen and re.fullmatch(r"\d{9}[\dX]|\d{13}", i):
+            seen.add(i)
+            out.append(i)
     return out

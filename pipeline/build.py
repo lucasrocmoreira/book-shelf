@@ -7,14 +7,14 @@ import os
 import sys
 import traceback
 
-from . import goodreads, manga, openlibrary, shelf
+from . import goodreads, manga, openlibrary, shelf, titles
 from .hardcover import Hardcover, HardcoverError, check as hc_check
 from .util import CACHE_DIR, SITE_DIR, days_since, load_json, log, norm, now_iso, save_json
 
 MAX_LOOKUPS = int(os.environ.get("MAX_LOOKUPS", "150"))
 UNMATCHED_RETRY_DAYS = 3
 PAGES_PER_VOLUME = 190  # a typical tankōbon; used only to compare series length with books
-SCORES_VERSION = 1
+SCORES_VERSION = 2
 
 # Shelf names that only repeat the kind or say nothing about the book.
 GENRE_JUNK = {
@@ -97,9 +97,14 @@ def fetch_details(refs, cache, status):
     log(f"Details: {ok['ol']} from Open Library, {ok['al']} from AniList")
 
 
-def refresh_scores(refs, details, sc, hc, status):
+def _keep(old, prefix_keys):
+    return {k: v for k, v in old.items() if any(k.startswith(p) for p in prefix_keys)}
+
+
+def refresh_scores(refs, shelf_titles, details, sc, hc, status):
     """Goodreads + Hardcover for books and comics, MyAnimeList for manga. Cached and rechecked monthly
-    (weekly for ongoing series), stalest first, at most MAX_LOOKUPS per source per run."""
+    (weekly for ongoing series), stalest first, at most MAX_LOOKUPS per run. A source that fails this run
+    keeps its last known values and is retried on the next run."""
     todo = []
     for ref in set(refs.values()):
         rec = details.get(ref)
@@ -109,43 +114,57 @@ def refresh_scores(refs, details, sc, hc, status):
         due = 7 if rec.get("status") in ("Ongoing", "On hiatus") else 30
         stale_version = c.get("v") != [SCORES_VERSION, goodreads.PARSER_VERSION]
         hc_new = bool(hc) and ref.startswith("ol:") and not c.get("hc_tried")  # token added after the first runs
-        if stale_version or days_since(c.get("checked")) >= due or hc_new:
+        if stale_version or days_since(c.get("checked")) >= due or hc_new or c.get("retry"):
             todo.append((days_since(c.get("checked")), ref))
     todo.sort(key=lambda x: -x[0])
     todo = [r for _, r in todo[:MAX_LOOKUPS]]
     if not todo:
         return
     log(f"Scores: checking {len(todo)} titles")
-    gr_hits = gr_tries = hc_fail = 0
+    gr_hits = gr_tries = hc_fail = mal_hits = mal_tries = 0
     for ref in todo:
         rec = details[ref]
         old = sc.get(ref) or {}
         entry = {"checked": now_iso(), "v": [SCORES_VERSION, goodreads.PARSER_VERSION]}
-        title = rec.get("title") or ""
-        author = (rec.get("authors") or [None])[0]
+        # Your own title wins when it says more (e.g. "Saga: Volume Two" where Open Library just says "Saga").
+        mine = shelf_titles.get(ref) or ""
+        title = mine if titles.volume(mine) is not None or not rec.get("title") else rec["title"]
+        author = next((a for a in rec.get("authors") or [] if not a.startswith("[")), None)
+        isbns = rec.get("isbns") or []
         try:
             if ref.startswith("al:"):
-                entry.update(manga.mal(rec.get("mal_id")) or {})
+                mal_tries += 1
+                m = manga.mal(rec.get("mal_id"))
+                if m:
+                    entry.update(m)
+                    mal_hits += 1
+                elif rec.get("mal_id"):
+                    entry.update(_keep(old, ("mal_", "demographics", "serialization")))
+                    entry["retry"] = True
             else:
                 gr_tries += 1
-                g = goodreads.lookup(rec.get("goodreads_ids") or [], title, author)
+                g = goodreads.lookup(rec.get("goodreads_ids") or [], isbns, title, author)
                 if g:
                     entry.update(g)
-                    gr_hits += g.get("gr_rating") is not None
+                    gr_hits += 1
                 elif old.get("gr_rating") is not None:  # a blocked request shouldn't erase a known score
-                    entry.update({k: v for k, v in old.items() if k.startswith("gr_")})
+                    entry.update(_keep(old, ("gr_",)))
                 if hc:
                     entry["hc_tried"] = True
                     try:
-                        doc = hc.best_match(title, author, rec.get("isbns") or [])
-                        if doc:
-                            from .hardcover import parse
+                        from .hardcover import parse
 
+                        book_id = hc.by_isbn(isbns) if isbns else None
+                        doc = {"id": book_id} if book_id else hc.best_match(title, author, isbns)
+                        if doc:
                             det = hc.detail(doc.get("id")) if doc.get("id") else {}
                             entry.update(parse(doc, det))
+                        elif old.get("hc_rating") is not None:
+                            entry.update(_keep(old, ("hc_", "genres", "moods", "tags", "content_warnings", "series", "pages", "description", "cover")))
                     except HardcoverError as e:
                         hc_fail += 1
-                        entry.update({k: v for k, v in old.items() if k.startswith("hc_") or k in ("genres", "moods", "tags", "content_warnings")})
+                        entry.update(_keep(old, ("hc_", "genres", "moods", "tags", "content_warnings", "series", "pages", "description", "cover")))
+                        entry["retry"] = True
                         log(f"  Hardcover, {title}: {e}")
                         if "token" in str(e):
                             status["hardcover"] = str(e)
@@ -159,6 +178,8 @@ def refresh_scores(refs, details, sc, hc, status):
         status["goodreads"] = "ok" if gr_hits else "no ratings found this run (Goodreads may be blocking or changed its pages)"
     if hc and "hardcover" not in status:
         status["hardcover"] = "ok" if hc_fail < 3 else f"{hc_fail} lookups failed this run"
+    if mal_tries:
+        status["myanimelist"] = "ok" if mal_hits else "no scores this run (Jikan and the MyAnimeList page both failed); retrying next run"
 
 
 def _merge(*lists, junk=(), limit=12):
@@ -182,6 +203,21 @@ def _decade(y):
     return f"{y // 10 * 10}s" if isinstance(y, int) else None
 
 
+def series_of(kind, e, rec, c):
+    """(series name, volume number) for a book or comic. Your own title decides for comics, so every
+    volume you add as "Saga: Volume N" lands in the same series; then Goodreads, then Hardcover.
+    A "series" / "volume" field you add to the entry in config/shelf.json overrides all of this."""
+    if e.get("series"):
+        return e["series"], e.get("volume") or titles.volume(e.get("title"))
+    mine, theirs = e.get("title") or "", rec.get("title") or ""
+    pos = e.get("volume") or titles.volume(mine) or c.get("gr_series_pos") or titles.volume(theirs)
+    if kind == "comic":
+        name = titles.series_name(mine) or c.get("gr_series") or c.get("series") or titles.series_name(theirs)
+    else:
+        name = c.get("series") or c.get("gr_series") or rec.get("series")
+    return name, pos
+
+
 def assemble(sh, refs, details, sc):
     out = []
     for key, e in sh["items"].items():
@@ -195,8 +231,10 @@ def assemble(sh, refs, details, sc):
         ref = refs.get(key)
         rec = details.get(ref) if ref else None
         if not rec:
-            out.append({**base, "title": e.get("title") or key, "authors": [e["author"]] if e.get("author") else [],
-                        "year": e.get("year"), "cover": e.get("cover"), "matched": False, "scores": {}, "links": {}})
+            item = {**base, "title": e.get("title") or key, "authors": [e["author"]] if e.get("author") else [],
+                    "year": e.get("year"), "cover": e.get("cover"), "matched": False, "scores": {}, "links": {}}
+            item["series"], item["series_pos"] = series_of(kind, e, {}, {})
+            out.append(item)
             continue
         c = sc.get(ref) or {}
         item = {**base, "matched": True, "ref": ref}
@@ -211,7 +249,7 @@ def assemble(sh, refs, details, sc):
                 "series": rec.get("title"),
                 "genres": _merge(rec.get("genres"), c.get("mal_genres"), junk=GENRE_JUNK),
                 "themes": _merge(c.get("mal_themes"), rec.get("tags"), limit=14),
-                "moods": [], "demographics": c.get("demographics") or [],
+                "moods": [], "demographics": c.get("demographics") or rec.get("demographics") or [],
                 "magazine": c.get("serialization") or [],
                 "description": rec.get("description"), "cover": rec.get("cover") or e.get("cover"),
                 "popularity": c.get("mal_members") or rec.get("anilist_popularity"),
@@ -228,13 +266,16 @@ def assemble(sh, refs, details, sc):
         else:
             hc_pages = c.get("pages")
             item.update({
-                "title": rec.get("title") or e.get("title"), "subtitle": rec.get("subtitle"),
+                # Keep your title when it names the volume and the database's doesn't ("Saga: Volume Two" vs "Saga").
+                "title": e.get("title") if titles.volume(e.get("title")) is not None and titles.volume(rec.get("title")) is None
+                         else (rec.get("title") or e.get("title")),
+                "subtitle": rec.get("subtitle"),
                 "subtype": "Comics" if kind == "comic" else "Book",
                 "authors": rec.get("authors") or ([e["author"]] if e.get("author") else []), "artists": [],
                 "year": rec.get("year") or e.get("year"), "end_year": None, "pub_status": None,
                 "pages": rec.get("pages") or hc_pages, "pages_estimated": False,
                 "volumes": None, "chapters": None,
-                "series": c.get("series") or rec.get("series"),
+                "series": None,
                 "genres": _merge(c.get("genres"), c.get("gr_genres"), junk=GENRE_JUNK),
                 "themes": _merge(c.get("tags"), rec.get("subjects") if not c.get("tags") else [], limit=12),
                 "moods": c.get("moods") or [], "demographics": [], "magazine": [],
@@ -260,6 +301,9 @@ def assemble(sh, refs, details, sc):
                 links["goodreads"] = f"https://www.goodreads.com/book/show/{c['gr_id']}"
             if c.get("hc_slug"):
                 links["hardcover"] = f"https://hardcover.app/books/{c['hc_slug']}"
+        if kind != "manga":
+            item["series"], item["series_pos"] = series_of(kind, e, rec, c)
+            item["authors"] = [a for a in item["authors"] if not str(a).startswith("[")]
         item["decade"] = _decade(item.get("year"))
         item["links"] = {k: v for k, v in links.items() if v}
         out.append(item)
@@ -287,7 +331,8 @@ def main():
 
     refs = resolve(sh, matches, status)
     fetch_details(refs, details, status)
-    refresh_scores(refs, details, sc, hc, status)
+    shelf_titles = {refs[k]: e.get("title") for k, e in sh["items"].items() if k in refs}
+    refresh_scores(refs, shelf_titles, details, sc, hc, status)
     items = assemble(sh, refs, details, sc)
 
     live = set(refs.values())

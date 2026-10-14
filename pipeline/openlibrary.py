@@ -7,6 +7,7 @@ https://openlibrary.org/developers/api
 import os
 import re
 
+from .titles import base_title, same_work, volume
 from .util import log, polite_get, similarity
 
 BASE = "https://openlibrary.org"
@@ -21,7 +22,7 @@ UA = "book-shelf/1.0 (personal reading list; https://github.com/{})".format(os.e
 # Subjects on Open Library are crowd-sourced library headings; keep the readable ones.
 _SUBJECT_JUNK = re.compile(
     r"(accessible book|protected daisy|in library|lending library|large type|translations? into|"
-    r"open library|overdrive|nyt:|award:|reading level|juvenile literature|^fiction$|^general$|^literature$|"
+    r"open library|overdrive|^comics? (&|and) graphic novels|^graphic novels?,|nyt:|award:|reading level|juvenile literature|^fiction$|^general$|^literature$|"
     r"^english|^american|^roman|^novela|^ficci[oó]n|^comic books, strips|^graphic novels$|^fiction, general|long now)",
     re.I,
 )
@@ -48,13 +49,15 @@ def work_id(key: str):
 
 
 def search(title, author=None, limit=10):
-    params = {"title": title, "fields": FIELDS, "limit": limit}
+    # Volume titles are written many ways; search with the bare series title and let same_work() pick the volume.
+    q = base_title(title) if volume(title) is not None else title
+    params = {"title": q, "fields": FIELDS, "limit": 20 if q != title else limit}
     if author:
         params["author"] = author
     res = _get("/search.json", **params) or {}
     docs = res.get("docs") or []
     if not docs and author:  # an author spelled differently shouldn't hide the book
-        res = _get("/search.json", title=title, fields=FIELDS, limit=limit) or {}
+        res = _get("/search.json", title=q, fields=FIELDS, limit=params["limit"]) or {}
         docs = res.get("docs") or []
     return docs
 
@@ -62,9 +65,11 @@ def search(title, author=None, limit=10):
 def best_match(title, author=None, year=None):
     """Work id (OL...W) of the closest match, or None when nothing is a confident match."""
     scored = []
-    for d in search(title, author)[:10]:
-        s = max(similarity(title, d.get("title", "")),
-                similarity(title, f"{d.get('title', '')}: {d.get('subtitle', '')}"))
+    for d in search(title, author)[:20]:
+        s = max(same_work(title, d.get("title", ""), strict=True),
+                same_work(title, f"{d.get('title', '')}: {d.get('subtitle', '')}", strict=True))
+        if not s:
+            continue
         if author:
             names = d.get("author_name") or []
             a = max([similarity(author, n) for n in names] or [0])

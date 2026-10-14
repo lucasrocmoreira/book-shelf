@@ -112,6 +112,14 @@ ol.list{list-style:none;margin:0;padding:0}
 .facts .tags{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
 .facts .tags span.k{min-width:86px}
 .tag{border:1px solid var(--line);background:transparent;border-radius:999px;padding:0 8px;font-size:12px;cursor:pointer;color:var(--ink)}
+.vols{display:grid;gap:0;border-top:1px solid var(--line)}
+.vol{display:grid;grid-template-columns:26px 1fr auto;gap:2px 10px;align-items:center;padding:7px 0;border-bottom:1px dotted var(--line);font-size:14px}
+.vol .vn{font:600 15px/1 var(--display);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.vol .vt{min-width:0;overflow-wrap:anywhere}
+.vol b{font:700 18px/1 var(--display);font-variant-numeric:tabular-nums}
+.vol .seg{grid-column:2/4;justify-self:start}
+.vol .seg button{padding:3px 10px;font-size:13px;border-radius:0}
+.vol .seg button.on{background:var(--ink);color:var(--bg)}
 .links{font-size:13px;color:var(--muted)}
 .links a{margin-right:12px}
 .note{font-size:13px;color:var(--mid);margin:0}
@@ -213,6 +221,7 @@ dialog::backdrop{background:rgba(20,14,8,.45)}
       <summary>Scores in the average and other options</summary>
       <div id="srcBoxes"></div>
       <label><input type="checkbox" id="hideUnscored"> Hide titles with no score</label>
+      <label><input type="checkbox" id="mergeSeries"> Merge comic volumes into one series</label>
     </details>
     <div class="active" id="active"></div>
   </div>
@@ -255,10 +264,10 @@ const store = {
 const prefs = store.get("book-prefs", {});
 const state = {
   q:"", sort:prefs.sort||"avg", group:prefs.group||"", list:prefs.list||"unread", kinds:new Set(prefs.kinds||[]),
-  filters:{}, pub:"", len:"", tags:[], hideUnscored:!!prefs.hideUnscored,
+  filters:{}, pub:"", len:"", tags:[], hideUnscored:!!prefs.hideUnscored, mergeSeries:prefs.mergeSeries!==false,
   srcOn:new Set(prefs.srcOn||Object.keys(SOURCES)), open:new Set(), full:new Set(),
 };
-function savePrefs(){ store.set("book-prefs",{sort:state.sort,group:state.group,list:state.list,kinds:[...state.kinds],hideUnscored:state.hideUnscored,srcOn:[...state.srcOn]}); }
+function savePrefs(){ store.set("book-prefs",{sort:state.sort,group:state.group,list:state.list,kinds:[...state.kinds],hideUnscored:state.hideUnscored,mergeSeries:state.mergeSeries,srcOn:[...state.srcOn]}); }
 
 // Which repository this site belongs to: <owner>.github.io/<repo>/
 const REPO = store.get("book-repo", null) || (()=>{
@@ -324,14 +333,24 @@ async function act(mutate, message, okText, rebuild=false, undo=null){
 }
 
 /* ---------------- Merge built data with the live shelf ---------------- */
+// Same idea as pipeline/titles.py, for titles added a moment ago that haven't been built yet.
+const NUMWORDS = {one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,um:1,dois:2,tres:3,quatro:4,cinco:5,seis:6};
+function volumeFromTitle(t){
+  const m = String(t||"").match(/^(.+?)[\s,:;.\-–(]*\b(?:vol(?:ume)?|book|tomo|livro|n[ºo°]|#)\.?\s*(\d{1,3}|[a-z]+)\b/i);
+  if(!m) return null;
+  const n = /^\d+$/.test(m[2]) ? +m[2] : NUMWORDS[m[2].toLowerCase()];
+  return n ? {series:m[1].trim(), pos:n} : null;
+}
 function tidy(it){
   for(const f of ["authors","artists","genres","themes","moods","demographics","magazine","characters","places","content_warnings"]) if(!Array.isArray(it[f])) it[f] = [];
   it.series = it.series ? [it.series].flat() : [];
+  if(it.kind==="comic" && !it.series.length){ const g = volumeFromTitle(it.title); if(g){ it.series=[g.series]; it.series_pos ??= g.pos; } }
   it.decade = it.decade ? [it.decade] : [];
   it.kind = KINDS[it.kind] ? it.kind : "book";
   return it;
 }
-function merge(){
+function merge(){ mergeItems(); buildSeries(); }
+function mergeItems(){
   const byKey = new Map(DATA.items.map(s=>[s.key, s]));
   if(!liveSH){ ITEMS = DATA.items.map(s=>tidy({...s})); return; }
   ITEMS = [];
@@ -343,6 +362,54 @@ function merge(){
     ITEMS.push(tidy(base));
   }
 }
+/* ---------------- Comic series: volumes merged into one row ---------------- */
+// A series row's score for each source is the mean over its volumes that have that score,
+// so it ranks like any other title. Volumes keep their own status, stars and scores.
+const seriesKey = s => s.kind==="comic" && s.series.length ? "series:"+norm(s.series[0]) : null;
+let SERIES = new Map();
+function buildSeries(){
+  const by = new Map();
+  for(const s of ITEMS){ const k = seriesKey(s); if(k){ if(!by.has(k)) by.set(k,[]); by.get(k).push(s); } }
+  SERIES = new Map();
+  for(const [k, ms] of by){
+    if(ms.length < 2) continue;
+    ms.sort((a,b)=>(a.series_pos??999)-(b.series_pos??999) || (a.year||0)-(b.year||0) || a.title.localeCompare(b.title));
+    const union = f => [...new Set(ms.flatMap(m=>m[f]||[]))];
+    const scores = {};
+    for(const src of Object.keys(SOURCES)){
+      const v = ms.map(m=>m.scores?.[src]).filter(x=>typeof x==="number");
+      scores[src] = v.length ? Math.round(v.reduce((a,b)=>a+b,0)/v.length) : null;
+    }
+    const st = ms.map(m=>m.reading), rated = ms.filter(m=>m.rating);
+    const sumOf = f => ms.some(m=>m[f]!=null) ? ms.reduce((a,m)=>a+(m[f]||0),0) : null;
+    const g = {
+      key:k, isGroup:true, members:ms, kind:"comic", subtype:"Comics", title:ms[0].series[0],
+      authors:union("authors").slice(0,3), artists:[], cover:(ms.find(m=>m.cover)||{}).cover||null,
+      year:Math.min(...ms.map(m=>m.year||9999))<9999 ? Math.min(...ms.map(m=>m.year||9999)) : null,
+      end_year:Math.max(...ms.map(m=>m.year||0))||null,
+      genres:union("genres").slice(0,8), themes:union("themes").slice(0,10), moods:union("moods").slice(0,6), demographics:[], magazine:[], characters:[], places:[], content_warnings:[],
+      series:[ms[0].series[0]], decade:union("decade"), scores, matched:ms.some(m=>m.matched), pending:ms.every(m=>m.pending),
+      popularity:sumOf("popularity"), pages:sumOf("pages"), interest:Math.max(...ms.map(m=>m.interest||0)),
+      rating:rated.length ? Math.round(rated.reduce((a,m)=>a+m.rating,0)/rated.length) : 0,
+      reading: st.every(x=>x==="read") ? "read" : st.some(x=>x!=="unread") ? "reading" : "unread",
+      read_on:ms.map(m=>m.read_on).filter(Boolean).sort().pop()||null, added:ms.map(m=>m.added).filter(Boolean).sort().pop()||null,
+      description:(ms.find(m=>m.description)||{}).description||null, links:{},
+    };
+    SERIES.set(k, g);
+  }
+}
+// The rows to rank: single titles, plus one row per merged series in place of its volumes.
+function rows(){
+  if(!state.mergeSeries) return ITEMS;
+  const out = [], seen = new Set();
+  for(const s of ITEMS){
+    const k = seriesKey(s);
+    if(k && SERIES.has(k)){ if(!seen.has(k)){ seen.add(k); out.push(SERIES.get(k)); } }
+    else out.push(s);
+  }
+  return out;
+}
+
 function setStatus(s, st){
   const prev = {status:s.reading, read_on:s.read_on};
   act(d=>{ const e=d.items[s.key]; if(e){ e.status = st; e.read_on = st==="read" ? (e.read_on && prev.status==="read" ? e.read_on : today()) : null; } },
@@ -388,11 +455,15 @@ function sorted(list){
   });
 }
 function haystack(s){
-  if(!s._hay) s._hay = [s.title, s.subtitle, s.original_title, s.native_title, ...s.authors, ...s.artists, ...s.series, ...s.themes,
+  if(!s._hay) s._hay = [s.title, ...(s.members||[]).map(m=>m.title), s.subtitle, s.original_title, s.native_title, ...s.authors, ...s.artists, ...s.series, ...s.themes,
     ...s.genres, ...s.moods, ...s.demographics, ...s.characters, ...s.places, s.owned, s.description].filter(Boolean).join(" | ").toLowerCase();
   return s._hay;
 }
-function inList(s){ return state.list==="all" || s.reading===state.list; }
+function inList(s){
+  if(state.list==="all") return true;
+  if(s.isGroup) return s.members.some(m=>m.reading===state.list);
+  return s.reading===state.list;
+}
 function lenOk(s){
   if(!state.len) return true;
   if(state.len.startsWith("v")) return s.volumes!=null && s.volumes < +state.len.slice(1);
@@ -406,7 +477,7 @@ function pubOk(s){
 }
 function filtered(){
   const q = norm(state.q);
-  return ITEMS.filter(s=>
+  return rows().filter(s=>
     inList(s) &&
     (!q || norm(haystack(s)).includes(q)) &&
     (!state.kinds.size || state.kinds.has(s.kind)) &&
@@ -426,6 +497,7 @@ function shown(s){
 }
 function yearSpan(s){
   if(!s.year) return "";
+  if(s.isGroup) return s.end_year && s.end_year!==s.year ? `${s.year}–${s.end_year}` : String(s.year);
   if(s.kind==="manga"){
     if(s.end_year && s.end_year!==s.year) return `${s.year}–${s.end_year}`;
     if(s.pub_status==="Ongoing" || s.pub_status==="On hiatus") return `${s.year}–`;
@@ -433,6 +505,7 @@ function yearSpan(s){
   return String(s.year);
 }
 function lengthText(s, long){
+  if(s.isGroup) return `${plural(s.members.length,"volume")}${long && s.pages?`, ${s.pages} pages`:""}`;
   if(s.volumes) return `${plural(s.volumes,"volume")}${long && s.chapters?`, ${s.chapters} chapters`:""}`;
   if(s.kind==="manga" && s.chapters) return `${s.chapters} chapters`;
   if(s.pages) return `${s.pages} pages`;
@@ -457,7 +530,36 @@ function scoreCell(s,k){
 function starset(s, field, n, label, cls=""){
   return `<span class="starset ${cls}"><span>${label}</span>${Array.from({length:n},(_,i)=>i+1).map(i=>`<button type="button" data-act="${field}" data-n="${i}" class="${(s[field]||0)>=i?"lit":""}" aria-label="${label} ${i} of ${n}">★</button>`).join("")}</span>`;
 }
+function groupDetail(s){
+  const vols = s.members.map(m=>{
+    const a = avg(m);
+    const seg = ["unread","reading","read"].map(st=>`<button type="button" data-act="status" data-v="${st}" aria-pressed="${m.reading===st}" class="${m.reading===st?"on":""}">${STATUS_LABEL[st]}</button>`).join("");
+    return `<div class="vol" data-member="${esc(m.key)}">
+      <span class="vn">${m.series_pos!=null?esc(m.series_pos):"·"}</span>
+      <span class="vt">${esc(m.title)}${m.owned?` <span class="na">· own ${esc(m.owned)}</span>`:""}${!m.matched?` <span class="pill warn">${m.pending?"Updating":"Not found"}</span>`:""}</span>
+      <b class="${tone(a)}">${a??"–"}</b>
+      <span class="seg">${seg}</span>
+    </div>`;
+  }).join("");
+  const read = s.members.filter(m=>m.reading==="read").length;
+  const srcs = Object.keys(SOURCES).filter(k=>SOURCES[k].kinds.includes("comic"));
+  const breakdown = srcs.map(k=>{ const v=s.scores[k], n=s.members.filter(m=>m.scores?.[k]!=null).length;
+    return `<div><span>${SOURCES[k].label}</span><b class="${tone(v)}">${v??"–"}${v!=null?` <span class="na">${n} of ${s.members.length} vols</span>`:""}</b></div>`; }).join("");
+  return `<div class="detail">
+    <p class="note" style="color:var(--muted)">${read} of ${s.members.length} volumes read. Scores are the mean of each volume's score. Turn off “Merge comic volumes” under other options to rate or remove single volumes.</p>
+    <div class="vols">${vols}</div>
+    ${s.description?`<p class="summary clamp">${esc(s.description)}</p>`:""}
+    <div class="breakdown">${breakdown}</div>
+    <div class="facts">
+      ${s.authors.length?`<div>By ${s.authors.map(esc).join(", ")}</div>`:""}
+      ${tagList("Genres","genres",s.genres)}
+      ${tagList("Themes","themes",s.themes)}
+      ${tagList("Moods","moods",s.moods)}
+    </div>
+  </div>`;
+}
 function detail(s){
+  if(s.isGroup) return groupDetail(s);
   const srcs = Object.keys(SOURCES).filter(k=>SOURCES[k].kinds.includes(s.kind));
   const breakdown = srcs.map(k=>scoreCell(s,k)).join("");
   const links = Object.entries(s.links||{}).map(([k,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${LINK_LABELS[k]||k}</a>`).join("");
@@ -503,13 +605,19 @@ function detail(s){
 function row(s,i){
   const sc = shown(s);
   const open = state.open.has(s.key);
-  const pills = `<span class="pill kind">${esc(s.kind==="manga" ? (s.subtype||"Manga") : KIND_ONE[s.kind]==="comic" ? "Comics" : "Book")}</span>`
-    + (state.list==="all" && s.reading!=="unread" ? `<span class="pill">${STATUS_LABEL[s.reading]}</span>` : "")
+  if(s.isGroup){
+    const read = s.members.filter(m=>m.reading==="read").length;
+    s._pill = `<span class="pill">${plural(s.members.length,"volume")}${read?`, ${read} read`:""}</span>`;
+  }
+  const kindPill = s.isGroup ? `<span class="pill kind">Series</span>${s._pill}`
+    : `<span class="pill kind">${esc(s.kind==="manga" ? (s.subtype||"Manga") : s.kind==="comic" ? "Comics" : "Book")}</span>`;
+  const pills = kindPill
+    + (state.list==="all" && s.reading!=="unread" && !s.isGroup ? `<span class="pill">${STATUS_LABEL[s.reading]}</span>` : "")
     + (s.kind==="manga" && s.pub_status==="Ongoing" ? `<span class="pill on">Ongoing</span>` : "")
     + (s.pending?`<span class="pill warn">Updating</span>`:(!s.matched?`<span class="pill warn">Not found</span>`:""));
   const stars = s.reading==="read" && s.rating ? `<span class="mine" aria-label="Your rating ${s.rating} of 5">★${s.rating}</span>`
     : s.interest ? `<span class="stars" aria-label="Interest ${s.interest} of 3">${"★".repeat(s.interest)}</span>` : "";
-  const bits = [yearSpan(s), lengthText(s,false), s.owned?`own ${s.owned}`:"", (s.genres||[]).slice(0,2).join(", ")].filter(Boolean).map(esc).join(" · ");
+  const bits = [yearSpan(s), s.isGroup ? (s.pages?`${s.pages} pages`:"") : lengthText(s,false), s.owned?`own ${s.owned}`:"", (s.genres||[]).slice(0,2).join(", ")].filter(Boolean).map(esc).join(" · ");
   const by = s.authors.slice(0,2).join(", ");
   return `<li class="item k-${s.kind}" data-key="${esc(s.key)}">
     <span class="rank">${i+1}</span>
@@ -522,7 +630,7 @@ function row(s,i){
 const LIST_WORD = {unread:"to read", reading:"in progress", read:"read", all:"on the shelf"};
 function renderHero(list){
   const top = sorted(list)[0];
-  const all = ITEMS.filter(inList);
+  const all = rows().filter(inList);
   const narrowed = list.length !== all.length;
   if(!top){
     const msg = {unread:["Nothing waiting","Use Add to put books, comics and manga on your shelf."], reading:["Nothing in progress","Open a title and tap Reading."], read:["Nothing read yet","Open a title and tap Read when you finish it."], all:["Your shelf is empty","Use Add to start."]}[state.list];
@@ -768,6 +876,8 @@ function setup(){
   $("f_pub").onchange = e=>{state.pub=e.target.value;render()};
   $("f_len").onchange = e=>{state.len=e.target.value;render()};
   $("hideUnscored").onchange = e=>{state.hideUnscored=e.target.checked;render()};
+  $("mergeSeries").checked = state.mergeSeries;
+  $("mergeSeries").onchange = e=>{state.mergeSeries=e.target.checked;render()};
   $("listSeg").onclick = e=>{const b=e.target.closest("button"); if(!b) return; state.list=b.dataset.v; syncSeg(); render()};
   $("kinds").onclick = e=>{const b=e.target.closest("[data-k]"); if(!b) return;
     const k=b.dataset.k; state.kinds.has(k)?state.kinds.delete(k):state.kinds.add(k); render()};
@@ -797,7 +907,8 @@ function setup(){
       if(!state.tags.some(x=>x.field===t.field&&x.value===t.value)) state.tags.push(t);
       window.scrollTo({top:$("out").offsetTop-140, behavior:"smooth"}); render(); return; }
     const li=e.target.closest(".item"); if(!li) return;
-    const s = ITEMS.find(x=>x.key===li.dataset.key); if(!s) return;
+    const mem = e.target.closest("[data-member]");
+    const s = mem ? ITEMS.find(x=>x.key===mem.dataset.member) : rows().find(x=>x.key===li.dataset.key); if(!s) return;
     const a=e.target.closest("[data-act]");
     if(a){ const v=a.dataset.act;
       if(v==="status" && a.dataset.v!==s.reading) setStatus(s, a.dataset.v);
