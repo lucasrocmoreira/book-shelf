@@ -164,6 +164,18 @@
    "author": "Uketsu",
    "year": 2026,
    "cover": "https://covers.openlibrary.org/b/id/15174713-L.jpg"
+  },
+  "ol:OL26417336W": {
+   "kind": "book",
+   "title": "Jantar Secreto",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL26417336W",
+   "author": "Raphael Montes",
+   "year": 2016,
+   "cover": "https://covers.openlibrary.org/b/id/12372592-L.jpg"
   }
  }
 }
