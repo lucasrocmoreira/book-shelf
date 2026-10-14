@@ -1251,6 +1251,67 @@
    1
   ]
  },
+ "ol:OL46241W": {
+  "checked": "2026-10-14T06:00:41+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/edition/12373277/509ae6a85955acc6ed96febacdcbffb105f0ebea.jpeg",
+  "description": "This classic science fiction masterwork by Isaac Asimov weaves stories about robots, humanity, and the deep questions of existence into a novel of shocking intelligence and heart. \n\n“A must-read for science-fiction buffs and literature enjoyers alike.”— The Guardian \nI, Robot , the first and most widely read book in Asimov’s Robot series, forever changed the world’s perception of artificial intelligence. Here are stories of robots gone mad, of mind-reading robots, and robots with a sense of humor. Of robot politicians, and robots who secretly run the world—all told with the dramatic blend of science fact and science fiction that has become Asimov’s trademark. \nThe Three Laws of Robotics:\n1) A robot may not injure a human being or, through inaction, allow a human being to come to harm.\n2) A robot must obey orders given to it by human beings except where such orders would conflict with the First Law.\n3) A robot must protect its own existence as long as such protection does not conflict with the First or Second Law. \nWith these three, simple directives, Isaac Asimov formulated the laws governing robots’ behavior. In I, Robot , Asimov chronicles the development of the robot from its primitive origins in the present to its ultimate perfection in the not-so-distant future—a future in which humanity itself may be rendered obsolete. \n\nI, Robot is a fixup novel of science fiction short stories or essays by American writer Isaac Asimov. The stories originally appeared in the American magazines Super Science Stories and Astounding Science Fiction between 1940 and 1950 and were then compiled into a book for stand-alone publication by Gnome Press in 1950, in an initial edition of 5,000 copies. The stories are woven together by a framing narrative in which the fictional Dr. Susan Calvin tells each story to a reporter (who serves as the narrator) in the 21st century. Although the stories can be read separately, they share a theme of the interaction of humans, robots, and morality, and when combined they tell a larger story of Asimov's fictional history of robotics.\n\nContains:\n\"Introduction\" (the initial portion of the framing story or linking text)\n\"Robbie\" (1940, 1950)\n\"Runaround\" (1942)\n\"Reason\" (1941)\n\"Catch That Rabbit\" (1944)\n\"Liar!\" (1941)\n\"Little Lost Robot\" (1947)\n\"Escape!\" (1945)\n\"Evidence\" (1946)\n\"The Evitable Conflict\" (1950)",
+  "genres": [
+   "Science Fiction",
+   "Short stories",
+   "Classics",
+   "Hard Science Fiction",
+   "Fantasy",
+   "Sci-fi",
+   "Thriller",
+   "Space"
+  ],
+  "gr_genres": [
+   "Fiction",
+   "Science Fiction",
+   "Short Stories",
+   "Language",
+   "Robots",
+   "American"
+  ],
+  "gr_guessed": false,
+  "gr_id": "414836",
+  "gr_rating": 3.78,
+  "gr_title": "I, Robot: Short Stories",
+  "gr_votes": 299,
+  "hc_id": 192946,
+  "hc_rating": 4.09,
+  "hc_readers": 3762,
+  "hc_slug": "i-robot",
+  "hc_tried": true,
+  "hc_votes": 1550,
+  "moods": [
+   "reflective",
+   "Adventurous",
+   "funny",
+   "dark",
+   "hopeful",
+   "mysterious"
+  ],
+  "pages": 256,
+  "series": "Robot",
+  "tags": [
+   "Weak Character Development",
+   "Not Diverse Characters",
+   "Unloveable Characters",
+   "Plot driven",
+   "Robots",
+   "Loveable Characters",
+   "Sci-fi",
+   "Character driven",
+   "Diverse Characters",
+   "Strong Character Development"
+  ],
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL46390W": {
   "checked": "2026-10-14T05:35:14+00:00",
   "content_warnings": [],
@@ -1289,6 +1350,133 @@
   "pages": 747,
   "series": "Foundation",
   "tags": [],
+  "v": [
+   1,
+   1
+  ]
+ },
+ "ol:OL46881W": {
+  "checked": "2026-10-14T06:00:39+00:00",
+  "content_warnings": [
+   "Violence",
+   "animal death",
+   "animal abuse",
+   "Animal cruelty",
+   "Death",
+   "Fatphobia2"
+  ],
+  "cover": "https://assets.hardcover.app/editions/30401767/7336843016391221-81rBVCDfrgL._AC_UF1000,1000_QL80_.jpg",
+  "description": "On a remote jungle island, genetic engineers have created a dinosaur game park.\n\nAn astonishing technique for recovering and cloning dinosaur DNA has been discovered. Now one of mankind's most thrilling fantasies has come true and the first dinosaurs that the Earth has seen in the time of man emerge.\n\nBut, as always, there is a dark side to the fantasy and after a catastrophe destroys the park's defence systems, the scientists and tourists are left fighting for survival...\n\nWith this masterful cross of science fiction and action-adventure, Michael Crichton created one of the biggest bestsellers of all time, turned by Steven Spielberg into the highest grossing blockbuster ever in 1993.",
+  "genres": [
+   "Science Fiction",
+   "Thriller"
+  ],
+  "gr_genres": [
+   "Science Fiction",
+   "Fiction",
+   "Thriller",
+   "Horror",
+   "Classics",
+   "Fantasy",
+   "Adventure",
+   "Audiobook"
+  ],
+  "gr_guessed": false,
+  "gr_id": "41819975",
+  "gr_rating": 4.14,
+  "gr_title": "Jurassic Park",
+  "gr_votes": 1104378,
+  "hc_id": 9724,
+  "hc_rating": 4.11,
+  "hc_readers": 4484,
+  "hc_slug": "jurassic-park",
+  "hc_tried": true,
+  "hc_votes": 2307,
+  "moods": [
+   "Adventurous",
+   "tense",
+   "dark",
+   "mysterious",
+   "informative",
+   "reflective"
+  ],
+  "pages": 448,
+  "series": "Jurassic Park",
+  "tags": [
+   "Weak Character Development",
+   "Plot driven",
+   "Not Diverse Characters",
+   "Unloveable Characters",
+   "Loveable Characters",
+   "Diverse Characters",
+   "A mix driven",
+   "Strong Character Development",
+   "Action & Adventure",
+   "mystery"
+  ],
+  "v": [
+   1,
+   1
+  ]
+ },
+ "ol:OL46909W": {
+  "checked": "2026-10-14T06:00:37+00:00",
+  "content_warnings": [
+   "Alcoholism",
+   "suicide",
+   "animal death",
+   "animal testing",
+   "Death",
+   "Medical content"
+  ],
+  "cover": "https://assets.hardcover.app/edition/23900636/615c83dbaa055f9294e3edd428f843f809272230.jpeg",
+  "description": "The Andromeda Strain is a 1969 techno-thriller novel by Michael Crichton, his first novel under his own name and his sixth novel overall. It is written as a report documenting the efforts of a team of scientists investigating the outbreak of a deadly extraterrestrial microorganism in New Mexico. The Andromeda Strain appeared in the New York Times Best Seller list, establishing Michael Crichton as a genre writer.\r\n\r\n\r\n----------\r\nThis work also contained in:\r\n\r\n - [The Andromeda Strain / Terminal Man](https://openlibrary.org/works/OL46874W)\r\n - [The Great Train Robbery / The Andromeda Strain](https://openlibrary.org/works/OL24159635W)\r\n - [Rising Sun / The Andromeda Strain / Binary](https://openlibrary.org/works/OL23658811W)",
+  "genres": [
+   "Science Fiction",
+   "Thriller"
+  ],
+  "gr_genres": [
+   "Science Fiction",
+   "Fiction",
+   "Thriller",
+   "Horror",
+   "Mystery",
+   "Science Fiction Fantasy",
+   "Audiobook",
+   "Suspense"
+  ],
+  "gr_guessed": false,
+  "gr_id": "53237233",
+  "gr_rating": 3.91,
+  "gr_title": "The Andromeda Strain",
+  "gr_votes": 277653,
+  "hc_id": 704,
+  "hc_rating": 3.71,
+  "hc_readers": 1708,
+  "hc_slug": "the-andromeda-strain",
+  "hc_tried": true,
+  "hc_votes": 829,
+  "moods": [
+   "informative",
+   "tense",
+   "mysterious",
+   "dark",
+   "challenging",
+   "Adventurous"
+  ],
+  "pages": 331,
+  "series": "The Andromeda Strain",
+  "tags": [
+   "Not Diverse Characters",
+   "Unloveable Characters",
+   "Weak Character Development",
+   "Plot driven",
+   "A mix driven",
+   "fantlab-import",
+   "Strong Character Development",
+   "#digitally-own",
+   "Calibre Import"
+  ],
   "v": [
    1,
    1
