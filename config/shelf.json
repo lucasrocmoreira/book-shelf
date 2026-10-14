@@ -631,6 +631,18 @@
    "rating": 0,
    "author": "Junji Ito",
    "year": 2023
+  },
+  "al:30042": {
+   "kind": "manga",
+   "title": "Dragon Ball",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "anilist": 30042,
+   "author": "Akira Toriyama",
+   "year": 1984,
+   "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx30042-4SetGiEbGc9x.jpg"
   }
  }
 }
