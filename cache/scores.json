@@ -1,4 +1,27 @@
 {
+ "ol:OL27482W": {
+  "checked": "2026-10-14T03:38:41+00:00",
+  "gr_genres": [
+   "Fantasy",
+   "Classics",
+   "Fiction",
+   "Adventure",
+   "Young Adult",
+   "Audiobook",
+   "High Fantasy",
+   "Science Fiction Fantasy"
+  ],
+  "gr_guessed": false,
+  "gr_id": "289901",
+  "gr_rating": 4.3,
+  "gr_title": "Хоббит, или Туда и обратно",
+  "gr_votes": 4650500,
+  "hc_tried": true,
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL81626W": {
   "checked": "2026-10-14T03:33:59+00:00",
   "content_warnings": [

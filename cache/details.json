@@ -1,4 +1,107 @@
 {
+ "ol:OL27482W": {
+  "authors": [
+   "J.R.R. Tolkien"
+  ],
+  "characters": [
+   "Bilbo Baggins",
+   "Gandalf",
+   "Thorin Oakenshield",
+   "Fili",
+   "Kili",
+   "Balin",
+   "Dwalin",
+   "Oin"
+  ],
+  "cover": "https://covers.openlibrary.org/b/id/14627509-L.jpg",
+  "description": "The Hobbit is a tale of high adventure, undertaken by a company of dwarves in search of dragon-guarded gold. A reluctant partner in this perilous quest is Bilbo Baggins, a comfort-loving unambitious hobbit, who surprises even himself by his resourcefulness and skill as a burglar.\r\n\r\nEncounters with trolls, goblins, dwarves, elves, and giant spiders, conversations with the dragon, Smaug, and a rather unwilling presence at the Battle of Five Armies are just some of the adventures that befall Bilbo.\r\n\r\nBilbo Baggins has taken his place among the ranks of the immortals of children’s fiction. Written by Professor Tolkien for his children, The Hobbit met with instant critical acclaim when published.",
+  "fetched": "2026-10-14T03:38:41+00:00",
+  "goodreads_ids": [
+   "289901",
+   "4506446",
+   "3386370",
+   "1488154",
+   "3686567",
+   "227221",
+   "1358029",
+   "838643",
+   "74375",
+   "59304"
+  ],
+  "isbns": [
+   "9785878600125",
+   "2267014149",
+   "9780048231260",
+   "0001361287",
+   "3423202777",
+   "8482643525",
+   "9788845900815",
+   "9780007926664",
+   "9780063347533",
+   "0063396203",
+   "9781507624012",
+   "9788445001417",
+   "0261103288",
+   "9780345272577",
+   "6053752541",
+   "0458938807",
+   "950547007X",
+   "9780007445219",
+   "0544174224",
+   "9783551761019",
+   "0261103490",
+   "9783423715003",
+   "9785768404734",
+   "9788416884117",
+   "3608101381",
+   "0007106777",
+   "9780007497935",
+   "0788789562",
+   "9785170104932",
+   "9781548547295"
+  ],
+  "languages": [
+   "ang",
+   "heb",
+   "ukr",
+   "lat",
+   "lez",
+   "fin",
+   "fre",
+   "cor"
+  ],
+  "ol": "OL27482W",
+  "ol_rating": 4.29,
+  "ol_readers": 4819,
+  "ol_votes": 500,
+  "pages": 310,
+  "places": [
+   "Middle-earth",
+   "Lonely Mountain",
+   "Lake-town",
+   "Rivendell",
+   "Iron Hills",
+   "Misty Mountains"
+  ],
+  "series": null,
+  "subjects": [
+   "Fantasy",
+   "Arkenstone",
+   "Battle of Five Armies",
+   "Invisibility",
+   "Thrushes",
+   "Eagles",
+   "Hobbits",
+   "Wizards",
+   "Dragons",
+   "Dwarves",
+   "Elves",
+   "Men"
+  ],
+  "subtitle": null,
+  "title": "The Hobbit",
+  "year": 1937
+ },
  "ol:OL81626W": {
   "authors": [
    "Stephen King"
