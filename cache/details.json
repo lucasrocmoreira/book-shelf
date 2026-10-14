@@ -1,4 +1,91 @@
 {
+ "al:101517": {
+  "anilist": 101517,
+  "anilist_popularity": 254880,
+  "anilist_score": 80,
+  "anilist_url": "https://anilist.co/manga/101517",
+  "artists": [],
+  "authors": [
+   "Gege Akutami"
+  ],
+  "chapters": 272,
+  "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx101517-H3TdM3g5ZUe9.jpg",
+  "description": "Although Yuji Itadori looks like your average teenager, his immense physical strength is something to behold! Every sports club wants him to join, but Itadori would rather hang out with the school outcasts in the Occult Research Club. One day, the club manages to get their hands on a sealed cursed object. Little do they know the terror they’ll unleash when they break the seal…",
+  "end_year": 2024,
+  "fetched": "2026-10-14T06:03:28+00:00",
+  "genres": [
+   "Action",
+   "Drama",
+   "Supernatural"
+  ],
+  "mal_id": 113138,
+  "native_title": "呪術廻戦",
+  "origin": "JP",
+  "original_title": null,
+  "status": "Finished",
+  "subtype": "Manga",
+  "tags": [
+   "Urban Fantasy",
+   "Demons",
+   "Super Power",
+   "Shounen",
+   "Curses",
+   "Monster Boy",
+   "Male Protagonist",
+   "Youkai",
+   "Magic",
+   "Martial Arts",
+   "Body Horror",
+   "Dissociative Identities"
+  ],
+  "title": "Jujutsu Kaisen",
+  "volumes": 30,
+  "year": 2018
+ },
+ "al:30013": {
+  "anilist": 30013,
+  "anilist_popularity": 234820,
+  "anilist_score": 91,
+  "anilist_url": "https://anilist.co/manga/30013",
+  "artists": [],
+  "authors": [
+   "Eiichirou Oda"
+  ],
+  "chapters": null,
+  "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30013-BeslEMqiPhlk.jpg",
+  "description": "As a child, Monkey D. Luffy was inspired to become a pirate by listening to the tales of the buccaneer \"Red-Haired\" Shanks. But his life changed when Luffy accidentally ate the Gum-Gum Devil Fruit and gained the power to stretch like rubber...at the cost of never being able to swim again! Years later, still vowing to become the king of the pirates, Luffy sets out on his adventure...one guy alone in a rowboat, in search of the legendary \"One Piece,\" said to be the greatest treasure in the world...",
+  "end_year": null,
+  "fetched": "2026-10-14T06:03:30+00:00",
+  "genres": [
+   "Action",
+   "Adventure",
+   "Comedy",
+   "Fantasy"
+  ],
+  "mal_id": 13,
+  "native_title": "ONE PIECE",
+  "origin": "JP",
+  "original_title": "ONE PIECE",
+  "status": "Ongoing",
+  "subtype": "Manga",
+  "tags": [
+   "Pirates",
+   "Travel",
+   "Found Family",
+   "Shounen",
+   "Ensemble Cast",
+   "Prophecy",
+   "Super Power",
+   "Ships",
+   "Male Protagonist",
+   "Fugitive",
+   "Politics",
+   "Military"
+  ],
+  "title": "One Piece",
+  "volumes": null,
+  "year": 1997
+ },
  "al:30021": {
   "anilist": 30021,
   "anilist_popularity": 100513,
@@ -14,7 +101,7 @@
   "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30021-FE6kmrfpuKyb.jpg",
   "description": "Light Yagami is an ace student with great prospects—and he’s bored out of his mind. But all that changes when he finds the Death Note, a notebook dropped by a rogue Shinigami death god. Any human whose name is written in the notebook dies, and Light has vowed to use the power of the Death Note to rid the world of evil. But will Light succeed in his noble goal, or will the Death Note turn him into the very thing he fights against?",
   "end_year": 2006,
-  "fetched": "2026-10-14T06:01:08+00:00",
+  "fetched": "2026-10-14T06:03:32+00:00",
   "genres": [
    "Drama",
    "Mystery",
@@ -44,6 +131,48 @@
   "title": "Death Note",
   "volumes": 12,
   "year": 2003
+ },
+ "al:30401": {
+  "anilist": 30401,
+  "anilist_popularity": 33147,
+  "anilist_score": 82,
+  "anilist_url": "https://anilist.co/manga/30401",
+  "artists": [],
+  "authors": [
+   "Hitoshi Iwaaki"
+  ],
+  "chapters": 64,
+  "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30401-siY6wmwnHFi6.png",
+  "description": "They arrive in silence and darkness. They descend from the skies. They have a hunger for human flesh. They are everywhere. They are parasites, alien creatures who must invade&ndash;and take control of&ndash;a human host to survive. And once they have infected their victims, they can assume any deadly form they choose: monsters with giant teeth, winged demons, creatures with blades for hands. But most have chosen to conceal their lethal purpose behind ordinary human faces. So no one knows their secret&ndash;except an ordinary high school student. Shin is battling for control of his own body against an alien parasite, but can he find a way to warn humanity of the horrors to come?",
+  "end_year": 1995,
+  "fetched": "2026-10-14T06:03:35+00:00",
+  "genres": [
+   "Action",
+   "Drama",
+   "Horror",
+   "Psychological",
+   "Sci-Fi"
+  ],
+  "mal_id": 401,
+  "native_title": "寄生獣",
+  "origin": "JP",
+  "original_title": "Kiseijuu",
+  "status": "Finished",
+  "subtype": "Manga",
+  "tags": [
+   "Male Protagonist",
+   "Seinen",
+   "Body Horror",
+   "Aliens",
+   "Shapeshifting",
+   "Super Power",
+   "Environmental",
+   "Gore",
+   "Philosophy"
+  ],
+  "title": "Parasyte",
+  "volumes": 10,
+  "year": 1989
  },
  "ol:OL16799356W": {
   "authors": [
