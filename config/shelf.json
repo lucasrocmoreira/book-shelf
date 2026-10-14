@@ -243,6 +243,18 @@
    "ol": "OL19716109W",
    "author": "Jonathan Losos",
    "year": 2017
+  },
+  "ol:OL2897798W": {
+   "kind": "comic",
+   "title": "Watchmen",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL2897798W",
+   "author": "Alan Moore",
+   "year": 1986,
+   "cover": "https://covers.openlibrary.org/b/id/7774899-L.jpg"
   }
  }
 }
