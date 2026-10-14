@@ -491,6 +491,18 @@
    "author": "George R. R. Martin",
    "year": 1996,
    "cover": "https://covers.openlibrary.org/b/id/9269962-L.jpg"
+  },
+  "ol:OL28988W": {
+   "kind": "book",
+   "title": "Northern Lights",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL28988W",
+   "author": "Philip Pullman",
+   "year": 1995,
+   "cover": "https://covers.openlibrary.org/b/id/8747028-L.jpg"
   }
  }
 }
