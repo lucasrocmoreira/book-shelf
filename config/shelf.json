@@ -128,6 +128,18 @@
    "author": "J. K. Rowling",
    "year": 1997,
    "cover": "https://covers.openlibrary.org/b/id/15155833-L.jpg"
+  },
+  "ol:OL43485765W": {
+   "kind": "book",
+   "title": "変な絵",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL43485765W",
+   "author": "Uketsu",
+   "year": 2022,
+   "cover": "https://covers.openlibrary.org/b/id/15092680-L.jpg"
   }
  }
 }
