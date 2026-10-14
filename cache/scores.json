@@ -1,6 +1,6 @@
 {
  "ol:OL17076473W": {
-  "checked": "2026-10-14T05:36:41+00:00",
+  "checked": "2026-10-14T05:37:23+00:00",
   "content_warnings": [
    "Rape",
    "Murder",
@@ -162,7 +162,7 @@
   ]
  },
  "ol:OL24593432W": {
-  "checked": "2026-10-14T05:36:43+00:00",
+  "checked": "2026-10-14T05:35:58+00:00",
   "content_warnings": [
    "Death",
    "Violence",
@@ -394,6 +394,69 @@
    1
   ]
  },
+ "ol:OL42427055W": {
+  "checked": "2026-10-14T05:37:27+00:00",
+  "content_warnings": [
+   "Child abuse",
+   "confinement",
+   "Incest",
+   "Death",
+   "Murder",
+   "child death"
+  ],
+  "cover": "https://assets.hardcover.app/edition/32076701/a43cc928c208f5689b1d3d555b8b899979e31e25.jpeg",
+  "description": "From the bestselling author of the wildly inventive Strange Pictures and a phenomenon in Japan—unnatural layouts, trap doors, windowless rooms— a sinister conspiracy is concealed within a house’s warped and unsettling floor plans\n\nWhen a writer fascinated by the macabre is approached by an acquaintance, he finds himself investigating an eerie house for sale in Tokyo. At first, with its bright and spacious interior, it seems the perfect first home. But upon closer inspection, the building’s floor plans reveal a mysterious \"dead space” hidden between its walls. Seeking a second opinion, the writer shares the floor plans with his friend Kurihara, an architect, only to discover more unnerving details throughout.\n\nWhat is the true purpose behind the house’s disturbing design? And what happened to the former owners who disappeared without a trace? When a body suddenly appears and a young woman reaches out about a second house, it soon becomes clear that the writer and his friend may be in over their heads. Structured around a series of chilling floorplans, with Strange Houses, mystery-horror YouTube sensation Uketsu casts readers in the role of detective, inviting them to help map out the truth hidden within these puzzling floor plans . . . and the terrifying plot behind it all.\n\nTranslated from the Japanese by Jim Rion",
+  "genres": [
+   "Horror",
+   "Mystery",
+   "Domestic",
+   "International Crime & Mystery",
+   "Language Arts & Disciplines",
+   "Linguistics",
+   "Mystery & Detective",
+   "Psychological"
+  ],
+  "hc_id": 1905977,
+  "hc_rating": 3.48,
+  "hc_readers": 1047,
+  "hc_slug": "strange-houses",
+  "hc_tried": true,
+  "hc_votes": 418,
+  "moods": [
+   "mysterious",
+   "dark",
+   "tense",
+   "sad",
+   "challenging",
+   "Adventurous"
+  ],
+  "pages": 208,
+  "series": "Strange Houses",
+  "tags": [
+   "Weak Character Development",
+   "Plot driven",
+   "Not Diverse Characters",
+   "Unloveable Characters",
+   "A mix driven",
+   "Character driven",
+   "Loveable Characters",
+   "mystery",
+   "Horror",
+   "Tense"
+  ],
+  "v": [
+   1,
+   1
+  ]
+ },
+ "ol:OL43485765W": {
+  "checked": "2026-10-14T05:37:31+00:00",
+  "hc_tried": true,
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL46390W": {
   "checked": "2026-10-14T05:35:14+00:00",
   "content_warnings": [],
@@ -438,7 +501,7 @@
   ]
  },
  "ol:OL81613W": {
-  "checked": "2026-10-14T05:36:38+00:00",
+  "checked": "2026-10-14T05:35:56+00:00",
   "content_warnings": [
    "misogyny",
    "Child abuse",
@@ -564,7 +627,7 @@
   ]
  },
  "ol:OL82563W": {
-  "checked": "2026-10-14T05:36:34+00:00",
+  "checked": "2026-10-14T05:37:24+00:00",
   "content_warnings": [
    "Child abuse",
    "Death of parent",
