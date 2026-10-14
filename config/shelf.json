@@ -232,6 +232,17 @@
    "author": "Richard Dawkins",
    "year": 2004,
    "cover": "https://covers.openlibrary.org/b/id/501730-L.jpg"
+  },
+  "ol:OL19716109W": {
+   "kind": "book",
+   "title": "Improbable destinies",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL19716109W",
+   "author": "Jonathan Losos",
+   "year": 2017
   }
  }
 }
