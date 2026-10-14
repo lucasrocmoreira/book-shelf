@@ -83,6 +83,15 @@
    "author": "Rebecca Yarros",
    "year": 2023,
    "cover": "https://covers.openlibrary.org/b/id/14407898-L.jpg"
+  },
+  "q:book:it": {
+   "kind": "book",
+   "title": "It",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "author": "Stephen King"
   }
  }
 }
