@@ -441,6 +441,18 @@
    "author": "Garth Ennis",
    "year": 2021,
    "cover": "https://covers.openlibrary.org/b/id/13944568-L.jpg"
+  },
+  "ol:OL19763085W": {
+   "kind": "comic",
+   "title": "Isola, Vol. 1",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL19763085W",
+   "author": "Brenden Fletcher",
+   "year": 2018,
+   "cover": "https://covers.openlibrary.org/b/id/12794617-L.jpg"
   }
  }
 }
