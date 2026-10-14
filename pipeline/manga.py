@@ -66,7 +66,9 @@ def best_match(title, year=None):
     for h in hits:
         s = max([similarity(title, n) for n in _names(h.get("title")) + (h.get("synonyms") or [])] or [0])
         y = (h.get("startDate") or {}).get("year")
-        if year and y and abs(int(y) - int(year)) > 1:
+        # The year you know is often the English release, years after the Japanese one; only a series that
+        # started *after* that year is clearly a different one.
+        if year and y and int(y) > int(year) + 1:
             s -= 0.3
         if h.get("format") == "NOVEL":
             s -= 0.05  # prefer the manga over its light novel when both share the title
