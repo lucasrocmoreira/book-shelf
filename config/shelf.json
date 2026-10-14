@@ -47,6 +47,18 @@
    "author": "Andy Weir",
    "year": 2021,
    "cover": "https://covers.openlibrary.org/b/id/11200092-L.jpg"
+  },
+  "ol:OL25125779W": {
+   "kind": "book",
+   "title": "The Ultimate Hitchhiker's Guide to the Galaxy",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL25125779W",
+   "author": "Douglas Adams",
+   "year": 2012,
+   "cover": "https://covers.openlibrary.org/b/id/11972784-L.jpg"
   }
  }
 }
