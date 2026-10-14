@@ -315,6 +315,18 @@
    "author": "Brian K. Vaughan",
    "year": 2015,
    "cover": "https://covers.openlibrary.org/b/id/12673670-L.jpg"
+  },
+  "ol:OL17356885W": {
+   "kind": "comic",
+   "title": "Saga: Volume Six",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL17356885W",
+   "author": "Brian K. Vaughan",
+   "year": 2016,
+   "cover": "https://covers.openlibrary.org/b/id/7434885-L.jpg"
   }
  }
 }
