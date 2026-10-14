@@ -375,6 +375,18 @@
    "author": "Scott Snyder",
    "year": 2012,
    "cover": "https://covers.openlibrary.org/b/id/12488184-L.jpg"
+  },
+  "ol:OL28466499W": {
+   "kind": "comic",
+   "title": "Animosity Vol 1",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL28466499W",
+   "author": "Marguerite Bennett",
+   "year": 2022,
+   "cover": "https://covers.openlibrary.org/b/id/14281745-L.jpg"
   }
  }
 }
