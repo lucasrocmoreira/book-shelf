@@ -123,6 +123,38 @@
   "title": "Project Hail Mary",
   "year": 2021
  },
+ "ol:OL25125779W": {
+  "authors": [
+   "Douglas Adams"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/11972784-L.jpg",
+  "description": null,
+  "fetched": "2026-10-14T05:35:08+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "0385347308",
+   "8530601491",
+   "9780385365925",
+   "0385365926",
+   "9788530601492",
+   "9780385347303"
+  ],
+  "languages": [
+   "por"
+  ],
+  "ol": "OL25125779W",
+  "ol_rating": 4.5,
+  "ol_readers": 21,
+  "ol_votes": 2,
+  "pages": 808,
+  "places": [],
+  "series": null,
+  "subjects": [],
+  "subtitle": null,
+  "title": "The Ultimate Hitchhiker's Guide to the Galaxy",
+  "year": 2012
+ },
  "ol:OL27482W": {
   "authors": [
    "J.R.R. Tolkien"
@@ -225,6 +257,161 @@
   "subtitle": null,
   "title": "The Hobbit",
   "year": 1937
+ },
+ "ol:OL29226517W": {
+  "authors": [
+   "Rebecca Yarros"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/14407898-L.jpg",
+  "description": "Twenty-year-old Violet Sorrengail was supposed to enter the Scribe Quadrant, living a quiet life among books and history. Now, the commanding general—also known as her tough-as-talons mother—has ordered Violet to join the hundreds of candidates striving to become the elite of Navarre: dragon riders.\r\n\r\nBut when you’re smaller than everyone else and your body is brittle, death is only a heartbeat away...because dragons don’t bond to “fragile” humans. They incinerate them.\r\n\r\nWith fewer dragons willing to bond than cadets, most would kill Violet to better their own chances of success. The rest would kill her just for being her mother’s daughter—like Xaden Riorson, the most powerful and ruthless wingleader in the Riders Quadrant.\r\n\r\nShe’ll need every edge her wits can give her just to see the next sunrise.\r\n\r\nYet, with every day that passes, the war outside grows more deadly, the kingdom's protective wards are failing, and the death toll continues to rise. Even worse, Violet begins to suspect leadership is hiding a terrible secret.\r\n\r\nFriends, enemies, lovers. Everyone at Basgiath War College has an agenda—because once you enter, there are only two ways out: graduate or die.",
+  "fetched": "2026-10-14T05:35:10+00:00",
+  "goodreads_ids": [
+   "217098238",
+   "216629187",
+   "61431922"
+  ],
+  "isbns": [
+   "9781649376169",
+   "0349437017",
+   "9786073901802",
+   "9783423284127",
+   "9781649374042",
+   "1649374046",
+   "618220477X",
+   "9780349436999",
+   "3423284129",
+   "1649377371",
+   "1960854119",
+   "6073902425",
+   "9781649374080",
+   "9781960854117",
+   "9786073916240",
+   "6073916248",
+   "9780349437002",
+   "9798885799263",
+   "0349436991",
+   "1649374089",
+   "0349437009",
+   "6073901801",
+   "9786182204771",
+   "9781649377371",
+   "9786073902427",
+   "9780349437019",
+   "1649376162"
+  ],
+  "languages": [
+   "gre",
+   "ger",
+   "spa",
+   "eng"
+  ],
+  "ol": "OL29226517W",
+  "ol_rating": 4.24,
+  "ol_readers": 3184,
+  "ol_votes": 107,
+  "pages": 518,
+  "places": [],
+  "series": "The Empyrean",
+  "subjects": [
+   "Fantasía",
+   "Fantasy",
+   "Romántica",
+   "Romántico",
+   "Joven adulto",
+   "Young adult fiction",
+   "New York Times bestseller",
+   "Serie:The_Empyrean"
+  ],
+  "subtitle": null,
+  "title": "Fourth Wing",
+  "year": 2023
+ },
+ "ol:OL46390W": {
+  "authors": [
+   "Isaac Asimov"
+  ],
+  "characters": [
+   "Hari Seldon (Fictitious character)"
+  ],
+  "cover": "https://covers.openlibrary.org/b/id/6502517-L.jpg",
+  "description": "- Foundation\r\n - Foundation and Empire\r\n - Second Foundation\r\n\r\nIsaac Asimov's Foundation novels are some of the great masterworks of science fiction. Unsurpassed for their unique blend of nonstop action, daring ideas, and extensive world-building, they chronicle the struggle of a courageous group of men and women working to preserve humanity’s light against an inexorable tide of darkness and violence.\r\n\r\nLed by its founding father, the great psychohistorian Hari Seldon, and taking advantage of its superior science and technology, the Foundation has survived the greed and barbarism of its neighboring warrior-planets. Yet now it must face the Empire—still the mightiest force in the Galaxy even in its death throes. When an ambitious general determined to restore the Empire’s glory turns the vast imperial fleet toward the Foundation, the only hope for the small planet of scholars and scientists lies in the prophecies of Hari Seldon.\r\n\r\nBut not even Hari Seldon could have predicted the birth of the extraordinary creature called The Mule, a mutant intelligence with a power greater than a dozen battle fleets… a power that can turn the strongest-willed human into an obedient slave.",
+  "fetched": "2026-10-14T05:35:12+00:00",
+  "goodreads_ids": [
+   "3194904",
+   "1141114",
+   "3209735",
+   "3290676",
+   "3194904",
+   "776540",
+   "3234155",
+   "3194904",
+   "46654",
+   "4448914"
+  ],
+  "isbns": [
+   "849908320X",
+   "0553628747",
+   "9783453042650",
+   "0345340884",
+   "0345312058",
+   "0283354976",
+   "9993762938",
+   "9780307593962",
+   "0385188307",
+   "9782070463619",
+   "9783453164178",
+   "9781841593326",
+   "9785040033089",
+   "9780553628746",
+   "2070463613",
+   "9781607962748",
+   "8576570696",
+   "340428108X",
+   "160796273X",
+   "0380508567",
+   "9780307292063",
+   "0307593967",
+   "0380001012",
+   "9780739444054",
+   "9783404281084",
+   "3453322010",
+   "9562917053",
+   "8804664991",
+   "9785952407763",
+   "9783453527959"
+  ],
+  "languages": [
+   "dut",
+   "eng",
+   "rus",
+   "spa",
+   "por",
+   "ger"
+  ],
+  "ol": "OL46390W",
+  "ol_rating": 4.19,
+  "ol_readers": 584,
+  "ol_votes": 67,
+  "pages": 605,
+  "places": [
+   "Trantorian Empire (Fictitious place)"
+  ],
+  "series": "Foundation Trilogy",
+  "subjects": [
+   "Psychohistory",
+   "Science fiction",
+   "Life on other planets",
+   "Prophecies",
+   "Fiction, science fiction, general",
+   "Abenteuer",
+   "Science-Fiction-Literatur",
+   "Weltraum",
+   "Prophecy"
+  ],
+  "subtitle": null,
+  "title": "The Foundation Trilogy",
+  "year": 1950
  },
  "ol:OL81626W": {
   "authors": [
