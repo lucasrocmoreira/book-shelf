@@ -476,6 +476,18 @@
    "ol": "OL44600663W",
    "author": "Zac Gorman",
    "year": 2015
+  },
+  "ol:OL257943W": {
+   "kind": "comic",
+   "title": "A Game of Thrones",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL257943W",
+   "author": "George R. R. Martin",
+   "year": 1996,
+   "cover": "https://covers.openlibrary.org/b/id/9269962-L.jpg"
   }
  }
 }
