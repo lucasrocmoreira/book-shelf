@@ -503,6 +503,18 @@
    "author": "Philip Pullman",
    "year": 1995,
    "cover": "https://covers.openlibrary.org/b/id/8747028-L.jpg"
+  },
+  "ol:OL20166830W": {
+   "kind": "book",
+   "title": "Freak 'N' Gorgeous",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL20166830W",
+   "author": "Sebastian J. Plata",
+   "year": 2018,
+   "cover": "https://covers.openlibrary.org/b/id/8812766-L.jpg"
   }
  }
 }
