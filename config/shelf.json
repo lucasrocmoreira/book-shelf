@@ -116,6 +116,18 @@
    "author": "Pierce Brown",
    "year": 2014,
    "cover": "https://covers.openlibrary.org/b/id/7316188-L.jpg"
+  },
+  "ol:OL82563W": {
+   "kind": "book",
+   "title": "Harry Potter and the Philosopher's Stone",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL82563W",
+   "author": "J. K. Rowling",
+   "year": 1997,
+   "cover": "https://covers.openlibrary.org/b/id/15155833-L.jpg"
   }
  }
 }
