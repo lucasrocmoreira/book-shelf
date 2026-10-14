@@ -327,6 +327,18 @@
    "author": "Brian K. Vaughan",
    "year": 2016,
    "cover": "https://covers.openlibrary.org/b/id/7434885-L.jpg"
+  },
+  "ol:OL20005345W": {
+   "kind": "comic",
+   "title": "Wytches, vol. 1",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL20005345W",
+   "author": "Scott Snyder",
+   "year": 2015,
+   "cover": "https://covers.openlibrary.org/b/id/9257148-L.jpg"
   }
  }
 }
