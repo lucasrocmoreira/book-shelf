@@ -643,6 +643,18 @@
    "author": "Akira Toriyama",
    "year": 1984,
    "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx30042-4SetGiEbGc9x.jpg"
+  },
+  "al:43841": {
+   "kind": "manga",
+   "title": "Mimi's Tales of Terror",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "anilist": 43841,
+   "author": "Junji Itou",
+   "year": 2002,
+   "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx43841-bkqyjKWBPRD9.jpg"
   }
  }
 }
