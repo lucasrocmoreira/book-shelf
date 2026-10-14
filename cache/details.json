@@ -123,6 +123,59 @@
   "title": "Project Hail Mary",
   "year": 2021
  },
+ "ol:OL24593432W": {
+  "authors": [
+   "Matt Dinniman"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/15143022-L.jpg",
+  "description": "**The apocalypse will be televised!**\r\n\r\nA man. His ex-girlfriend's cat. A sadistic game show unlike anything in the universe: a dungeon crawl where survival depends on killing your prey in the most entertaining way possible.\r\n\r\nIn a flash, every human-erected construction on Earth—from Buckingham Palace to the tiniest of sheds—collapses in a heap, sinking into the ground.\r\n\r\nThe buildings and all the people inside have all been atomized and transformed into the dungeon: an 18-level labyrinth filled with traps, monsters, and loot. A dungeon so enormous, it circles the entire globe.\r\n\r\nOnly a few dare venture inside. But once you're in, you can't get out. And what's worse, each level has a time limit. You have but days to find a staircase to the next level down, or it's game over. In this game, it's not about your strength or your dexterity. It's about your followers, your views. Your clout. It's about building an audience and killing those goblins with style.",
+  "fetched": "2026-10-14T05:35:54+00:00",
+  "goodreads_ids": [
+   "231847431",
+   "228510348",
+   "211721806",
+   "56791389",
+   "54659324"
+  ],
+  "isbns": [
+   "0241816262",
+   "059382024X",
+   "0593820258",
+   "2487700033",
+   "9782487700031",
+   "9780593820247",
+   "9798707228315",
+   "9798988744405",
+   "9798217287161",
+   "0241816270",
+   "9780241816271",
+   "9780241816264",
+   "3596712483",
+   "9798232923594",
+   "9780593820254",
+   "9783596712489"
+  ],
+  "languages": [
+   "ger",
+   "eng"
+  ],
+  "ol": "OL24593432W",
+  "ol_rating": 4.69,
+  "ol_readers": 222,
+  "ol_votes": 13,
+  "pages": 465,
+  "places": [],
+  "series": null,
+  "subjects": [
+   "Series:Dungeon Crawler Carl",
+   "Genre:LitRPG",
+   "Genre:science fantasy"
+  ],
+  "subtitle": null,
+  "title": "Dungeon Crawler Carl",
+  "year": 2020
+ },
  "ol:OL25125779W": {
   "authors": [
    "Douglas Adams"
@@ -412,6 +465,109 @@
   "subtitle": null,
   "title": "The Foundation Trilogy",
   "year": 1950
+ },
+ "ol:OL81613W": {
+  "authors": [
+   "Stephen King"
+  ],
+  "characters": [
+   "IT",
+   "Losers Club",
+   "Aristotle",
+   "Atilla the Hun",
+   "Batman",
+   "Bip",
+   "Bobby",
+   "Bop"
+  ],
+  "cover": "https://covers.openlibrary.org/b/id/8569284-L.jpg",
+  "description": "\"*It*\" is a 1986 horror novel by American author Stephen King. \"*It*\" was his 22nd book and his 17th novel written under his own name. The story follows the experiences of seven children as they are terrorized by an evil entity that exploits the fears of its victims to disguise itself while hunting its prey. \"*It*\" primarily appears in the form of Pennywise the Dancing Clown to attract its preferred prey of young children.\r\n\r\nThe novel won the British Fantasy Award in 1987, and received nominations for the Locus and World Fantasy Awards that same year.\r\n\r\nIn 2003, \"*It*\" was listed at number 144 on the BBC's The Big Read poll.",
+  "fetched": "2026-10-14T05:35:56+00:00",
+  "goodreads_ids": [
+   "23356175",
+   "24512345",
+   "59910162",
+   "59845233",
+   "542819",
+   "35012103",
+   "1212766",
+   "155564",
+   "52873575",
+   "35012103"
+  ],
+  "isbns": [
+   "9789024516131",
+   "9789877250244",
+   "1473666937",
+   "9781623300890",
+   "9784167148096",
+   "8868365626",
+   "1848940874",
+   "9780340951644",
+   "0606395741",
+   "9788401322150",
+   "0340364777",
+   "9781473666948",
+   "1501182099",
+   "4167148099",
+   "9788466357302",
+   "8484508560",
+   "9783453022539",
+   "9781508297123",
+   "9877250241",
+   "9788497593793",
+   "9783453099944",
+   "8466357300",
+   "9780606395748",
+   "4163128506",
+   "9788401491023",
+   "4167148072",
+   "9781982127794",
+   "9780451149510",
+   "0451149513",
+   "9782253083368"
+  ],
+  "languages": [
+   "ger",
+   "por",
+   "spa",
+   "pol",
+   "ita",
+   "eng",
+   "fre",
+   "tur"
+  ],
+  "ol": "OL81613W",
+  "ol_rating": 4.09,
+  "ol_readers": 11325,
+  "ol_votes": 493,
+  "pages": 1168,
+  "places": [
+   "Derry",
+   "Maine",
+   "Barrens",
+   "Macroverse",
+   "Earth",
+   "England"
+  ],
+  "series": null,
+  "subjects": [
+   "Coming of age",
+   "Thrillers",
+   "Suspense",
+   "Horror",
+   "Schwinn bicycles",
+   "Catatonia",
+   "Homosexuality",
+   "Blood oaths",
+   "Omniscience",
+   "Mummies",
+   "Lepers",
+   "Ghosts"
+  ],
+  "subtitle": null,
+  "title": "It",
+  "year": 1986
  },
  "ol:OL81626W": {
   "authors": [
