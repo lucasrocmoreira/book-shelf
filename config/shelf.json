@@ -291,6 +291,18 @@
    "author": "Brian K. Vaughan",
    "year": 2014,
    "cover": "https://covers.openlibrary.org/b/id/15201861-L.jpg"
+  },
+  "ol:OL17596671W": {
+   "kind": "comic",
+   "title": "Saga: Volume Four",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL17596671W",
+   "author": "Brian K. Vaughan",
+   "year": 2012,
+   "cover": "https://covers.openlibrary.org/b/id/12648948-L.jpg"
   }
  }
 }
