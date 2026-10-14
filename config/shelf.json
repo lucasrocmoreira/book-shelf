@@ -35,6 +35,18 @@
    "rating": 0,
    "author": "H.P. Lovecraft",
    "year": 2022
+  },
+  "ol:OL21745884W": {
+   "kind": "book",
+   "title": "Project Hail Mary",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL21745884W",
+   "author": "Andy Weir",
+   "year": 2021,
+   "cover": "https://covers.openlibrary.org/b/id/11200092-L.jpg"
   }
  }
 }
