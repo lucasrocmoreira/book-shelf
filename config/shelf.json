@@ -465,6 +465,17 @@
    "author": "Marjorie M. Liu",
    "year": 2016,
    "cover": "https://covers.openlibrary.org/b/id/8746080-L.jpg"
+  },
+  "ol:OL44600663W": {
+   "kind": "comic",
+   "title": "Rick and Morty Vol. 1",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL44600663W",
+   "author": "Zac Gorman",
+   "year": 2015
   }
  }
 }
