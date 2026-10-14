@@ -479,6 +479,18 @@
    "author": "George R. R. Martin",
    "year": 1996,
    "cover": "https://covers.openlibrary.org/b/id/9269962-L.jpg"
+  },
+  "ol:OL24315844W": {
+   "kind": "book",
+   "title": "Uma Mulher no Escuro",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL24315844W",
+   "author": "[author not identified]",
+   "year": 2019,
+   "cover": "https://covers.openlibrary.org/b/id/10833536-L.jpg"
   }
  }
 }
