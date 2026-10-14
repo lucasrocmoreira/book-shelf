@@ -620,6 +620,16 @@
    "author": "Shikke",
    "year": 2020,
    "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx124639-iD14zSg952oG.jpg"
+  },
+  "q:manga:mimi s tales of terror": {
+   "kind": "manga",
+   "title": "Mimi’s Tales of Terror",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "author": "Junji Ito",
+   "year": 2023
   }
  }
 }
