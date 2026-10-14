@@ -152,6 +152,18 @@
    "author": "Uketsu",
    "year": 2025,
    "cover": "https://covers.openlibrary.org/b/id/15123139-L.jpg"
+  },
+  "ol:OL44983691W": {
+   "kind": "book",
+   "title": "Strange Buildings",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL44983691W",
+   "author": "Uketsu",
+   "year": 2026,
+   "cover": "https://covers.openlibrary.org/b/id/15174713-L.jpg"
   }
  }
 }
