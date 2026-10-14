@@ -1,57 +1,265 @@
 {
  "al:101517": {
-  "checked": "2026-10-14T06:14:59+00:00",
+  "checked": "2026-10-14T06:26:08+00:00",
+  "demographics": [
+   "Shounen"
+  ],
+  "mal_genres": [
+   "Action",
+   "Supernatural"
+  ],
+  "mal_members": 524311,
+  "mal_rank": 549,
+  "mal_score": 8.17,
+  "mal_themes": [
+   "School"
+  ],
+  "mal_url": "https://myanimelist.net/manga/113138",
+  "mal_votes": 272780,
+  "serialization": [
+   "Shounen Jump (Weekly)"
+  ],
   "v": [
-   1,
-   1
-  ]
+   2,
+   2
+  ],
+  "volumes": null
  },
  "al:124639": {
-  "checked": "2026-10-14T06:16:47+00:00",
+  "checked": "2026-10-14T06:19:04+00:00",
+  "demographics": [],
+  "mal_genres": [
+   "Boys Love",
+   "Erotica"
+  ],
+  "mal_members": 10620,
+  "mal_rank": null,
+  "mal_score": 8.24,
+  "mal_themes": [
+   "Music",
+   "School"
+  ],
+  "mal_url": "https://myanimelist.net/manga/130279",
+  "mal_votes": 4744,
+  "serialization": [
+   "Mellow Kiss"
+  ],
   "v": [
-   1,
-   1
-  ]
+   2,
+   2
+  ],
+  "volumes": null
  },
  "al:30013": {
-  "checked": "2026-10-14T06:13:10+00:00",
+  "checked": "2026-10-14T06:21:01+00:00",
+  "demographics": [
+   "Shounen"
+  ],
+  "mal_genres": [
+   "Action",
+   "Adventure",
+   "Fantasy"
+  ],
+  "mal_members": 709223,
+  "mal_rank": 4,
+  "mal_score": 9.21,
+  "mal_themes": [],
+  "mal_url": "https://myanimelist.net/manga/13",
+  "mal_votes": 427122,
+  "serialization": [
+   "Shounen Jump (Weekly)"
+  ],
   "v": [
-   1,
-   1
-  ]
+   2,
+   2
+  ],
+  "volumes": null
  },
  "al:30021": {
-  "checked": "2026-10-14T06:01:08+00:00",
+  "checked": "2026-10-14T06:29:01+00:00",
+  "demographics": [
+   "Shounen"
+  ],
+  "mal_genres": [
+   "Supernatural",
+   "Suspense"
+  ],
+  "mal_members": 435309,
+  "mal_rank": 76,
+  "mal_score": 8.68,
+  "mal_themes": [
+   "Psychological"
+  ],
+  "mal_url": "https://myanimelist.net/manga/21",
+  "mal_votes": 247030,
+  "serialization": [
+   "Shounen Jump (Weekly)"
+  ],
   "v": [
-   1,
-   1
-  ]
+   2,
+   2
+  ],
+  "volumes": null
  },
  "al:30401": {
-  "checked": "2026-10-14T06:11:22+00:00",
+  "checked": "2026-10-14T06:23:52+00:00",
+  "demographics": [
+   "Seinen"
+  ],
+  "mal_genres": [
+   "Action",
+   "Award Winning",
+   "Horror",
+   "Sci-Fi"
+  ],
+  "mal_members": 113918,
+  "mal_rank": 277,
+  "mal_score": 8.37,
+  "mal_themes": [
+   "Gore",
+   "Psychological"
+  ],
+  "mal_url": "https://myanimelist.net/manga/401",
+  "mal_votes": 52909,
+  "serialization": [
+   "Afternoon"
+  ],
   "v": [
-   1,
-   1
-  ]
+   2,
+   2
+  ],
+  "volumes": null
  },
  "ol:OL16799356W": {
-  "checked": "2026-10-14T05:42:43+00:00",
+  "checked": "2026-10-14T06:26:05+00:00",
+  "content_warnings": [
+   "Sexual content",
+   "Violence",
+   "War",
+   "kidnapping",
+   "Gore",
+   "Slavery"
+  ],
+  "cover": "https://assets.hardcover.app/book_mappings/7332766/bb26e1d17b6545939d90f898bf3d25328f56c9b2.jpeg",
+  "description": "Winner of the 2013 Hugo award for Best Graphic Story! When two soldiers from opposite sides of a never-ending galactic war fall in love, they risk everything to bring a fragile new life into a dangerous old universe. From New York Times bestselling writer Brian K. Vaughan (Y: The Last Man, Ex Machina) and critically acclaimed artist Fiona Staples (Mystery Society, North 40), Saga is the sweeping tale of one young family fighting to find their place in the worlds. Fantasy and science fiction are wed like never before in this sexy, subversive drama for adults. This specially priced volume collects the first six issues of the smash-hit series The Onion A.V. Club calls \"the emotional epic Hollywood wishes it could make.\" Voted one of the top graphic novels of the year by the NYT, IGN, the Examiner, and SF Weekly. Voted Best Comic of the year by MTV Geek and Best New Series by Paradox Comics. Voted a finalist in the GoodReads Best GN of 2012 contest. Named one of Time Magazine's top 10 graphic novels for 2013",
+  "genres": [
+   "Science Fiction"
+  ],
+  "gr_genres": [
+   "Graphic Novels",
+   "Comics",
+   "Fantasy",
+   "Science Fiction",
+   "Fiction",
+   "Graphic Novels Comics",
+   "Adult",
+   "Romance"
+  ],
+  "gr_guessed": false,
+  "gr_id": "13569386-saga",
+  "gr_rating": 4.15,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Saga: Capítulo 1",
+  "gr_votes": 372250,
+  "hc_id": 427608,
+  "hc_rating": 4.4,
+  "hc_readers": 1812,
+  "hc_slug": "saga-vol-1",
   "hc_tried": true,
+  "hc_votes": 1024,
+  "moods": [
+   "Adventurous",
+   "funny",
+   "tense",
+   "dark",
+   "emotional",
+   "mysterious"
+  ],
+  "pages": 160,
+  "series": "Saga",
+  "tags": [
+   "Diverse Characters",
+   "A mix driven",
+   "Loveable Characters",
+   "Weak Character Development",
+   "Strong Character Development",
+   "Unloveable Characters",
+   "Character driven",
+   "Kindle unlimited",
+   "[\"Diverse Characters\"]",
+   "read"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL16809836W": {
-  "checked": "2026-10-14T05:42:44+00:00",
+  "checked": "2026-10-14T06:28:47+00:00",
+  "content_warnings": [
+   "Sexual content",
+   "Violence",
+   "Blood",
+   "Murder",
+   "War",
+   "Gun violence"
+  ],
+  "cover": "https://assets.hardcover.app/edition/9524216/537161e56962bb2b7eb682ed463c149d0eac4885.jpeg",
+  "description": "After battling assassins, rampaging armies, and aliens, little Hazel faces something truly frightening--her grandparents.",
+  "genres": [
+   "Science Fiction"
+  ],
+  "gr_genres": [
+   "Graphic Novels",
+   "Comics",
+   "Fantasy",
+   "Science Fiction",
+   "Fiction",
+   "Graphic Novels Comics",
+   "Adult",
+   "Romance"
+  ],
+  "gr_guessed": false,
+  "gr_id": "18630193-saga-tome-2",
+  "gr_rating": 4.48,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Saga Tome 2",
+  "gr_votes": 117704,
+  "hc_id": 844795,
+  "hc_rating": 4.49,
+  "hc_readers": 908,
+  "hc_slug": "saga-vol-2",
   "hc_tried": true,
+  "hc_votes": 635,
+  "moods": [
+   "Adventurous",
+   "dark",
+   "funny",
+   "tense",
+   "challenging",
+   "emotional"
+  ],
+  "pages": 144,
+  "series": "Saga",
+  "tags": [
+   "Diverse Characters",
+   "Loveable Characters",
+   "A mix driven",
+   "Strong Character Development",
+   "Unloveable Characters",
+   "Weak Character Development",
+   "Plot driven",
+   "Character driven"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL17076473W": {
-  "checked": "2026-10-14T05:37:23+00:00",
+  "checked": "2026-10-14T06:23:39+00:00",
   "content_warnings": [
    "Rape",
    "Murder",
@@ -85,11 +293,13 @@
   "gr_guessed": false,
   "gr_id": "57770537",
   "gr_rating": 4.27,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Red Rising",
   "gr_votes": 1003685,
   "hc_id": 427473,
   "hc_rating": 4.19,
-  "hc_readers": 11325,
+  "hc_readers": 11326,
   "hc_slug": "red-rising",
   "hc_tried": true,
   "hc_votes": 4161,
@@ -116,28 +326,133 @@
    "audiobook"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL17356885W": {
-  "checked": "2026-10-14T05:44:46+00:00",
+  "checked": "2026-10-14T06:27:57+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/edition/30390642/497a78c7013fd0698527a44e110693096ef2d075.jpeg",
+  "description": "ÊAfter a dramatic time jump, the three-time Eisner Award winner for Best Continuing Series continues to evolve, as Hazel begins the most exciting adventure of her life: kindergarten. Meanwhile, her starcrossed family learns hard lessons of their own. Collects SAGA #31-36 Ê",
+  "genres": [
+   "Graphic Novels",
+   "Adventure",
+   "Science Fiction",
+   "Space",
+   "Comics",
+   "War",
+   "LGBTQ",
+   "Dystopian"
+  ],
+  "gr_genres": [
+   "Graphic Novels",
+   "Comics",
+   "Fantasy",
+   "Science Fiction",
+   "Fiction",
+   "Graphic Novels Comics",
+   "Adult",
+   "Comic Book"
+  ],
+  "gr_guessed": false,
+  "gr_id": "28862528-saga-volume-6",
+  "gr_rating": 4.45,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Saga, Volume 6",
+  "gr_votes": 56911,
+  "hc_id": 427883,
+  "hc_rating": 4.49,
+  "hc_readers": 546,
+  "hc_slug": "saga-vol-6",
   "hc_tried": true,
+  "hc_votes": 324,
+  "moods": [
+   "Adventurous",
+   "emotional",
+   "reflective",
+   "funny",
+   "hopeful",
+   "dark"
+  ],
+  "pages": 152,
+  "series": "Saga",
+  "tags": [
+   "A mix driven",
+   "Strong Character Development",
+   "Diverse Characters",
+   "Loveable Characters",
+   "Unloveable Characters"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL17596671W": {
-  "checked": "2026-10-14T05:44:57+00:00",
+  "checked": "2026-10-14T06:28:49+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/edition/7639517/0a77b231f51ae6198c9403325c112ab264aa4e71.jpeg",
+  "description": "\"Saga is the sweeping tale of one young family fighting to find their place in the universe. As they visit a strange new world and encounter even more adversaries, baby Hazel finally becomes a toddler, while her star-crossed parents Marko and Alana struggle to stay on their feet\"--Back cover.",
+  "genres": [
+   "Science Fiction"
+  ],
+  "gr_genres": [
+   "Graphic Novels",
+   "Comics",
+   "Fantasy",
+   "Science Fiction",
+   "Fiction",
+   "Graphic Novels Comics",
+   "Adult",
+   "Comic Book"
+  ],
+  "gr_guessed": false,
+  "gr_id": "23704892-saga",
+  "gr_rating": 4.41,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Saga: Capítulo 4",
+  "gr_votes": 83278,
+  "hc_id": 427610,
+  "hc_rating": 4.47,
+  "hc_readers": 704,
+  "hc_slug": "saga-vol-4-2014",
   "hc_tried": true,
+  "hc_votes": 447,
+  "moods": [
+   "Adventurous",
+   "dark",
+   "emotional",
+   "funny"
+  ],
+  "pages": 144,
+  "series": "Saga",
+  "tags": [
+   "A mix driven",
+   "Strong Character Development",
+   "Diverse Characters",
+   "Unloveable Characters",
+   "Loveable Characters",
+   "Character driven",
+   "Not Diverse Characters",
+   "Weak Character Development"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL19363160W": {
-  "checked": "2026-10-14T05:38:15+00:00",
+  "checked": "2026-10-14T06:28:27+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/edition/15800281/c4a9a53ad080c775c02537e06d135da80a079000.jpeg",
+  "description": "Teo Avelar is a loner. He lives with his paraplegic mother and her dog in Rio de Janeiro, he doesn't have many friends, and the only time he feels honest human emotion is in the presence of his medical school cadaver—that is, until he meets Clarice. She's almost his exact opposite: exotic, spontaneous, unafraid to speak her mind. An aspiring screenwriter, she's working on a screenplay called Perfect Days about three friends who go on a road trip across Brazil in search of romance. Teo is obsessed. He begins to stalk her, first following her to her university, then to her home, and when she ultimately rejects him, he kidnaps her and they embark upon their very own twisted odyssey across Brazil, tracing the same route outlined in her screenplay. Through it all, Teo is certain that time is all he needs to prove to Clarice that they are made for each other, that time is all he needs to make her fall in love with him. But as the journey progresses, he digs himself deeper and deeper into a pit that he can't get out of, stopping at nothing to ensure that no one gets in the way of their life together. Both tense and lurid, and brimming with suspense from the very first page, Perfect Days is a psychological thriller in the vein of Patricia Highsmith's The Talented Mr. Ripley—a chilling journey in the passenger seat with a psychopath, and the English language debut of one of Brazil's most deliciously dark young writers.",
+  "genres": [
+   "Romance",
+   "Thriller"
+  ],
   "gr_genres": [
    "Thriller",
    "Horror",
@@ -148,19 +463,49 @@
    "Crime",
    "Adult"
   ],
-  "gr_guessed": true,
-  "gr_id": "21405408",
+  "gr_guessed": false,
+  "gr_id": "32966449-ahane-g-nler",
   "gr_rating": 3.59,
-  "gr_title": "Dias Perfeitos",
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Şahane Günler",
   "gr_votes": 16144,
+  "hc_id": 176481,
+  "hc_rating": 3.41,
+  "hc_readers": 135,
+  "hc_slug": "perfect-days",
   "hc_tried": true,
+  "hc_votes": 44,
+  "moods": [
+   "tense",
+   "Adventurous"
+  ],
+  "pages": 272,
+  "series": null,
+  "tags": [
+   "Unloveable Characters",
+   "Character driven"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL1966480W": {
-  "checked": "2026-10-14T05:40:59+00:00",
+  "checked": "2026-10-14T06:23:08+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/external_data/3053004/b98e20e4724f140269e60e0f14f729f8031eb1dd.jpeg",
+  "description": "*The Ancestor's Tale* describes the various processes involved in the development of life on Earth. Enormously rich and diverse, it includes the results of recent research that, using dna analysis, has led to some surprising insights into evolutionary history. The fundamental, unifying principle of evolution underlies this unique history - our history, and that of all living things. This masterpiece by Dawkins shows us how special we are, how amazing our history is, and how closely related we are to the rest of life on Earth.",
+  "genres": [
+   "Science",
+   "Animals",
+   " Fossil",
+   "History",
+   "Biology",
+   "Evolution",
+   "non-fiction",
+   "[\"Science\""
+  ],
   "gr_genres": [
    "Science",
    "Nonfiction",
@@ -174,48 +519,116 @@
   "gr_guessed": false,
   "gr_id": "17978",
   "gr_rating": 4.15,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "The Ancestor's Tale : A Pilgrimage to the Dawn of Life",
   "gr_votes": 29068,
+  "hc_id": 492828,
+  "hc_rating": 4.23,
+  "hc_readers": 243,
+  "hc_slug": "the-ancestors-tale",
   "hc_tried": true,
+  "hc_votes": 55,
+  "moods": [
+   "challenging",
+   "reflective"
+  ],
+  "pages": 696,
+  "series": null,
+  "tags": [
+   "Science",
+   "biology"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL19712073W": {
-  "checked": "2026-10-14T05:48:52+00:00",
-  "hc_tried": true,
-  "v": [
-   1,
-   1
-  ]
- },
- "ol:OL19716109W": {
-  "checked": "2026-10-14T05:42:06+00:00",
+  "checked": "2026-10-14T06:28:03+00:00",
   "content_warnings": [],
-  "cover": "https://assets.hardcover.app/edition/22190554/2b1a8bd7c8782651142bba8baf01d0aa3365c46c.jpeg",
-  "description": "A Harvard museum curator draws on the latest breakthroughs in evolutionary biology to examine how tiny, random convergences, from mutations to butterfly sneezes, have triggered remarkable evolutionary changes.\n\n\"Earth's natural history is full of fascinating instances of convergence: phenomena like eyes and wings and tree-climbing lizards that have evolved independently, multiple times. But evolutionary biologists also point out many examples of contingency, cases where the tiniest change--a random mutation or an ancient butterfly sneeze--caused evolution to take a completely different course. What role does each force really play in the constantly changing natural world? Are the plants and animals that exist today, and we humans ourselves, inevitabilities or evolutionary flukes? And what does that say about life on other planets? Jonathan Losos reveals what the latest breakthroughs in evolutionary biology can tell us about one of the greatest ongoing debates in science. He takes us around the globe to meet the researchers who are solving the deepest mysteries of life on Earth through their work in experimental evolutionary science. Losos himself is one of the leaders in this exciting new field, and he illustrates how experiments with guppies, fruit flies, bacteria, foxes, and field mice, along with his own work with anole lizards on Caribbean islands, are rewinding the tape of life to reveal just how rapid and predictable evolution can be. Improbable Destinies will change the way we think and talk about evolution. Losos's insights into natural selection and evolutionary change have far-reaching applications for protecting ecosystems, securing our food supply, and fighting off harmful viruses and bacteria. This compelling narrative offers a new understanding of ourselves and our role in the natural world and the cosmos.\"--Jacket.",
-  "genres": [],
-  "hc_id": 442788,
-  "hc_rating": 4.25,
-  "hc_readers": 19,
-  "hc_slug": "improbable-destinies",
+  "cover": "https://assets.hardcover.app/edition/30907698/54a9e227a4efafdcefcadb6cdae9705520e38068.jpeg",
+  "description": "When the lull of night falls over a sleeping midwestern town, an ancientunimaginable horror creeps violently and purposely through the night. That'swhen the children come out to play. Children with eyes of solid back, devoid ofemotion and remorse, and only asking for one thing ... to come inside. But thereare some who will not go quietly in the night. Some who will fight back to savenot only their own souls, but their own children's. This is their story. Collecting issues 1-5.",
+  "genres": [
+   "Comics",
+   "Science Fiction"
+  ],
+  "gr_genres": [
+   "Horror",
+   "Comics",
+   "Graphic Novels",
+   "Graphic Novels Comics",
+   "Fiction",
+   "Paranormal",
+   "Comic Book"
+  ],
+  "gr_guessed": false,
+  "gr_id": "32775795-black-eyed-kids-volume-1",
+  "gr_rating": 3.08,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Black-Eyed Kids, Volume 1: The Children",
+  "gr_votes": 167,
+  "hc_id": 887769,
+  "hc_rating": 3.0,
+  "hc_readers": 7,
+  "hc_slug": "black-eyed-kids-volume-1",
   "hc_tried": true,
   "hc_votes": 4,
   "moods": [],
-  "pages": 368,
+  "pages": 120,
+  "series": "Black-Eyed Kids",
+  "tags": [],
+  "v": [
+   2,
+   2
+  ]
+ },
+ "ol:OL19716109W": {
+  "checked": "2026-10-14T06:20:52+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/external_data/61623318/0f70fc4ca4f3fa702eec2a9dede3b67b02a91e33.jpeg",
+  "description": "A major new book overturning our assumptions about how evolution works Earth’s natural history is full of fascinating instances of convergence: phenomena like eyes and wings and tree-climbing lizards that have evolved independently, multiple times. But evolutionary biologists also point out many examples of contingency, cases where the tiniest change—a random mutation or an ancient butterfly sneeze—caused evolution to take a completely different course. What role does each force really play in the constantly changing natural world? Are the plants and animals that exist today, and we humans ourselves, inevitabilities or evolutionary flukes? And what does that say about life on other planets? Jonathan Losos reveals what the latest breakthroughs in evolutionary biology can tell us about one of the greatest ongoing debates in science. He takes us around the globe to meet the researchers who are solving the deepest mysteries of life on Earth through their work in experimental evolutionary science. Losos himself is one of the leaders in this exciting new field, and he illustrates how experiments with guppies, fruit flies, bacteria, foxes, and field mice, along with his own work with anole lizards on Caribbean islands, are rewinding the tape of life to reveal just how rapid and predictable evolution can be. Improbable Destinies will change the way we think and talk about evolution. Losos's insights into natural selection and evolutionary change have far-reaching applications for protecting ecosystems, securing our food supply, and fighting off harmful viruses and bacteria. This compelling narrative offers a new understanding of ourselves and our role in the natural world and the cosmos.",
+  "genres": [
+   "Science"
+  ],
+  "gr_genres": [
+   "Science",
+   "Nonfiction",
+   "Evolution",
+   "Biology",
+   "Nature",
+   "History",
+   "Natural History",
+   "Animals"
+  ],
+  "gr_guessed": false,
+  "gr_id": "33357463-improbable-destinies",
+  "gr_rating": 4.07,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Improbable Destinies: Fate, Chance, and the Future of Evolution",
+  "gr_votes": 1432,
+  "hc_id": 1181232,
+  "hc_rating": null,
+  "hc_readers": 3,
+  "hc_slug": "improbable-destinies-fate-chance-and-the-future-of-evolution",
+  "hc_tried": true,
+  "hc_votes": 0,
+  "moods": [],
+  "pages": 386,
   "series": null,
   "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL19763085W": {
-  "checked": "2026-10-14T05:51:09+00:00",
+  "checked": "2026-10-14T06:22:50+00:00",
   "content_warnings": [],
-  "cover": null,
-  "description": null,
+  "cover": "https://assets.hardcover.app/edition/23137345/39654574._SX98_.jpg",
+  "description": "An evil spell has been cast on the Queen of Maar and her Captain of the Guard will do anything to reverse it. Their only hope lies on an island half a world away--a place known in myth as Isola, land of the dead.",
   "genres": [],
   "gr_genres": [
    "Comics",
@@ -227,32 +640,64 @@
    "Fiction",
    "Adventure"
   ],
-  "gr_guessed": true,
-  "gr_id": "39654574",
+  "gr_guessed": false,
+  "gr_id": "39654574-isola-vol-1",
   "gr_rating": 3.67,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Isola, Vol. 1",
   "gr_votes": 3088,
-  "hc_id": 2064409,
-  "hc_rating": 3.0,
-  "hc_readers": 2,
-  "hc_slug": "isola-vol-1",
+  "hc_id": 449614,
+  "hc_rating": 3.43,
+  "hc_readers": 40,
+  "hc_slug": "isola",
   "hc_tried": true,
-  "hc_votes": 1,
-  "moods": [],
-  "pages": null,
-  "series": null,
-  "tags": [],
+  "hc_votes": 21,
+  "moods": [
+   "Adventurous",
+   "dark",
+   "emotional",
+   "mysterious",
+   "sad",
+   "tense"
+  ],
+  "pages": 144,
+  "series": "Isola",
+  "tags": [
+   "Weak Character Development",
+   "Unloveable Characters",
+   "Diverse Characters",
+   "A mix driven",
+   "Plot driven"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL19956447W": {
-  "checked": "2026-10-14T05:45:55+00:00",
+  "checked": "2026-10-14T06:23:11+00:00",
   "content_warnings": [],
   "cover": "https://assets.hardcover.app/edition/30463838/13482575._SX98_.jpg",
   "description": "1916. A man haunts the roads. A man with razor-sharp teeth and a hunger for flesh. When twelve-year old Jack Garron runs away from home to find his father, a wayward minstrel who he hasn't seen since birth, he'll discover how quickly the American Dream can become a nightmare.",
   "genres": [],
+  "gr_genres": [
+   "Comics",
+   "Graphic Novels",
+   "Horror",
+   "Graphic Novels Comics",
+   "Fiction",
+   "Historical Fiction",
+   "Comic Book",
+   "Historical"
+  ],
+  "gr_guessed": false,
+  "gr_id": "13482575-severed",
+  "gr_rating": 3.82,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Severed",
+  "gr_votes": 3120,
   "hc_id": 511607,
   "hc_rating": 3.72,
   "hc_readers": 29,
@@ -264,51 +709,163 @@
   "series": null,
   "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL19975567W": {
-  "checked": "2026-10-14T05:42:46+00:00",
-  "hc_tried": true,
-  "v": [
-   1,
-   1
-  ]
- },
- "ol:OL19992881W": {
-  "checked": "2026-10-14T05:45:23+00:00",
-  "hc_tried": true,
-  "v": [
-   1,
-   1
-  ]
- },
- "ol:OL20002422W": {
-  "checked": "2026-10-14T05:44:55+00:00",
-  "content_warnings": [],
-  "cover": "https://assets.hardcover.app/edition/8709476/5f5fd63524690aa6117e08859dd705aefef18648.jpeg",
-  "description": null,
+  "checked": "2026-10-14T06:28:30+00:00",
+  "content_warnings": [
+   "Sexual content",
+   "War",
+   "Violence",
+   "Gore",
+   "Xenophobia",
+   "Injury/Injury detail"
+  ],
+  "cover": "https://assets.hardcover.app/edition/30680339/6c946b0873560f73245a73f502af38b849930129.jpeg",
+  "description": "Collects SAGA #13-18\n\nThe Eisner, Harvey, and Hugo Award-winning phenomenon continues, as new parents Marko and Alana travel to an alien world to visit their hero, while the family's pursuers finally close in on their targets.",
   "genres": [
    "Science Fiction"
   ],
-  "hc_id": 452252,
-  "hc_rating": 3.94,
-  "hc_readers": 27,
-  "hc_slug": "black-science",
+  "gr_genres": [
+   "Graphic Novels",
+   "Comics",
+   "Fantasy",
+   "Science Fiction",
+   "Fiction",
+   "Graphic Novels Comics",
+   "Adult",
+   "Romance"
+  ],
+  "gr_guessed": false,
+  "gr_id": "19358975-saga-volume-3",
+  "gr_rating": 4.47,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Saga, Volume 3",
+  "gr_votes": 100576,
+  "hc_id": 428579,
+  "hc_rating": 4.52,
+  "hc_readers": 779,
+  "hc_slug": "saga-vol-3",
   "hc_tried": true,
-  "hc_votes": 16,
+  "hc_votes": 533,
+  "moods": [
+   "Adventurous",
+   "funny",
+   "dark",
+   "emotional",
+   "tense",
+   "lighthearted"
+  ],
+  "pages": 144,
+  "series": "Saga",
+  "tags": [
+   "Diverse Characters",
+   "Strong Character Development",
+   "Loveable Characters",
+   "Character driven",
+   "A mix driven",
+   "Unloveable Characters",
+   "Weak Character Development"
+  ],
+  "v": [
+   2,
+   2
+  ]
+ },
+ "ol:OL19992881W": {
+  "checked": "2026-10-14T06:28:08+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/external_data/4202172/6f0f8172063a201e451988324911f41d0c5c8e88.jpeg",
+  "description": "Kyle Barnes has been plagued by demonic possession all his life and now he needs answers. Unfortunately, what he uncovers along the way could bring about the end of life on Earth as we know it.",
+  "genres": [
+   "Horror",
+   "Dark Fantasy"
+  ],
+  "gr_genres": [
+   "Graphic Novels",
+   "Comics",
+   "Horror",
+   "Graphic Novels Comics",
+   "Fiction",
+   "Fantasy",
+   "Comic Book",
+   "Paranormal"
+  ],
+  "gr_guessed": false,
+  "gr_id": "30644203-s-rg-n-cilt-1",
+  "gr_rating": 3.85,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Sürgün, Cilt 1: Onu Saran Karanlık",
+  "gr_votes": 9094,
+  "hc_id": 436261,
+  "hc_rating": 3.71,
+  "hc_readers": 100,
+  "hc_slug": "outcast-vol-1",
+  "hc_tried": true,
+  "hc_votes": 58,
   "moods": [],
-  "pages": null,
-  "series": null,
+  "pages": 152,
+  "series": "Outcast",
   "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
+  ]
+ },
+ "ol:OL20002422W": {
+  "checked": "2026-10-14T06:23:03+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/book_mappings/7339380/938e3d0807c4b9cb0ac81346c8b4c206a5c81c5f.jpeg",
+  "description": "In this second volume of the hit series, the Anarchist League of Scientists dives further into the Onion construct of reality than ever before, jumping wildly through worlds of wonder, fantastic beauty, and cosmic horrors. Beset on dangers from without and within, the team must learn to be a family if they're ever to survive and find their way home again.",
+  "genres": [
+   "Science Fiction"
+  ],
+  "gr_genres": [
+   "Comics",
+   "Graphic Novels",
+   "Science Fiction",
+   "Graphic Novels Comics",
+   "Comic Book",
+   "Fiction",
+   "Fantasy",
+   "Adventure"
+  ],
+  "gr_guessed": false,
+  "gr_id": "23093358-black-science-vol-2",
+  "gr_rating": 3.82,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Black Science, Vol. 2: Welcome, Nowhere",
+  "gr_votes": 3744,
+  "hc_id": 450130,
+  "hc_rating": 3.82,
+  "hc_readers": 53,
+  "hc_slug": "black-science-vol-2",
+  "hc_tried": true,
+  "hc_votes": 34,
+  "moods": [],
+  "pages": 128,
+  "series": "Black Science",
+  "tags": [],
+  "v": [
+   2,
+   2
   ]
  },
  "ol:OL20005345W": {
-  "checked": "2026-10-14T05:44:47+00:00",
+  "checked": "2026-10-14T06:23:45+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/external_data/60159758/ff14f2c844bda4fa27f281d29f51380634ced1e9.jpeg",
+  "description": "Everything you thought you knew about witches is wrong. They are much darker, and they are much more horrifying. Wytches takes the mythology of witches to a far creepier, bone-chilling place than readers have dared venture before.\r\nWhen the Rooks family moves to the remote town of Litchfield, NH to escape a haunting trauma, they're hopeful about starting over. But something evil is waiting for them in the woods just beyond town. Watching from the trees. Ancient...and hungry.",
+  "genres": [
+   "Fantasy",
+   "Comics",
+   "Young Adult"
+  ],
   "gr_genres": [
    "Graphic Novels",
    "Horror",
@@ -319,25 +876,64 @@
    "Witches",
    "Comic Book"
   ],
-  "gr_guessed": true,
-  "gr_id": "25243735",
+  "gr_guessed": false,
+  "gr_id": "25243735-wytches-volume-1",
   "gr_rating": 3.79,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Wytches, Volume 1",
   "gr_votes": 17611,
+  "hc_id": 444971,
+  "hc_rating": 4.18,
+  "hc_readers": 35,
+  "hc_slug": "wytches-1",
   "hc_tried": true,
+  "hc_votes": 17,
+  "moods": [
+   "dark",
+   "emotional",
+   "mysterious",
+   "sad",
+   "tense"
+  ],
+  "pages": 144,
+  "series": "Wytches",
+  "tags": [
+   "Plot driven",
+   "Weak Character Development",
+   "Unloveable Characters",
+   "Not Diverse Characters"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL20009816W": {
-  "checked": "2026-10-14T05:44:53+00:00",
+  "checked": "2026-10-14T06:23:19+00:00",
   "content_warnings": [],
   "cover": "https://assets.hardcover.app/edition/18878192/44c7c8756e54890e1933e285720286fbc533d1bc.jpeg",
   "description": "\"While Gwendolyn and Lying Cat risk everything to find a cure for The Will, Marko makes an uneasy alliance with Prince Robot IV to find their missing children, who are trapped on a strange world with terrifying new enemies\"--Page 4 of cover.",
   "genres": [
    "Science Fiction"
   ],
+  "gr_genres": [
+   "Graphic Novels",
+   "Comics",
+   "Fantasy",
+   "Science Fiction",
+   "Fiction",
+   "Graphic Novels Comics",
+   "Adult",
+   "Comic Book"
+  ],
+  "gr_guessed": false,
+  "gr_id": "25451555-saga-volume-5",
+  "gr_rating": 4.4,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Saga, Volume 5",
+  "gr_votes": 72806,
   "hc_id": 427641,
   "hc_rating": 4.4,
   "hc_readers": 609,
@@ -363,12 +959,12 @@
    "Character driven"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL20033584W": {
-  "checked": "2026-10-14T05:51:14+00:00",
+  "checked": "2026-10-14T06:25:59+00:00",
   "content_warnings": [
    "Torture",
    "War",
@@ -387,6 +983,23 @@
    "Dystopian",
    "Comics & Graphic Novels"
   ],
+  "gr_genres": [
+   "Graphic Novels",
+   "Fantasy",
+   "Comics",
+   "Horror",
+   "Fiction",
+   "Steampunk",
+   "Graphic Novels Comics",
+   "Adult"
+  ],
+  "gr_guessed": false,
+  "gr_id": "55883882-monstress-volume-1",
+  "gr_rating": 3.96,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Monstress, Volume 1: Awakening",
+  "gr_votes": 66970,
   "hc_id": 427882,
   "hc_rating": 4.0,
   "hc_readers": 692,
@@ -413,12 +1026,12 @@
    "physical"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL20166830W": {
-  "checked": "2026-10-14T05:59:49+00:00",
+  "checked": "2026-10-14T06:26:02+00:00",
   "content_warnings": [],
   "cover": "https://assets.hardcover.app/external_data/59617449/71f51801ea1a51f0ae3a95401f09a15c1bb70ab5.jpeg",
   "description": "Everyone is ugly sometimes. In a world not unlike our own, there is a phenomenon called the INEXPLICABLE DEVELOPMENT—a rare occurrence with permanent consequences. Average-looking, under-the-radar sixteen-year-old Konrad Wolnik's life is turned upside down when, one morning, he wakes up stunningly attractive. That same day, his classmate, Camilla Hadi, has her own transformation; the lean, pretty athlete is now devastatingly ugly. The teens face the cruel world of high school from very different perspectives. Konrad shoots to the top of the pecking order, Camilla slips into pariah status. But soon the school starts rallying around Camilla, and Konrad’s sudden popularity sours as people blame him for her transformation. And, the truth is, so does she. All he wants is for everyone to like him. All she wants is to destroy his perfect life. So what if they could use each other for personal gain? Told in dual POV, Sebastian J. Plata's debut is a hilarious, scathing look at society's unrealistic beauty standards and the intense pressures of high school. Perfect for fans of The DUFF and Winger.",
@@ -437,9 +1050,11 @@
    "Fiction",
    "Young Adult Contemporary"
   ],
-  "gr_guessed": true,
-  "gr_id": "35883128",
+  "gr_guessed": false,
+  "gr_id": "43564669-freak-n-gorgeous",
   "gr_rating": 3.44,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Freak 'N' Gorgeous",
   "gr_votes": 187,
   "hc_id": 582795,
@@ -453,12 +1068,12 @@
   "series": null,
   "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL20201754W": {
-  "checked": "2026-10-14T05:33:25+00:00",
+  "checked": "2026-10-14T06:23:36+00:00",
   "content_warnings": [],
   "cover": "https://assets.hardcover.app/edition/30491823/e99772fe2c537aed83c016b08ea001465c6723e8.jpeg",
   "description": "Let your imagination sink deep into more than a dozen classic tales of dark horror by H. P. Lovecraft. The stories of H. P. Lovecraft have been a source of fascination for readers since they were published in the early twentieth century, and legions of fans continue to reinvent his dark and fantastical world to this day. This collection of short stories by the master of the macabre contains more than twenty of his most popular works, including \"The Call of Cthulhu,\" \"The Shadow Over Innsmouth,\" and \"The Dunwich Horror.\" Each story will leave the reader feeling unsettled and uncertain, but also appreciative of the unique elements that Lovecraft introduced to the literary world. Makes a perfect gift for fans of Lovecraft, his work, and the HBO series Lovecraft Country.",
@@ -467,6 +1082,23 @@
    "Fantasy",
    "Science Fiction"
   ],
+  "gr_genres": [
+   "Horror",
+   "Classics",
+   "Fiction",
+   "Fantasy",
+   "Short Stories",
+   "Science Fiction",
+   "Gothic",
+   "Lovecraftian"
+  ],
+  "gr_guessed": false,
+  "gr_id": "34637444-tales-of-horror",
+  "gr_rating": 4.13,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Tales of Horror",
+  "gr_votes": 613,
   "hc_id": 536138,
   "hc_rating": 4.0,
   "hc_readers": 24,
@@ -478,12 +1110,12 @@
   "series": null,
   "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL21745884W": {
-  "checked": "2026-10-14T05:34:16+00:00",
+  "checked": "2026-10-14T06:23:42+00:00",
   "content_warnings": [
    "Death",
    "Medical content",
@@ -514,11 +1146,13 @@
   "gr_guessed": false,
   "gr_id": "58033783",
   "gr_rating": 4.51,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Devoradores de estrelas",
-  "gr_votes": 1905994,
+  "gr_votes": 1906042,
   "hc_id": 427578,
   "hc_rating": 4.51,
-  "hc_readers": 17772,
+  "hc_readers": 17773,
   "hc_slug": "project-hail-mary",
   "hc_tried": true,
   "hc_votes": 8412,
@@ -545,20 +1179,61 @@
    "fiction"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL24315844W": {
-  "checked": "2026-10-14T05:54:54+00:00",
+  "checked": "2026-10-14T06:20:57+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/external_data/2215167/99a32aaf4139ddd5bc7289cfe1c09432280ad9f5.jpeg",
+  "description": "PRÊMIO JABUTI DE MELHOR ROMANCE DE ENTRETENIMENTO DE 2020.\r\n\r\nUm crime brutal cometido há vinte anos, uma única sobrevivente, o retorno calculado do assassino. Em quem Victoria deve confiar? Neste thriller psicológico, Raphael Montes une romance e suspense em uma narrativa intrincada e sedutora.\r\nDo criador da série original Netflix \"Bom dia, Verônica\".\r\n\r\nVictoria Bravo tinha quatro anos quando um homem invadiu sua casa e matou sua família a facadas, pichando seus rostos com tinta preta. Única sobrevivente, ela agora é uma jovem solitária e tímida, com pesadelos frequentes e sérias dificuldades para se relacionar. Seu refúgio é ficar em casa e observar a vida alheia pelas janelas do apartamento onde mora, na Lapa, Rio de Janeiro.\r\nMas o passado bate à sua porta, e ela não sabe mais em quem pode confiar. Obrigada a enfrentar sua própria tragédia, Victoria embarca em uma jornada de amadurecimento e descoberta que a levará a zonas obscuras, mas também revelará as possibilidades do amor. Um psiquiatra, um amigo feito pela internet e um possível namorado — qual dos três homens está usando tudo o que sabe para aterrorizar a vida de Vic? E o que afinal ele quer com ela?\r\nNa literatura nacional, Raphael Montes é unanimidade quando se trata de livros de suspense. Uma mulher no escuro traz sua primeira protagonista feminina e confirma o autor como um dos mais originais da atualidade — além de deixar o leitor intrigado do começo ao fim.",
+  "genres": [
+   "Fiction"
+  ],
+  "gr_genres": [
+   "Thriller",
+   "Suspense",
+   "Mystery",
+   "Fiction",
+   "Crime",
+   "Ebooks",
+   "Horror",
+   "Mystery Thriller"
+  ],
+  "gr_guessed": false,
+  "gr_id": "45021607-uma-mulher-no-escuro",
+  "gr_rating": 4.02,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Uma mulher no escuro",
+  "gr_votes": 7872,
+  "hc_id": 1190722,
+  "hc_rating": 4.02,
+  "hc_readers": 31,
+  "hc_slug": "uma-mulher-no-escuro",
   "hc_tried": true,
+  "hc_votes": 21,
+  "moods": [
+   "dark",
+   "mysterious",
+   "tense"
+  ],
+  "pages": 256,
+  "series": null,
+  "tags": [
+   "Character driven",
+   "Strong Character Development",
+   "Unloveable Characters",
+   "Not Diverse Characters"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL24593432W": {
-  "checked": "2026-10-14T05:35:58+00:00",
+  "checked": "2026-10-14T06:23:06+00:00",
   "content_warnings": [
    "Death",
    "Violence",
@@ -592,11 +1267,13 @@
   "gr_guessed": false,
   "gr_id": "231847431",
   "gr_rating": 4.42,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Dungeon Crawler Carl",
   "gr_votes": 675803,
   "hc_id": 446681,
   "hc_rating": 4.33,
-  "hc_readers": 11469,
+  "hc_readers": 11470,
   "hc_slug": "dungeon-crawler-carl",
   "hc_tried": true,
   "hc_votes": 4158,
@@ -623,31 +1300,21 @@
    "audiobook"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL25125779W": {
-  "checked": "2026-10-14T05:35:17+00:00",
+  "checked": "2026-10-14T06:28:15+00:00",
   "content_warnings": [
-   "Alcohol",
-   "Death",
-   "Self harm",
-   "War",
-   "suicide",
-   "animal death"
+   "Cursing",
+   "Sexual content"
   ],
-  "cover": "https://assets.hardcover.app/edition/21490281/d9b48333ac7a69ebe0aa5573fe0ff032e6f97508.jpeg",
-  "description": "Seconds before Earth is demolished to make way for a galactic freeway, Arthur Dent is plucked off the planet by his friend Ford Prefect, a researcher for the revised edition of The Hitchhiker’s Guide to the Galaxy who, for the last fifteen years, has been posing as an out-of-work actor.\n\nTogether, this dynamic pair began a journey through space aided by a galaxyful of fellow travelers: Zaphod Beeblebrox—the two-headed, three-armed ex-hippie and totally out-to-lunch president of the galaxy; Trillian (formerly Tricia McMillan), Zaphod’s girlfriend, whom Arthur tried to pick up at a cocktail party once upon a time zone; Marvin, a paranoid, brilliant, and chronically depressed robot; and Veet Voojagig, a former graduate student obsessed with the disappearance of all the ballpoint pens he’s bought over the years.\n\nWhere are these pens? Why are we born? Why do we die? For all the answers, stick your thumb to the stars!",
+  "cover": "https://assets.hardcover.app/edition/32211836/420aa8b8-11bc-47c0-87ab-adaed744d9d5.jpg",
+  "description": "In one complete volume, here are the five classic novels from Douglas Adams’s beloved Hitchhiker series.\n\nNow celebrating the pivotal 42nd anniversary of The Hitchhiker’s Guide to the Galaxy, soon to be a Hulu original series!\n\nThe Hitchhiker’s Guide to the Galaxy (Nominated as one of America’s best-loved novels by PBS’s The Great American Read)\nSeconds before the Earth is demolished for a galactic freeway, Arthur Dent is saved by Ford Prefect, a researcher for the revised Guide. Together they stick out their thumbs to the stars and begin a wild journey through time and space.\n\nThe Restaurant at the End of the Universe\nThe moment before annihilation at the hands of warmongers is a curious time to crave tea. It could only happen to the cosmically displaced Arthur Dent and his comrades as they hurtle across the galaxy in a desperate search for a place to eat.\n\nLife, the Universe and Everything\nThe unhappy inhabitants of planet Krikkit are sick of looking at the night sky– so they plan to destroy it. The universe, that is. Now only five individuals can avert Armageddon: mild-mannered Arthur Dent and his stalwart crew.\n\nSo Long, and Thanks for All the Fish\nBack on Earth, Arthur Dent is ready to believe that the past eight years were all just a figment of his stressed-out imagination. But a gift-wrapped fishbowl with a cryptic inscription thrusts him back to reality. So to speak.\n\nMostly Harmless\nJust when Arthur Dent makes the terrible mistake of starting to enjoy life, all hell breaks loose. Can he save the Earth from total obliteration? Can he save the Guide from a hostile alien takeover? Can he save his daughter from herself?\n\nIncludes the bonus story “Young Zaphod Plays It Safe”",
   "genres": [
    "Science Fiction",
-   "Humor",
-   "Adventure",
-   "Fantasy",
-   "Classics",
-   "Humour",
-   "Space",
-   "comedy"
+   "Humor"
   ],
   "gr_genres": [
    "Science Fiction",
@@ -659,46 +1326,68 @@
    "Science Fiction Fantasy",
    "Adventure"
   ],
-  "gr_guessed": true,
-  "gr_id": "13",
+  "gr_guessed": false,
+  "gr_id": "40387791-the-ultimate-hitchhiker-s-guide-to-the-galaxy",
   "gr_rating": 4.38,
-  "gr_title": "The Ultimate Hitchhiker’s Guide to the Galaxy",
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "The Ultimate Hitchhiker's Guide to the Galaxy",
   "gr_votes": 344571,
-  "hc_id": 427798,
-  "hc_rating": 4.3,
-  "hc_readers": 11394,
-  "hc_slug": "the-hitchhikers-guide-to-the-galaxy",
+  "hc_id": 205829,
+  "hc_rating": 4.44,
+  "hc_readers": 2264,
+  "hc_slug": "the-ultimate-hitchhikers-guide",
   "hc_tried": true,
-  "hc_votes": 5871,
+  "hc_votes": 1097,
   "moods": [
    "funny",
-   "Adventurous",
    "lighthearted",
-   "relaxing",
+   "Adventurous",
    "mysterious",
-   "hopeful"
+   "dark",
+   "emotional"
   ],
-  "pages": 199,
+  "pages": 815,
   "series": "The Hitchhiker's Guide to the Galaxy",
   "tags": [
    "Weak Character Development",
    "Loveable Characters",
    "Diverse Characters",
-   "Plot driven",
    "A mix driven",
+   "Plot driven",
    "Not Diverse Characters",
+   "Sci-fi",
    "Unloveable Characters",
-   "Character driven",
-   "Strong Character Development",
-   "fiction"
+   "Calibre Import",
+   "Fiction/Sci-Fi Comedy"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL257943W": {
-  "checked": "2026-10-14T05:53:03+00:00",
+  "checked": "2026-10-14T06:23:34+00:00",
+  "content_warnings": [
+   "Violence",
+   "Rape",
+   "Incest",
+   "Death",
+   "Sexual content",
+   "animal death"
+  ],
+  "cover": "https://assets.hardcover.app/edition/12841472/a63e7ea1-9064-4eb8-afb4-5372db40aed2.jpg",
+  "description": "As Warden of the north, Lord Eddard Stark counts it a curse when King Robert bestows on him the office of the Hand. His honour weighs him down at court where a true man does what he will, not what he must ...and a dead enemy is a thing of beauty. \n\nThe old gods have no power in the south, Stark's family is split and there is treachery at court. Worse, the vengeance-mad heir of the deposed Dragon King has grown to maturity in exile in the Free Cities. He claims the Iron Throne.",
+  "genres": [
+   "Fantasy",
+   "High Fantasy",
+   "Adventure",
+   "Epic Fantasy",
+   "Science Fiction & Fantasy",
+   "Science Fiction",
+   "Sci-fi",
+   "Epic"
+  ],
   "gr_genres": [
    "Fantasy",
    "Fiction",
@@ -712,16 +1401,45 @@
   "gr_guessed": false,
   "gr_id": "768889",
   "gr_rating": 4.47,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "A Storm of Swords: Steel and Snow",
   "gr_votes": 93207,
+  "hc_id": 644,
+  "hc_rating": 4.42,
+  "hc_readers": 10020,
+  "hc_slug": "a-game-of-thrones",
   "hc_tried": true,
+  "hc_votes": 5465,
+  "moods": [
+   "Adventurous",
+   "dark",
+   "tense",
+   "emotional",
+   "sad",
+   "challenging"
+  ],
+  "pages": 694,
+  "series": "A Song of Ice and Fire",
+  "tags": [
+   "Strong Character Development",
+   "A mix driven",
+   "Diverse Characters",
+   "Loveable Characters",
+   "Unloveable Characters",
+   "Not Diverse Characters",
+   "Plot driven",
+   "Weak Character Development",
+   "Character driven",
+   "fantasy"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL26417336W": {
-  "checked": "2026-10-14T05:38:25+00:00",
+  "checked": "2026-10-14T06:28:00+00:00",
   "content_warnings": [],
   "cover": "https://assets.hardcover.app/edition/31226208/6ddaa722-bbd3-4b39-ab46-301750de38ca.jpg",
   "description": "Romance com mais de 100 mil exemplares vendidos, Jantar secreto conta a história de um grupo de amigos que se muda para o Rio de Janeiro e passa a organizar jantares misteriosos. Do criador da série original Netflix Bom dia, Verônica. Um grupo de jovens deixa uma pequena cidade no Paraná para viver no Rio de Janeiro. Eles alugam um apartamento em Copacabana e fazem o possível para pagar a faculdade e manter vivos seus sonhos de sucesso na capital fluminense. Mas o dinheiro está curto e o aluguel está vencido. Para sair do buraco e manter o apartamento, os amigos adotam uma estratégia heterodoxa: arrecadar fundos por meio de jantares secretos, divulgados pela internet para uma clientela exclusiva da elite carioca. A partir daí, eles se envolvem em uma espiral de crimes, descobrem uma rede de contrabando de corpos, matadouros clandestinos e grã-finos excêntricos, e levam ao limite uma índole perversa que jamais imaginaram existir em cada um deles.",
@@ -739,10 +1457,12 @@
    "Crime",
    "Audiobook"
   ],
-  "gr_guessed": true,
-  "gr_id": "32681160",
+  "gr_guessed": false,
+  "gr_id": "240350990-the-secret-dinner",
   "gr_rating": 4.05,
-  "gr_title": "Jantar Secreto",
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "The Secret Dinner",
   "gr_votes": 23534,
   "hc_id": 1201387,
   "hc_rating": 4.16,
@@ -770,12 +1490,29 @@
    "mystery"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL27482W": {
-  "checked": "2026-10-14T03:38:41+00:00",
+  "checked": "2026-10-14T06:23:32+00:00",
+  "content_warnings": [
+   "Violence",
+   "Death",
+   "Abandonment"
+  ],
+  "cover": "https://assets.hardcover.app/edition/17456445/d34448a9-bf3f-441d-93f2-1cd32dd3867c.jpg",
+  "description": "<i>\"In a hole in the ground there lived a hobbit.\" </i>So begins one of the most beloved and delightful tales in the English language. Set in the imaginary world of Middle-earth, at once a classic myth and a modern fairy tale, The Hobbit is one of literature's most enduring and well-loved high fantasy novels.\n\nBilbo Baggins is a hobbit who enjoys a comfortable, unambitious life, rarely traveling any farther than his pantry or cellar. But his contentment is disturbed when the wizard Gandalf and a company of dwarves arrive on his doorstep one day to whisk him away on an adventure. They have launched a plot to raid the treasure hoard guarded by Smaug the Magnificent, a large and very dangerous dragon. \n\nBilbo reluctantly joins their epic quest, unaware that on his journey to the Lonely Mountain he will encounter both a magic ring and a frightening creature known as Gollum.",
+  "genres": [
+   "Fantasy",
+   "Classics",
+   "Adventure",
+   "Young Adult",
+   "Epic",
+   "Literature & Fiction",
+   "Action & Adventure",
+   "Literary Fiction"
+  ],
   "gr_genres": [
    "Fantasy",
    "Classics",
@@ -789,32 +1526,121 @@
   "gr_guessed": false,
   "gr_id": "289901",
   "gr_rating": 4.3,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Хоббит, или Туда и обратно",
-  "gr_votes": 4650500,
+  "gr_votes": 4650552,
+  "hc_id": 2459845,
+  "hc_rating": 4.31,
+  "hc_readers": 12259,
+  "hc_slug": "the-hobbit",
   "hc_tried": true,
+  "hc_votes": 6921,
+  "moods": [
+   "Adventurous",
+   "lighthearted",
+   "funny",
+   "hopeful",
+   "inspiring",
+   "relaxing"
+  ],
+  "pages": 320,
+  "series": "Middle Earth",
+  "tags": [
+   "Loveable Characters",
+   "Strong Character Development",
+   "Diverse Characters",
+   "Not Diverse Characters",
+   "Plot driven",
+   "A mix driven",
+   "Weak Character Development",
+   "fantasy",
+   "Unloveable Characters",
+   "classics"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL28466499W": {
-  "checked": "2026-10-14T05:47:08+00:00",
+  "checked": "2026-10-14T06:22:53+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/external_data/59915090/9ad38f4be808956382e4544a7bead759e662be7c.jpeg",
+  "description": null,
+  "genres": [],
+  "gr_genres": [
+   "Comics",
+   "Graphic Novels",
+   "Science Fiction",
+   "Horror",
+   "Animals",
+   "Fantasy",
+   "Graphic Novels Comics",
+   "Fiction"
+  ],
+  "gr_guessed": false,
+  "gr_id": "62706358-animosity",
+  "gr_rating": 3.86,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Animosity: The Wake",
+  "gr_votes": 1247,
+  "hc_id": 776750,
+  "hc_rating": 3.6,
+  "hc_readers": 20,
+  "hc_slug": "animosity-vol-1",
   "hc_tried": true,
+  "hc_votes": 15,
+  "moods": [],
+  "pages": null,
+  "series": "Animosity",
+  "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL28748393W": {
-  "checked": "2026-10-14T05:47:07+00:00",
+  "checked": "2026-10-14T06:28:43+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/external_data/59915089/ab30e9e73012fd628f5d655acea51290dbe703d3.jpeg",
+  "description": null,
+  "genres": [],
+  "gr_genres": [
+   "Comics",
+   "Graphic Novels",
+   "Animals",
+   "Science Fiction",
+   "Fantasy",
+   "Fiction",
+   "Graphic Novels Comics",
+   "Horror"
+  ],
+  "gr_guessed": false,
+  "gr_id": "74795982-animosity",
+  "gr_rating": 3.92,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Animosity: The Dragon",
+  "gr_votes": 518,
+  "hc_id": 776749,
+  "hc_rating": 3.57,
+  "hc_readers": 11,
+  "hc_slug": "animosity-vol-2",
   "hc_tried": true,
+  "hc_votes": 7,
+  "moods": [],
+  "pages": 120,
+  "series": "Animosity",
+  "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL2897798W": {
-  "checked": "2026-10-14T05:42:04+00:00",
+  "checked": "2026-10-14T06:22:58+00:00",
   "content_warnings": [
    "Homophobia",
    "Sexual assault",
@@ -841,8 +1667,10 @@
   "gr_guessed": false,
   "gr_id": "1259931",
   "gr_rating": 4.39,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Watchmen",
-  "gr_votes": 609106,
+  "gr_votes": 609108,
   "hc_id": 308,
   "hc_rating": 4.46,
   "hc_readers": 3409,
@@ -872,12 +1700,23 @@
    "graphic novel"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL28988W": {
-  "checked": "2026-10-14T05:59:20+00:00",
+  "checked": "2026-10-14T06:28:23+00:00",
+  "content_warnings": [
+   "abuse",
+   "Racism",
+   "Violence"
+  ],
+  "cover": "https://assets.hardcover.app/editions/19151716/902688047208777-119322.jpg",
+  "description": "Lyra is rushing to the cold, far North, where witch clans and armored bears rule. North, where the Gobblers take the children they steal—including her friend Roger. North, where her fearsome uncle Asriel is trying to build a bridge to a parallel world.\n\nCan one small girl make a difference in such great and terrible endeavors? This is Lyra: a savage, a schemer, a liar, and as fierce and true a champion as Roger or Asriel could want.\n\nBut what Lyra doesn't know is that to help one of them will be to betray the other...\n\nA masterwork of storytelling and suspense, Philip Pullman's award-winning The Golden Compass is the first in the His Dark Materials series, which continues with The Subtle Knife and The Amber Spyglass.",
+  "genres": [
+   "Fantasy",
+   "Young Adult"
+  ],
   "gr_genres": [
    "Fantasy",
    "Young Adult",
@@ -891,16 +1730,45 @@
   "gr_guessed": false,
   "gr_id": "1120622",
   "gr_rating": 4.04,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Os Reinos do Norte",
   "gr_votes": 1649830,
+  "hc_id": 355708,
+  "hc_rating": 4.07,
+  "hc_readers": 5285,
+  "hc_slug": "the-golden-compass",
   "hc_tried": true,
+  "hc_votes": 2785,
+  "moods": [
+   "Adventurous",
+   "mysterious",
+   "dark",
+   "emotional",
+   "tense",
+   "hopeful"
+  ],
+  "pages": 399,
+  "series": "His Dark Materials",
+  "tags": [
+   "Loveable Characters",
+   "Strong Character Development",
+   "Diverse Characters",
+   "A mix driven",
+   "Plot driven",
+   "Not Diverse Characters",
+   "Weak Character Development",
+   "Unloveable Characters",
+   "fiction",
+   "Character driven"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL29226517W": {
-  "checked": "2026-10-14T05:35:12+00:00",
+  "checked": "2026-10-14T06:30:50+00:00",
   "content_warnings": [
    "Sexual content",
    "Violence",
@@ -934,14 +1802,16 @@
   "gr_guessed": false,
   "gr_id": "217098238",
   "gr_rating": 4.56,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Fourth Wing",
-  "gr_votes": 4007559,
+  "gr_votes": 4007620,
   "hc_id": 714600,
   "hc_rating": 4.03,
-  "hc_readers": 7925,
+  "hc_readers": 7927,
   "hc_slug": "fourth-wing",
   "hc_tried": true,
-  "hc_votes": 3752,
+  "hc_votes": 3754,
   "moods": [
    "Adventurous",
    "emotional",
@@ -965,36 +1835,54 @@
    "dragons"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL34989424W": {
-  "checked": "2026-10-14T05:50:28+00:00",
+  "checked": "2026-10-14T06:28:11+00:00",
   "content_warnings": [],
-  "cover": null,
-  "description": null,
+  "cover": "https://assets.hardcover.app/edition/31486531/b85f4894329dcf7a29d30493b39ffa242cbe831c.jpeg",
+  "description": "\"FBI Special Agentes Shaw and McGregor find their reality twisting once more, plunging them into an entriely new dimension of terror. Their guide is Paul Carnahan, the child-killer whose arrest they sought, a man known to be dead and buried. As this all-too-human monster tells his story, the pari begin to understand the web of guilt and evil that has them in its grip -- a truth that will demand a dreadful price from both. Stricken with her own memories of wrongdoing, Deptuty-dirtector Driscoll struggles to reach the agents under her command, only to realized that her crimes may already have sealed their fate. Carnahan hold the key -- but what now looks out from behind his eyes is a great deal more than just a murderer. Old sins and ancient lies combine to herlad a terrifying new dawn for all mankind, in the second and final volume of A Walk Through Hell.\"--",
   "genres": [
    "Fantasy",
-   "Comics"
+   "Comics",
+   "Graphic novels"
   ],
-  "hc_id": 1784705,
-  "hc_rating": null,
-  "hc_readers": 0,
-  "hc_slug": "a-walk-through-hell-vol-2",
+  "gr_genres": [
+   "Comics",
+   "Graphic Novels",
+   "Horror",
+   "Paranormal",
+   "Fantasy",
+   "Graphic Novels Comics",
+   "Comic Book",
+   "Mystery"
+  ],
+  "gr_guessed": false,
+  "gr_id": "57989986-a-walk-through-hell-n-02-02",
+  "gr_rating": 3.26,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "A Walk Through Hell nº 02/02: La catedral",
+  "gr_votes": 311,
+  "hc_id": 1446034,
+  "hc_rating": 3.33,
+  "hc_readers": 7,
+  "hc_slug": "a-walk-through-hell-volume-2",
   "hc_tried": true,
-  "hc_votes": 0,
+  "hc_votes": 6,
   "moods": [],
-  "pages": null,
+  "pages": 160,
   "series": "A Walk Through Hell",
   "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL34989451W": {
-  "checked": "2026-10-14T05:50:30+00:00",
+  "checked": "2026-10-14T06:23:48+00:00",
   "content_warnings": [],
   "cover": null,
   "description": null,
@@ -1009,28 +1897,30 @@
    "Graphic Novels Comics",
    "Fiction"
   ],
-  "gr_guessed": true,
-  "gr_id": "48750853",
+  "gr_guessed": false,
+  "gr_id": "52326955-a-walk-through-hell-vol-1",
   "gr_rating": 3.44,
-  "gr_title": "A Walk Through Hell nº 01/02 (Aftershock A Walk Through Hell 1)",
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "A Walk Through Hell vol. 1",
   "gr_votes": 724,
-  "hc_id": 2761387,
-  "hc_rating": 5.0,
-  "hc_readers": 1,
-  "hc_slug": "a-walk-through-hell-vol-1",
+  "hc_id": 773627,
+  "hc_rating": 3.17,
+  "hc_readers": 16,
+  "hc_slug": "a-walk-through-hell-volume-1",
   "hc_tried": true,
-  "hc_votes": 1,
+  "hc_votes": 12,
   "moods": [],
-  "pages": 125,
-  "series": "A Walk Through Hell",
+  "pages": null,
+  "series": "A Walk Through Hell (single issues)",
   "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL38056236W": {
-  "checked": "2026-10-14T05:38:10+00:00",
+  "checked": "2026-10-14T06:28:53+00:00",
   "content_warnings": [],
   "cover": "https://assets.hardcover.app/edition/31226087/7c091d4b-536e-4bea-84ef-ee0250463d70.jpg",
   "description": "Em Uma família feliz, o mestre do suspense Raphael Montes desbrava as tensões das relações familiares e do mundo de aparências de um condomínio perfeito, em uma trama complexa sobre infância e maternidade. \r\nDo criador da série original Bom dia, Verônica (Netflix) e da novela Beleza fatal (HBO). \r\n\r\nEva tem a vida perfeita. Seu marido é um jovem advogado em ascensão. Suas filhas gêmeas são lindas, inteligentes e saudáveis. Seu trabalho, a arte reborn, é um sucesso na internet. À sua volta, tudo está à mã o Blue Paradise, condomínio fechado de classe média-alta na Barra da Tijuca, oferece todo tipo de serviço para que ela não precise sair do conforto de seu lar. Eva tem a vida perfeita - até descobrir que está grávida e seu mundo virar de cabeça para baixo. \r\n\r\nConhecido por seus suspenses de tirar o fôlego, com mais de 500 mil exemplares vendidos, Raphael Montes inova ao começar este thriller psicológico pelo último capítulo. Assim, como uma bomba-relógio prestes a detonar, acompanhamos os caminhos surpreendentes e as tensões que levam essa família feliz a um final avassalador. O livro deu origem ao longa-metragem Uma família feliz, com Grazi Massafera e Reynaldo Gianecchini, direção de José Eduardo Belmonte e roteiro de Raphael Montes.",
@@ -1048,9 +1938,11 @@
    "Fiction",
    "Audiobook"
   ],
-  "gr_guessed": true,
-  "gr_id": "205841037",
+  "gr_guessed": false,
+  "gr_id": "205841037-uma-fam-lia-feliz",
   "gr_rating": 3.82,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Uma família feliz",
   "gr_votes": 6651,
   "hc_id": 1201265,
@@ -1074,12 +1966,12 @@
    "Diverse Characters"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL41768708W": {
-  "checked": "2026-10-14T05:39:13+00:00",
+  "checked": "2026-10-14T06:23:23+00:00",
   "content_warnings": [],
   "cover": "https://assets.hardcover.app/edition/31108305/6457f8a60519e1b0e1636d72d1f90fa217380bc6.jpeg",
   "description": "Um porão, nove jovens e uma Magnum 608. O que poderia ter levado universitários da elite carioca aparentemente sem problemas a participar de uma roleta-russa? Um ano depois do trágico evento, que terminou de forma violenta e bizarramente misteriosa, uma nova pista, até então mantida em segredo pela polícia, ilumina o nebuloso caso. Sob o comando da delegada Diana Guimarães, as mães desses jovens são reunidas para tentar entender o que realmente aconteceu, e os motivos que levaram seus filhos a cometerem suicídio. Por meio da leitura das anotações feitas por um dos suicidas durante o fatídico episódio, as mães são submersas no turbilhão de momentos que culminaram na morte de seus filhos. A reunião se dá em clima de tensão absoluta, verdades são ditas sem a falsa piedade das máscaras sociais e, sorrateiramente, algo maior começa a se revelar.",
@@ -1094,9 +1986,11 @@
    "Mystery",
    "Contemporary"
   ],
-  "gr_guessed": true,
-  "gr_id": "16006113",
+  "gr_guessed": false,
+  "gr_id": "16006113-suicidas",
   "gr_rating": 4.04,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Suicidas",
   "gr_votes": 11722,
   "hc_id": 1084269,
@@ -1110,12 +2004,12 @@
   "series": null,
   "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL42427055W": {
-  "checked": "2026-10-14T05:37:27+00:00",
+  "checked": "2026-10-14T06:28:20+00:00",
   "content_warnings": [
    "Child abuse",
    "confinement",
@@ -1136,6 +2030,23 @@
    "Mystery & Detective",
    "Psychological"
   ],
+  "gr_genres": [
+   "Horror",
+   "Mystery",
+   "Fiction",
+   "Thriller",
+   "Mystery Thriller",
+   "Crime",
+   "Japanese Literature",
+   "Japan"
+  ],
+  "gr_guessed": false,
+  "gr_id": "219579219-strange-houses",
+  "gr_rating": 3.56,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Strange Houses",
+  "gr_votes": 124006,
   "hc_id": 1905977,
   "hc_rating": 3.48,
   "hc_readers": 1047,
@@ -1165,20 +2076,84 @@
    "Tense"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL43485765W": {
-  "checked": "2026-10-14T05:37:31+00:00",
+  "checked": "2026-10-14T06:28:06+00:00",
+  "content_warnings": [
+   "Murder",
+   "Death",
+   "Sexual assault",
+   "Animal cruelty",
+   "Cancer",
+   "Child abuse"
+  ],
+  "cover": "https://assets.hardcover.app/edition/31833489/46937d75b58ac756f2c5dc6df419ce744f0c0f23.jpeg",
+  "description": "An exploration of the macabre, where the seemingly mundane takes on a terrifying significance. . . .\n\nA pregnant woman's sketches on a seemingly innocuous blog conceal a chilling warning.\n\nA child's picture of his home contains a dark secret message.\n\nA sketch made by a murder victim in his final moments leads an amateur sleuth down a rabbithole that will reveal a horrifying reality.\n\nStructured around these nine childlike drawings, each holding a disturbing clue, Uketsu invites readers to piece together the mystery behind each and the over-arching backstory that connects them all. Strange Pictures is the internationally bestselling debut from mystery horror YouTube sensation Uketsu—an enigmatic masked figure who has become one of Japan's most talked about contemporary authors.",
+  "genres": [
+   "Horror",
+   "Mystery",
+   "Thriller",
+   "Thrillers",
+   "Fiction; Horror; Mystery; Thrillers",
+   "Literary Fiction",
+   "Short stories",
+   "Crime"
+  ],
+  "gr_genres": [
+   "Horror",
+   "Mystery",
+   "Thriller",
+   "Fiction",
+   "Japan",
+   "Crime",
+   "Mystery Thriller",
+   "Japanese Literature"
+  ],
+  "gr_guessed": false,
+  "gr_id": "227902510-imagens-estranhas",
+  "gr_rating": 3.91,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Imagens estranhas",
+  "gr_votes": 137423,
+  "hc_id": 1570320,
+  "hc_rating": 3.84,
+  "hc_readers": 1050,
+  "hc_slug": "strange-pictures",
   "hc_tried": true,
+  "hc_votes": 425,
+  "moods": [
+   "mysterious",
+   "dark",
+   "tense",
+   "emotional",
+   "sad",
+   "challenging"
+  ],
+  "pages": 240,
+  "series": null,
+  "tags": [
+   "Unloveable Characters",
+   "Weak Character Development",
+   "Not Diverse Characters",
+   "A mix driven",
+   "Plot driven",
+   "Diverse Characters",
+   "Strong Character Development",
+   "fiction",
+   "mystery",
+   "Loveable Characters"
+  ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL44600663W": {
-  "checked": "2026-10-14T05:52:21+00:00",
+  "checked": "2026-10-14T06:23:28+00:00",
   "content_warnings": [],
   "cover": "https://assets.hardcover.app/external_data/60385526/289de3a7d8621025c87b684f50999990e49d6480.jpeg",
   "description": "\"Join the excitement as depraved genius Rick Sanchez embarks on insane adventures with his awkward grandson Morty across the universe and across time. Caught in the crossfire are his teenage granddaughter Summer, his veterinary surgeon daughter Beth, and his hapless son-in-law Jerry. This collection features the first five issues of the comic book series, including \"The Wubba Lubba Dub Dub of Wall Street\", \"Mort-Balls!\" and more, along with hilarious mini-comics showcasing the whole family.\" --Back cover.",
@@ -1201,9 +2176,11 @@
    "Comic Book",
    "Fantasy"
   ],
-  "gr_guessed": true,
-  "gr_id": "26030214",
+  "gr_guessed": false,
+  "gr_id": "44573059-rick-and-morty-vol-1",
   "gr_rating": 4.07,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Rick and Morty, Vol. 1",
   "gr_votes": 4553,
   "hc_id": 1232447,
@@ -1217,12 +2194,12 @@
   "series": "Rick and Morty (2015)",
   "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL44983691W": {
-  "checked": "2026-10-14T05:38:19+00:00",
+  "checked": "2026-10-14T06:23:26+00:00",
   "content_warnings": [
    "Car accident",
    "Child abuse",
@@ -1251,11 +2228,13 @@
    "Japan",
    "Crime"
   ],
-  "gr_guessed": true,
-  "gr_id": "247527532",
+  "gr_guessed": false,
+  "gr_id": "242134824-strange-buildings",
   "gr_rating": 3.92,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Strange Buildings",
-  "gr_votes": 35351,
+  "gr_votes": 35360,
   "hc_id": 2156505,
   "hc_rating": 3.85,
   "hc_readers": 319,
@@ -1282,12 +2261,12 @@
    "A mix driven"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL46241W": {
-  "checked": "2026-10-14T06:00:41+00:00",
+  "checked": "2026-10-14T06:28:55+00:00",
   "content_warnings": [],
   "cover": "https://assets.hardcover.app/edition/12373277/509ae6a85955acc6ed96febacdcbffb105f0ebea.jpeg",
   "description": "This classic science fiction masterwork by Isaac Asimov weaves stories about robots, humanity, and the deep questions of existence into a novel of shocking intelligence and heart. \n\n“A must-read for science-fiction buffs and literature enjoyers alike.”— The Guardian \nI, Robot , the first and most widely read book in Asimov’s Robot series, forever changed the world’s perception of artificial intelligence. Here are stories of robots gone mad, of mind-reading robots, and robots with a sense of humor. Of robot politicians, and robots who secretly run the world—all told with the dramatic blend of science fact and science fiction that has become Asimov’s trademark. \nThe Three Laws of Robotics:\n1) A robot may not injure a human being or, through inaction, allow a human being to come to harm.\n2) A robot must obey orders given to it by human beings except where such orders would conflict with the First Law.\n3) A robot must protect its own existence as long as such protection does not conflict with the First or Second Law. \nWith these three, simple directives, Isaac Asimov formulated the laws governing robots’ behavior. In I, Robot , Asimov chronicles the development of the robot from its primitive origins in the present to its ultimate perfection in the not-so-distant future—a future in which humanity itself may be rendered obsolete. \n\nI, Robot is a fixup novel of science fiction short stories or essays by American writer Isaac Asimov. The stories originally appeared in the American magazines Super Science Stories and Astounding Science Fiction between 1940 and 1950 and were then compiled into a book for stand-alone publication by Gnome Press in 1950, in an initial edition of 5,000 copies. The stories are woven together by a framing narrative in which the fictional Dr. Susan Calvin tells each story to a reporter (who serves as the narrator) in the 21st century. Although the stories can be read separately, they share a theme of the interaction of humans, robots, and morality, and when combined they tell a larger story of Asimov's fictional history of robotics.\n\nContains:\n\"Introduction\" (the initial portion of the framing story or linking text)\n\"Robbie\" (1940, 1950)\n\"Runaround\" (1942)\n\"Reason\" (1941)\n\"Catch That Rabbit\" (1944)\n\"Liar!\" (1941)\n\"Little Lost Robot\" (1947)\n\"Escape!\" (1945)\n\"Evidence\" (1946)\n\"The Evitable Conflict\" (1950)",
@@ -1312,6 +2291,8 @@
   "gr_guessed": false,
   "gr_id": "414836",
   "gr_rating": 3.78,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "I, Robot: Short Stories",
   "gr_votes": 299,
   "hc_id": 192946,
@@ -1343,12 +2324,12 @@
    "Strong Character Development"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL46390W": {
-  "checked": "2026-10-14T05:35:14+00:00",
+  "checked": "2026-10-14T06:25:41+00:00",
   "content_warnings": [],
   "cover": "https://assets.hardcover.app/edition/32581700/d7719bcaa4c1fdb3d53e2c3f7bd0221fa4d93ef1.jpeg",
   "description": "Foundation begins a new chapter in the story of man's future. As the Old Empire crumbles into barbarism throughout the million worlds of the galaxy, Hari Seldon and his band of psychologists must create a new entity, the Foundation-dedicated to art, science, and technology-as the beginning of a new empire.\n\nFoundation and Empire describes the mighty struggle for power amid the chaos of the stars in which man stands at the threshold of a new enlightened life which could easily be destroyed by the old forces of barbarism.\n\nSecond Foundation follows the Seldon Plan after the First Empire's defeat and describes its greatest threat-a dangerous mutant strain gone wild, which produces a mind capable of bending men's wills, directing their thoughts, reshaping their desires, and destroying the universe.\n\nThis adaptation for BBC Radio 4 was first broadcast in 1973 with a cast which included Lee Montague, Maurice Denham, John Justin, Angela Plesence, Wolfe Morris, Julian Glover and Prunella Scales.",
@@ -1373,6 +2354,8 @@
   "gr_guessed": false,
   "gr_id": "3194904",
   "gr_rating": 4.42,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "The Foundation Trilogy",
   "gr_votes": 110763,
   "hc_id": 2328821,
@@ -1386,12 +2369,12 @@
   "series": "Foundation",
   "tags": [],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL46881W": {
-  "checked": "2026-10-14T06:00:39+00:00",
+  "checked": "2026-10-14T06:23:00+00:00",
   "content_warnings": [
    "Violence",
    "animal death",
@@ -1419,8 +2402,10 @@
   "gr_guessed": false,
   "gr_id": "41819975",
   "gr_rating": 4.14,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Jurassic Park",
-  "gr_votes": 1104378,
+  "gr_votes": 1104383,
   "hc_id": 9724,
   "hc_rating": 4.11,
   "hc_readers": 4484,
@@ -1450,12 +2435,12 @@
    "mystery"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL46909W": {
-  "checked": "2026-10-14T06:00:37+00:00",
+  "checked": "2026-10-14T06:23:16+00:00",
   "content_warnings": [
    "Alcoholism",
    "suicide",
@@ -1483,6 +2468,8 @@
   "gr_guessed": false,
   "gr_id": "53237233",
   "gr_rating": 3.91,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "The Andromeda Strain",
   "gr_votes": 277653,
   "hc_id": 704,
@@ -1513,12 +2500,12 @@
    "Calibre Import"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL81613W": {
-  "checked": "2026-10-14T05:35:56+00:00",
+  "checked": "2026-10-14T06:23:14+00:00",
   "content_warnings": [
    "misogyny",
    "Child abuse",
@@ -1545,8 +2532,10 @@
   "gr_guessed": false,
   "gr_id": "23356175",
   "gr_rating": 4.23,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "To",
-  "gr_votes": 1327173,
+  "gr_votes": 1327177,
   "hc_id": 373525,
   "hc_rating": 4.16,
   "hc_readers": 4090,
@@ -1576,12 +2565,12 @@
    "owned"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL81626W": {
-  "checked": "2026-10-14T03:33:59+00:00",
+  "checked": "2026-10-14T06:28:58+00:00",
   "content_warnings": [
    "bullying",
    "Child abuse",
@@ -1608,14 +2597,16 @@
   "gr_guessed": false,
   "gr_id": "58539207",
   "gr_rating": 3.99,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Carrie",
-  "gr_votes": 891957,
+  "gr_votes": 892019,
   "hc_id": 385191,
   "hc_rating": 3.81,
-  "hc_readers": 2923,
+  "hc_readers": 2925,
   "hc_slug": "carrie",
   "hc_tried": true,
-  "hc_votes": 1567,
+  "hc_votes": 1568,
   "moods": [
    "dark",
    "tense",
@@ -1639,12 +2630,12 @@
    "classics"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  },
  "ol:OL82563W": {
-  "checked": "2026-10-14T05:37:24+00:00",
+  "checked": "2026-10-14T06:25:46+00:00",
   "content_warnings": [
    "Child abuse",
    "Death of parent",
@@ -1678,11 +2669,13 @@
   "gr_guessed": false,
   "gr_id": "22841994",
   "gr_rating": 4.47,
+  "gr_series": null,
+  "gr_series_pos": null,
   "gr_title": "Harry Potter and the Philosopher's Stone",
   "gr_votes": 11868048,
   "hc_id": 328491,
   "hc_rating": 4.28,
-  "hc_readers": 15979,
+  "hc_readers": 15980,
   "hc_slug": "harry-potter-and-the-philosophers-stone",
   "hc_tried": true,
   "hc_votes": 9840,
@@ -1709,8 +2702,8 @@
    "Magic"
   ],
   "v": [
-   1,
-   1
+   2,
+   2
   ]
  }
 }
