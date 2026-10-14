@@ -1,3 +1,16 @@
 {
- "items": {}
+ "items": {
+  "ol:OL81626W": {
+   "kind": "book",
+   "title": "Carrie",
+   "added": "2026-10-13",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL81626W",
+   "author": "Stephen King",
+   "year": 1974,
+   "cover": "https://covers.openlibrary.org/b/id/9256043-L.jpg"
+  }
+ }
 }
