@@ -527,6 +527,18 @@
    "author": "Michael Crichton",
    "year": 1990,
    "cover": "https://covers.openlibrary.org/b/id/12882940-L.jpg"
+  },
+  "ol:OL46909W": {
+   "kind": "book",
+   "title": "The Andromeda Strain",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL46909W",
+   "author": "Michael Crichton",
+   "year": 1969,
+   "cover": "https://covers.openlibrary.org/b/id/9330577-L.jpg"
   }
  }
 }
