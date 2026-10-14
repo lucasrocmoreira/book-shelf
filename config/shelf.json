@@ -25,6 +25,16 @@
    "year": 1937,
    "cover": "https://covers.openlibrary.org/b/id/14627509-L.jpg",
    "read_on": null
+  },
+  "q:book:h p lovecraft tales of horror": {
+   "kind": "book",
+   "title": "H.P. Lovecraft Tales of Horror",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "author": "H.P. Lovecraft",
+   "year": 2022
   }
  }
 }
