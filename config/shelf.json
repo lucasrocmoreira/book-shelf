@@ -551,6 +551,18 @@
    "author": "Isaac Asimov",
    "year": 1950,
    "cover": "https://covers.openlibrary.org/b/id/12385229-L.jpg"
+  },
+  "al:30021": {
+   "kind": "manga",
+   "title": "Death Note",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "anilist": 30021,
+   "author": "Tsugumi Ooba",
+   "year": 2003,
+   "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx30021-FE6kmrfpuKyb.jpg"
   }
  }
 }
