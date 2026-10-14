@@ -255,6 +255,18 @@
    "author": "Alan Moore",
    "year": 1986,
    "cover": "https://covers.openlibrary.org/b/id/7774899-L.jpg"
+  },
+  "ol:OL16799356W": {
+   "kind": "comic",
+   "title": "Saga: Volume One",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL16799356W",
+   "author": "Brian K. Vaughan",
+   "year": 2012,
+   "cover": "https://covers.openlibrary.org/b/id/12679639-L.jpg"
   }
  }
 }
