@@ -614,6 +614,29 @@
    1
   ]
  },
+ "ol:OL257943W": {
+  "checked": "2026-10-14T05:53:03+00:00",
+  "gr_genres": [
+   "Fantasy",
+   "Fiction",
+   "High Fantasy",
+   "Epic Fantasy",
+   "Adult",
+   "Dragons",
+   "Adventure",
+   "Science Fiction Fantasy"
+  ],
+  "gr_guessed": false,
+  "gr_id": "768889",
+  "gr_rating": 4.47,
+  "gr_title": "A Storm of Swords: Steel and Snow",
+  "gr_votes": 93207,
+  "hc_tried": true,
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL26417336W": {
   "checked": "2026-10-14T05:38:25+00:00",
   "content_warnings": [],
