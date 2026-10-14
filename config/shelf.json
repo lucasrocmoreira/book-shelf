@@ -539,6 +539,18 @@
    "author": "Michael Crichton",
    "year": 1969,
    "cover": "https://covers.openlibrary.org/b/id/9330577-L.jpg"
+  },
+  "ol:OL46241W": {
+   "kind": "book",
+   "title": "I, Robot",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL46241W",
+   "author": "Isaac Asimov",
+   "year": 1950,
+   "cover": "https://covers.openlibrary.org/b/id/12385229-L.jpg"
   }
  }
 }
