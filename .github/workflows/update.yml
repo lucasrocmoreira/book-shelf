@@ -1,0 +1,66 @@
+name: Update book shelf
+
+on:
+  schedule:
+    - cron: "17 11 * * *"   # daily, about 6:17 AM in Dallas (11:17 UTC)
+  workflow_dispatch:         # "Run workflow" button for a manual refresh
+  push:
+    branches: [main]
+    paths: ["config/**", "site/index.html", "pipeline/**"]   # adding a title from the app triggers a run
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: book-shelf
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Fetch details and ratings
+        env:
+          HARDCOVER_TOKEN: ${{ secrets.HARDCOVER_TOKEN }}
+          MAX_LOOKUPS: "150"
+        run: python -m pipeline.build
+
+      - name: Save cache and data
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # These files are generated, so this run's copy always wins; everything else comes from GitHub.
+          mkdir -p /tmp/out && cp -r cache /tmp/out/ && cp site/data.json /tmp/out/ 2>/dev/null || true
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp -r /tmp/out/cache . && cp /tmp/out/data.json site/ 2>/dev/null || true
+            git add cache site/data.json
+            git diff --cached --quiet && break
+            git commit -m "Update [skip ci]"
+            git push origin HEAD:main && break
+            sleep 5
+          done
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

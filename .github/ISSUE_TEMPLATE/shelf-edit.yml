@@ -1,0 +1,46 @@
+name: Add or change a book
+description: Change your shelf without the app (handy on a phone without a GitHub token set up).
+title: "Shelf edit"
+labels: ["shelf-edit"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      placeholder: Dune
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - Book
+        - Comics (HQ)
+        - Manga / manhwa
+      default: 0
+  - type: input
+    id: author
+    attributes:
+      label: Author (optional)
+      description: Helps pick the right book when titles repeat.
+  - type: input
+    id: year
+    attributes:
+      label: Year (optional)
+  - type: input
+    id: owned
+    attributes:
+      label: Volumes or edition you own (optional)
+      placeholder: "1-12"
+  - type: dropdown
+    id: action
+    attributes:
+      label: What to do
+      options:
+        - Add as to read
+        - Add as reading
+        - Add as read
+        - Mark as read
+        - Remove from shelf
+      default: 0

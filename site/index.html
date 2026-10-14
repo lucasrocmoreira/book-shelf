@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book Shelf</title>
+<meta name="theme-color" content="#F3EEE4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16130F" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* A library card catalogue: one ranked column of spines, the current pick as the frontispiece. */
+:root{
+  --bg:#F3EEE4; --panel:#FBF8F2; --ink:#1F1A16; --muted:#6B6158; --line:#DCD3C4;
+  --accent:#8E2C2C; --accent-ink:#fff;
+  --hi:#2F7A4F; --mid:#A8710F; --lo:#B2432F; --none:#A79D90;
+  --book:#3D5A80; --comic:#B4552D; --manga:#6D3F8C;
+  --display:"Fraunces",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#16130F; --panel:#201C17; --ink:#EDE6DA; --muted:#A89D8E; --line:#352F27;
+  --accent:#E07468; --accent-ink:#1E0D0A; --hi:#5FC18A; --mid:#E3B055; --lo:#EE7E68; --none:#6B6358;
+  --book:#86A6CF; --comic:#E58F62; --manga:#B78BD6;
+  color-scheme:dark;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 var(--body)}
+a{color:inherit}
+button,select,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:880px;margin:0 auto;padding:20px 16px 64px}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.brand{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;gap:8px;align-items:center}
+.brand b{border:1.5px solid var(--accent);color:var(--accent);padding:4px 7px;border-radius:3px;font-weight:600}
+.topbar .btns{display:flex;gap:8px}
+.iconbtn{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:14px}
+.iconbtn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+.iconbtn:disabled{opacity:.6;cursor:default}
+
+.hero{display:grid;grid-template-columns:132px 1fr;gap:18px;align-items:end;margin:12px 0 24px}
+.hero img{width:132px;aspect-ratio:2/3;object-fit:cover;border-radius:3px 8px 8px 3px;background:var(--line);box-shadow:-3px 0 0 color-mix(in srgb,var(--ink) 25%,transparent) inset,0 12px 30px -12px rgba(40,25,10,.55)}
+.hero .lead{color:var(--muted);margin:0 0 4px;font-size:14px}
+.hero h1{font:700 clamp(28px,6.5vw,48px)/1.02 var(--display);font-variation-settings:"opsz" 144;letter-spacing:-.015em;margin:0 0 6px;text-wrap:balance}
+.hero .by{font:italic 500 17px/1.3 var(--display);color:var(--muted);margin:0 0 8px}
+.hero .big{font:800 clamp(52px,13vw,88px)/.85 var(--display);font-variation-settings:"opsz" 144;display:block;font-variant-numeric:tabular-nums}
+.hero .meta{color:var(--muted);font-size:14px;margin-top:8px}
+
+.status{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--mid);border-radius:8px;padding:10px 12px;margin:0 0 18px;font-size:14px}
+.status p{margin:2px 0}
+
+.controls{background:var(--bg);padding:10px 16px 12px;margin:0 -16px 6px;border-bottom:1px solid var(--line)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row+.row,.row+details,details+.row,details+details{margin-top:8px}
+.search{flex:1 1 180px;min-width:0;padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
+select{padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:var(--panel);max-width:100%}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 11px;cursor:pointer;font-size:13px;display:inline-flex;gap:6px;align-items:center}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;background:var(--k)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg button{border:0;background:var(--panel);padding:6px 12px;font-size:14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.count{color:var(--muted);font-size:13px;margin-left:auto}
+details.opts{font-size:14px;color:var(--muted)}
+details.opts summary{cursor:pointer}
+details.opts .grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+details.opts label{display:inline-flex;gap:6px;align-items:center;margin:6px 12px 0 0;color:var(--ink)}
+.active{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.active:empty{display:none}
+.tagchip{border:1px solid var(--accent);color:var(--accent);background:transparent;border-radius:999px;padding:2px 10px;font-size:13px;cursor:pointer}
+
+ol.list{list-style:none;margin:0;padding:0}
+.item{display:grid;grid-template-columns:30px 46px 1fr auto;gap:4px 12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.item.flash{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.rank{font:600 17px/1 var(--display);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.item .cover{width:46px;aspect-ratio:2/3;object-fit:cover;border-radius:2px 4px 4px 2px;background:var(--line);border-left:3px solid var(--k)}
+.title-btn{all:unset;cursor:pointer;min-width:0;display:block}
+.item .t{font:650 18px/1.2 var(--display);margin:0;overflow-wrap:anywhere}
+.item .a{font:italic 400 14px/1.3 var(--display);color:var(--muted)}
+.item .sub{color:var(--muted);font-size:13px;margin-top:3px;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-right:4px;color:var(--ink)}
+.pill.kind{border-color:var(--k);color:var(--k)}
+.pill.on{border-color:var(--hi);color:var(--hi)}
+.pill.warn{border-color:var(--mid);color:var(--mid)}
+.stars{color:var(--mid);letter-spacing:1px;margin-right:4px}
+.mine{color:var(--accent);margin-right:6px;font-weight:600}
+.score{font:800 28px/1 var(--display);font-variation-settings:"opsz" 72;text-align:right;min-width:52px;font-variant-numeric:tabular-nums}
+.hi{color:var(--hi)} .mid{color:var(--mid)} .lo{color:var(--lo)} .na{color:var(--none)}
+.k-book{--k:var(--book)} .k-comic{--k:var(--comic)} .k-manga{--k:var(--manga)}
+
+.detail{grid-column:3/5;padding-top:8px;display:grid;gap:10px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.actions button{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px;font-size:14px;cursor:pointer}
+.actions button.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.actions button.danger{color:var(--lo);border-color:var(--lo)}
+.actions .seg button{border:0;border-radius:0;padding:6px 11px}
+.starset{display:inline-flex;align-items:center;gap:1px}
+.starset span{font-size:13px;color:var(--muted);margin-right:4px}
+.starset button{border:0 !important;background:none !important;padding:2px !important;font-size:18px !important;line-height:1;color:var(--line)}
+.starset button.lit{color:var(--mid)}
+.starset.mine button.lit{color:var(--accent)}
+.breakdown{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px 14px;font-size:13px}
+.breakdown div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted var(--line);padding:2px 0}
+.breakdown b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.summary{font-size:14px;margin:0;max-width:68ch;white-space:pre-line}
+.summary.clamp{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.morebtn{background:none;border:0;padding:0;color:var(--accent);cursor:pointer;font-size:13px;font-weight:600;justify-self:start}
+.facts{font-size:13px;color:var(--muted);display:grid;gap:4px}
+.facts .tags{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.facts .tags span.k{min-width:86px}
+.tag{border:1px solid var(--line);background:transparent;border-radius:999px;padding:0 8px;font-size:12px;cursor:pointer;color:var(--ink)}
+.links{font-size:13px;color:var(--muted)}
+.links a{margin-right:12px}
+.note{font-size:13px;color:var(--mid);margin:0}
+
+section.group{margin-top:26px}
+section.group h2{font:700 24px/1.1 var(--display);margin:0 0 4px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+section.group h2 small{font:400 13px var(--body);color:var(--muted)}
+.more{margin-top:10px;background:none;border:0;color:var(--accent);cursor:pointer;padding:4px 0;font-weight:600}
+
+.empty{padding:40px 0;color:var(--muted);text-align:center}
+footer{margin-top:32px;color:var(--muted);font-size:13px;display:grid;gap:4px}
+
+dialog{border:0;padding:0;background:transparent;max-width:min(560px,100vw);width:100%;margin:auto auto 0}
+dialog::backdrop{background:rgba(20,14,8,.45)}
+.sheet{background:var(--panel);color:var(--ink);border-radius:16px 16px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom));display:grid;gap:12px;max-height:88vh;overflow:auto}
+@media (min-width:600px){dialog{margin:auto}.sheet{border-radius:16px}}
+.sheet h2{font:700 24px/1.1 var(--display);margin:0}
+.sheet h3{font:600 15px/1.2 var(--body);margin:6px 0 0}
+.sheet p{margin:0;font-size:14px;color:var(--muted)}
+.sheet label{display:grid;gap:4px;font-size:14px}
+.sheet input,.sheet select{padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);width:100%}
+.sheet .btns{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.sheet ol{margin:0;padding-left:20px;font-size:14px;color:var(--muted)}
+.sheet .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);cursor:pointer;font-weight:600;justify-self:start}
+.results{display:grid;gap:2px}
+.result{display:grid;grid-template-columns:40px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.result img{width:40px;aspect-ratio:2/3;object-fit:cover;border-radius:3px;background:var(--line)}
+.result .rt{font-weight:600;overflow-wrap:anywhere}
+.result .rs{font-size:12px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.result > div{min-width:0}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;z-index:50;max-width:calc(100vw - 32px);display:flex;gap:12px;align-items:center}
+.toast[hidden]{display:none}
+.toast button{background:none;border:0;color:var(--bg);font-weight:600;text-decoration:underline;cursor:pointer;padding:0}
+
+@media (min-width:700px){.controls{position:sticky;top:0;z-index:5}}
+@media (max-width:520px){
+  .hero{grid-template-columns:96px 1fr;gap:14px}
+  .hero img{width:96px}
+  .item{grid-template-columns:24px 40px 1fr auto;gap:4px 10px}
+  .item .cover{width:40px}
+  .detail{grid-column:1/5}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero img{animation:lift .6s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes lift{from{opacity:0;transform:translateY(14px) rotate(-2deg)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="topbar">
+    <span class="brand"><b>Ex libris</b><span id="tally"></span></span>
+    <div class="btns">
+      <button class="iconbtn primary" id="addBtn">Add</button>
+      <button class="iconbtn" id="settingsBtn">Settings</button>
+    </div>
+  </div>
+  <header class="hero" id="hero" aria-live="polite"></header>
+  <div id="status"></div>
+
+  <div class="controls">
+    <div class="row">
+      <input class="search" id="q" type="search" placeholder="Search titles, authors, series, themes" aria-label="Search">
+      <select id="sort" aria-label="Rank by"></select>
+    </div>
+    <div class="row">
+      <div class="seg" id="listSeg" role="group" aria-label="Reading status">
+        <button data-v="unread" aria-pressed="true">To read</button>
+        <button data-v="reading" aria-pressed="false">Reading</button>
+        <button data-v="read" aria-pressed="false">Read</button>
+        <button data-v="all" aria-pressed="false">All</button>
+      </div>
+      <select id="group" aria-label="Group by"></select>
+      <button class="iconbtn" id="pickBtn" type="button">Pick for me</button>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="row" id="kinds" role="group" aria-label="Kind"></div>
+    <details class="opts" id="filtersBox">
+      <summary>Filter by genre, theme, mood, author, series, length</summary>
+      <div class="grid">
+        <select id="f_genres" aria-label="Genre"></select>
+        <select id="f_themes" aria-label="Theme"></select>
+        <select id="f_moods" aria-label="Mood"></select>
+        <select id="f_authors" aria-label="Author"></select>
+        <select id="f_series" aria-label="Series"></select>
+        <select id="f_demographics" aria-label="Demographic"></select>
+        <select id="f_decade" aria-label="Decade"></select>
+        <select id="f_pub" aria-label="Publication">
+          <option value="">Any publication status</option><option value="Ongoing">Ongoing series</option><option value="done">Finished series</option><option value="single">Single books</option>
+        </select>
+        <select id="f_len" aria-label="Length">
+          <option value="">Any length</option><option value="250">Under 250 pages</option><option value="400">Under 400 pages</option><option value="700">Under 700 pages</option>
+          <option value="v10">Series under 10 volumes</option><option value="v20">Series under 20 volumes</option>
+        </select>
+      </div>
+    </details>
+    <details class="opts">
+      <summary>Scores in the average and other options</summary>
+      <div id="srcBoxes"></div>
+      <label><input type="checkbox" id="hideUnscored"> Hide titles with no score</label>
+    </details>
+    <div class="active" id="active"></div>
+  </div>
+
+  <div id="out"></div>
+  <footer id="foot"></footer>
+</main>
+
+<dialog id="dlg"><form method="dialog" class="sheet" id="sheet"></form></dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+const KINDS = {book:"Books", comic:"Comics (HQ)", manga:"Manga"};
+const KIND_ONE = {book:"book", comic:"comic", manga:"manga"};
+const SOURCES = {
+  goodreads:   {label:"Goodreads",    kinds:["book","comic"], scale:5},
+  hardcover:   {label:"Hardcover",    kinds:["book","comic"], scale:5},
+  openlibrary: {label:"Open Library", kinds:["book","comic"], scale:5},
+  anilist:     {label:"AniList",      kinds:["manga"], scale:100},
+  mal:         {label:"MyAnimeList",  kinds:["manga"], scale:10},
+};
+const SORTS = [
+  ["avg","Average score"], ...Object.entries(SOURCES).map(([k,v])=>[k,v.label]),
+  ["popularity","Popularity (number of readers)"], ["interest","My interest"], ["rating","My rating"],
+  ["short","Shortest"], ["long","Longest"], ["year","Newest"], ["oldest","Oldest"], ["added","Recently added"],
+  ["read_on","Recently read"], ["title","Title A to Z"], ["author","Author A to Z"],
+];
+const GROUPS = [["","No grouping"],["kind","Group by kind"],["genres","Group by genre"],["themes","Group by theme"],["moods","Group by mood"],
+  ["authors","Group by author"],["series","Group by series"],["decade","Group by decade"],["demographics","Group by demographic"],["pub_status","Group by publication status"]];
+const FILTERS = {genres:"All genres", themes:"All themes", moods:"All moods", authors:"All authors", series:"All series", demographics:"All demographics", decade:"All decades"};
+const LINK_LABELS = {goodreads:"Goodreads",hardcover:"Hardcover",openlibrary:"Open Library",anilist:"AniList",mal:"MyAnimeList"};
+const STATUS_LABEL = {unread:"To read", reading:"Reading", read:"Read"};
+const EMPTY_SHELF = () => ({items:{}});
+
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v==null ? d : JSON.parse(v); }catch{ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch{} },
+  del(k){ try{ localStorage.removeItem(k); }catch{} },
+};
+const prefs = store.get("book-prefs", {});
+const state = {
+  q:"", sort:prefs.sort||"avg", group:prefs.group||"", list:prefs.list||"unread", kinds:new Set(prefs.kinds||[]),
+  filters:{}, pub:"", len:"", tags:[], hideUnscored:!!prefs.hideUnscored,
+  srcOn:new Set(prefs.srcOn||Object.keys(SOURCES)), open:new Set(), full:new Set(),
+};
+function savePrefs(){ store.set("book-prefs",{sort:state.sort,group:state.group,list:state.list,kinds:[...state.kinds],hideUnscored:state.hideUnscored,srcOn:[...state.srcOn]}); }
+
+// Which repository this site belongs to: <owner>.github.io/<repo>/
+const REPO = store.get("book-repo", null) || (()=>{
+  const owner = location.hostname.endsWith(".github.io") ? location.hostname.split(".")[0] : "";
+  const repo = location.pathname.split("/").filter(Boolean)[0] || "";
+  return owner && repo ? {owner, repo} : null;
+})();
+const SHELF_PATH = "config/shelf.json";
+
+let DATA = {items:[]};
+let SH = EMPTY_SHELF();
+let liveSH = false;
+let ITEMS = [];
+const $ = id => document.getElementById(id);
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const tone = v => v==null?"na":v>=82?"hi":v>=70?"mid":"lo";
+const today = () => new Date().toLocaleDateString("en-CA");
+const fmtN = v => v==null?null : v>=1e6?(v/1e6).toFixed(1)+"M" : v>=1e3?Math.round(v/1e3)+"k" : String(v);
+const norm = s => String(s||"").toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g,"").replace(/&/g," and ").replace(/[^a-z0-9]+/g," ").trim();
+const plural = (n, w) => `${n} ${w}${n===1?"":"s"}`;
+
+/* ---------------- GitHub storage for your shelf ---------------- */
+const ghToken = () => store.get("book-gh-token", "");
+function b64encode(str){ return btoa(unescape(encodeURIComponent(str))); }
+function b64decode(b64){ return decodeURIComponent(escape(atob(b64.replace(/\s/g,"")))); }
+async function gh(path, opts={}){
+  const headers = {"Accept":"application/vnd.github+json", ...(opts.headers||{})};
+  if(ghToken()) headers.Authorization = "Bearer " + ghToken();
+  return fetch(`https://api.github.com/repos/${REPO.owner}/${REPO.repo}/${path}`, {...opts, headers, cache:"no-store"});
+}
+async function readShelf(){
+  if(!REPO) return null;
+  const r = await gh(`contents/${SHELF_PATH}`);
+  if(r.status === 404) return {data:EMPTY_SHELF(), sha:null};
+  if(!r.ok) throw new Error(`GitHub said ${r.status}`);
+  const j = await r.json();
+  const d = JSON.parse(b64decode(j.content)) || {};
+  return {data:{items:(d.items && typeof d.items==="object") ? d.items : {}}, sha:j.sha};
+}
+async function writeShelf(mutate, message, rebuild){
+  if(!REPO) throw new Error("Can't tell which GitHub repository this site belongs to.");
+  if(!ghToken()) { openSettings("Connect GitHub to save changes. It takes about two minutes, once per device."); throw new Error("not-connected"); }
+  for(let attempt=0; attempt<3; attempt++){
+    const cur = await readShelf();
+    const data = cur.data; mutate(data);
+    const body = {message: message + (rebuild ? "" : " [skip ci]"), content: b64encode(JSON.stringify(data, null, 1) + "\n")};
+    if(cur.sha) body.sha = cur.sha;
+    const r = await gh(`contents/${SHELF_PATH}`, {method:"PUT", body:JSON.stringify(body), headers:{"Content-Type":"application/json"}});
+    if(r.ok){ SH = data; liveSH = true; return; }
+    if(r.status === 409 || r.status === 422) continue;
+    if(r.status === 401) throw new Error("GitHub rejected the token. Create a new one in Settings.");
+    if(r.status === 403 || r.status === 404) throw new Error("The token can't write to this repository. Check it has Contents: Read and write.");
+    throw new Error(`GitHub said ${r.status}`);
+  }
+  throw new Error("Couldn't save after several tries. Try again.");
+}
+async function act(mutate, message, okText, rebuild=false, undo=null){
+  try{
+    await writeShelf(mutate, message, rebuild);
+    merge(); setupFilters(); render(); toast(okText, undo);
+    return true;
+  }catch(e){ if(e.message !== "not-connected") toast(e.message); return false; }
+}
+
+/* ---------------- Merge built data with the live shelf ---------------- */
+function tidy(it){
+  for(const f of ["authors","artists","genres","themes","moods","demographics","magazine","characters","places","content_warnings"]) if(!Array.isArray(it[f])) it[f] = [];
+  it.series = it.series ? [it.series].flat() : [];
+  it.decade = it.decade ? [it.decade] : [];
+  it.kind = KINDS[it.kind] ? it.kind : "book";
+  return it;
+}
+function merge(){
+  const byKey = new Map(DATA.items.map(s=>[s.key, s]));
+  if(!liveSH){ ITEMS = DATA.items.map(s=>tidy({...s})); return; }
+  ITEMS = [];
+  for(const [key, e] of Object.entries(SH.items)){
+    const built = byKey.get(key);
+    const base = built ? {...built} : {key, kind:e.kind||"book", title:e.title||key, authors:e.author?[e.author]:[], year:e.year, cover:e.cover||null, matched:false, pending:true, scores:{}, links:{}};
+    base.reading = ["unread","reading","read"].includes(e.status) ? e.status : "unread";
+    base.read_on = e.read_on||null; base.interest = e.interest||0; base.rating = e.rating||0; base.owned = e.owned||""; base.added = e.added||base.added;
+    ITEMS.push(tidy(base));
+  }
+}
+function setStatus(s, st){
+  const prev = {status:s.reading, read_on:s.read_on};
+  act(d=>{ const e=d.items[s.key]; if(e){ e.status = st; e.read_on = st==="read" ? (e.read_on && prev.status==="read" ? e.read_on : today()) : null; } },
+      `${STATUS_LABEL[st]}: ${s.title}`, `${s.title}: ${STATUS_LABEL[st].toLowerCase()}`, false,
+      ()=>act(d=>{ const e=d.items[s.key]; if(e){ e.status = prev.status; e.read_on = prev.read_on; } }, `Undo: ${s.title}`, "Undone"));
+}
+function setStars(s, field, n){
+  const v = (s[field]||0) === n ? 0 : n;
+  const what = field==="interest" ? "Interest" : "Your rating";
+  act(d=>{ if(d.items[s.key]) d.items[s.key][field] = v; }, `${what} ${v}: ${s.title}`, v ? `${what} set to ${v} of ${field==="interest"?3:5}` : `${what} cleared`);
+}
+function removeItem(s){ act(d=>{ delete d.items[s.key]; }, `Remove: ${s.title}`, `Removed ${s.title}`); }
+
+/* ---------------- Scores, sorting, filtering ---------------- */
+function avg(s){
+  const vals = [...state.srcOn].map(k=>s.scores?.[k]).filter(v=>typeof v==="number");
+  return vals.length ? Math.round(vals.reduce((a,b)=>a+b,0)/vals.length) : null;
+}
+function value(s,key){
+  if(key==="avg") return avg(s);
+  if(key in SOURCES) return s.scores?.[key] ?? null;
+  if(key==="popularity") return s.popularity ?? null;
+  if(key==="interest") return s.interest || null;
+  if(key==="rating") return s.rating || null;
+  if(key==="short"||key==="long") return s.pages ?? null;
+  if(key==="year") return s.year ?? null;
+  if(key==="oldest") return s.year ?? null;
+  if(key==="added") return s.added ? Date.parse(s.added) : null;
+  if(key==="read_on") return s.read_on ? Date.parse(s.read_on) : null;
+  return null;
+}
+const firstAuthor = s => (s.authors||[])[0] || "";
+function sorted(list){
+  const k = state.sort;
+  if(k==="title") return [...list].sort((a,b)=>a.title.localeCompare(b.title));
+  if(k==="author") return [...list].sort((a,b)=>(firstAuthor(a)||"~").localeCompare(firstAuthor(b)||"~") || (a.year||0)-(b.year||0) || a.title.localeCompare(b.title));
+  const asc = k==="short" || k==="oldest";
+  return [...list].sort((a,b)=>{
+    const va=value(a,k), vb=value(b,k);
+    if(va==null&&vb==null) return (avg(b)??-1)-(avg(a)??-1) || a.title.localeCompare(b.title);
+    if(va==null) return 1; if(vb==null) return -1;
+    return (asc ? va-vb : vb-va) || (avg(b)??-1)-(avg(a)??-1) || a.title.localeCompare(b.title);
+  });
+}
+function haystack(s){
+  if(!s._hay) s._hay = [s.title, s.subtitle, s.original_title, s.native_title, ...s.authors, ...s.artists, ...s.series, ...s.themes,
+    ...s.genres, ...s.moods, ...s.demographics, ...s.characters, ...s.places, s.owned, s.description].filter(Boolean).join(" | ").toLowerCase();
+  return s._hay;
+}
+function inList(s){ return state.list==="all" || s.reading===state.list; }
+function lenOk(s){
+  if(!state.len) return true;
+  if(state.len.startsWith("v")) return s.volumes!=null && s.volumes < +state.len.slice(1);
+  return s.pages!=null && !s.volumes && s.pages < +state.len;
+}
+function pubOk(s){
+  if(!state.pub) return true;
+  if(state.pub==="single") return s.kind!=="manga" && !s.volumes;
+  if(state.pub==="done") return s.pub_status==="Finished" || s.pub_status==="Canceled";
+  return s.pub_status===state.pub;
+}
+function filtered(){
+  const q = norm(state.q);
+  return ITEMS.filter(s=>
+    inList(s) &&
+    (!q || norm(haystack(s)).includes(q)) &&
+    (!state.kinds.size || state.kinds.has(s.kind)) &&
+    Object.entries(state.filters).every(([f,v])=>!v || (s[f]||[]).includes(v)) &&
+    state.tags.every(t=>Array.isArray(s[t.field]) ? s[t.field].includes(t.value) : s[t.field]===t.value) &&
+    pubOk(s) && lenOk(s) &&
+    (!state.hideUnscored || avg(s)!=null));
+}
+function shown(s){
+  const k=state.sort;
+  if(k==="short"||k==="long") return {v:s.pages!=null ? (s.volumes ? `${s.volumes}v` : s.pages) : null, unit:"", cls:""};
+  if(k==="year"||k==="oldest") return {v:s.year, unit:"", cls:""};
+  if(k==="popularity") return {v:fmtN(s.popularity), unit:"", cls:""};
+  if(k==="rating" && s.rating) return {v:"★"+s.rating, unit:"", cls:"mid"};
+  if(["interest","added","title","author","read_on","rating"].includes(k)) { const a=avg(s); return {v:a,unit:"",cls:tone(a)}; }
+  const v=value(s,k); return {v, unit:"", cls:tone(v)};
+}
+function yearSpan(s){
+  if(!s.year) return "";
+  if(s.kind==="manga"){
+    if(s.end_year && s.end_year!==s.year) return `${s.year}–${s.end_year}`;
+    if(s.pub_status==="Ongoing" || s.pub_status==="On hiatus") return `${s.year}–`;
+  }
+  return String(s.year);
+}
+function lengthText(s, long){
+  if(s.volumes) return `${plural(s.volumes,"volume")}${long && s.chapters?`, ${s.chapters} chapters`:""}`;
+  if(s.kind==="manga" && s.chapters) return `${s.chapters} chapters`;
+  if(s.pages) return `${s.pages} pages`;
+  return "";
+}
+
+/* ---------------- Rendering ---------------- */
+function tagList(label, field, items){
+  if(!items || !items.length) return "";
+  return `<div class="tags"><span class="k">${label}</span>${items.map(v=>`<button type="button" class="tag" data-field="${field}" data-value="${esc(v)}">${esc(v)}</button>`).join("")}</div>`;
+}
+function scoreCell(s,k){
+  const v = s.scores?.[k];
+  let raw = "";
+  if(k==="goodreads" && s.gr_rating!=null) raw = `${s.gr_rating.toFixed(2)}${s.gr_votes?` · ${fmtN(s.gr_votes)}`:""}`;
+  if(k==="hardcover" && s.hc_rating!=null) raw = `${s.hc_rating.toFixed(2)}${s.hc_votes?` · ${fmtN(s.hc_votes)}`:""}`;
+  if(k==="openlibrary" && s.ol_rating!=null) raw = `${s.ol_rating.toFixed(2)}${s.ol_votes?` · ${fmtN(s.ol_votes)}`:""}`;
+  if(k==="mal" && s.mal_score!=null) raw = `${s.mal_score.toFixed(2)}${s.mal_rank?` · #${s.mal_rank}`:""}`;
+  if(k==="anilist" && s.anilist_popularity) raw = `${fmtN(s.anilist_popularity)} readers`;
+  return `<div><span>${SOURCES[k].label}</span><b class="${tone(v)}">${v??"–"}${raw?` <span class="na">${esc(raw)}</span>`:""}</b></div>`;
+}
+function starset(s, field, n, label, cls=""){
+  return `<span class="starset ${cls}"><span>${label}</span>${Array.from({length:n},(_,i)=>i+1).map(i=>`<button type="button" data-act="${field}" data-n="${i}" class="${(s[field]||0)>=i?"lit":""}" aria-label="${label} ${i} of ${n}">★</button>`).join("")}</span>`;
+}
+function detail(s){
+  const srcs = Object.keys(SOURCES).filter(k=>SOURCES[k].kinds.includes(s.kind));
+  const breakdown = srcs.map(k=>scoreCell(s,k)).join("");
+  const links = Object.entries(s.links||{}).map(([k,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${LINK_LABELS[k]||k}</a>`).join("");
+  const facts = [
+    s.authors.length ? `${s.kind==="manga"&&s.artists.length?"Story by":"By"} ${s.authors.map(esc).join(", ")}${s.artists.length?`; art by ${s.artists.map(esc).join(", ")}`:""}` : "",
+    [s.subtype && s.subtype!=="Book" ? s.subtype : "", yearSpan(s), s.pub_status && s.kind==="manga" ? s.pub_status : "", lengthText(s,true)].filter(Boolean).map(esc).join(" · "),
+    s.magazine.length ? `Serialized in ${s.magazine.map(esc).join(", ")}` : "",
+    s.original_title || s.native_title ? `Also known as ${[s.original_title, s.native_title].filter(Boolean).map(esc).join(" / ")}` : "",
+    s.owned ? `You own: ${esc(s.owned)}` : "",
+    s.read_on && s.reading==="read" ? `Read ${new Date(s.read_on+"T12:00").toLocaleDateString([], {month:"short",year:"numeric"})}` : "",
+  ].filter(Boolean).map(t=>`<div>${t}</div>`).join("");
+  const seg = ["unread","reading","read"].map(st=>`<button type="button" data-act="status" data-v="${st}" aria-pressed="${s.reading===st}" class="${s.reading===st?"on":""}">${STATUS_LABEL[st]}</button>`).join("");
+  let note = "";
+  if(s.pending) note = `<p class="note">Just added. Details and ratings appear after the next update, in about 5 minutes.</p>`;
+  else if(!s.matched) note = `<p class="note">Couldn't find this ${KIND_ONE[s.kind]} from its title. Remove it and add it again using search, or add the author.</p>`;
+  else if(s.gr_guessed) note = `<p class="note">Goodreads page found by searching the title, not by an exact link. Check it's the right book.</p>`;
+  const long = (s.description||"").length > 420, full = state.full.has(s.key);
+  return `<div class="detail">
+    <div class="actions">
+      <span class="seg">${seg}</span>
+      ${s.reading==="read" ? starset(s,"rating",5,"Yours","mine") : starset(s,"interest",3,"Interest")}
+      <button type="button" data-act="owned">${s.owned?"Edit what you own":"What you own"}</button>
+      <button type="button" data-act="remove" class="danger">Remove</button>
+    </div>
+    ${s.reading==="read" ? `<div class="actions">${starset(s,"interest",3,"Interest")}</div>` : ""}
+    ${note}
+    ${s.description?`<p class="summary ${long&&!full?"clamp":""}">${esc(s.description)}</p>${long?`<button type="button" class="morebtn" data-act="full">${full?"Less":"More"}</button>`:""}`:""}
+    ${s.matched?`<div class="breakdown">${breakdown}</div>`:""}
+    <div class="facts">
+      ${facts}
+      ${tagList("Series","series",s.kind==="manga"?[]:s.series)}
+      ${tagList("Genres","genres",s.genres)}
+      ${tagList("Themes","themes",s.themes)}
+      ${tagList("Moods","moods",s.moods)}
+      ${tagList("Demographic","demographics",s.demographics)}
+      ${tagList("Characters","characters",s.characters.slice(0,6))}
+      ${tagList("Settings","places",s.places.slice(0,4))}
+      ${s.content_warnings.length?`<div>Content warnings: ${s.content_warnings.map(esc).join(", ")}</div>`:""}
+    </div>
+    ${links?`<div class="links">${links}</div>`:""}
+  </div>`;
+}
+function row(s,i){
+  const sc = shown(s);
+  const open = state.open.has(s.key);
+  const pills = `<span class="pill kind">${esc(s.kind==="manga" ? (s.subtype||"Manga") : KIND_ONE[s.kind]==="comic" ? "Comics" : "Book")}</span>`
+    + (state.list==="all" && s.reading!=="unread" ? `<span class="pill">${STATUS_LABEL[s.reading]}</span>` : "")
+    + (s.kind==="manga" && s.pub_status==="Ongoing" ? `<span class="pill on">Ongoing</span>` : "")
+    + (s.pending?`<span class="pill warn">Updating</span>`:(!s.matched?`<span class="pill warn">Not found</span>`:""));
+  const stars = s.reading==="read" && s.rating ? `<span class="mine" aria-label="Your rating ${s.rating} of 5">★${s.rating}</span>`
+    : s.interest ? `<span class="stars" aria-label="Interest ${s.interest} of 3">${"★".repeat(s.interest)}</span>` : "";
+  const bits = [yearSpan(s), lengthText(s,false), s.owned?`own ${s.owned}`:"", (s.genres||[]).slice(0,2).join(", ")].filter(Boolean).map(esc).join(" · ");
+  const by = s.authors.slice(0,2).join(", ");
+  return `<li class="item k-${s.kind}" data-key="${esc(s.key)}">
+    <span class="rank">${i+1}</span>
+    ${s.cover?`<img class="cover" src="${esc(s.cover)}" alt="" loading="lazy" onerror="this.removeAttribute('src')">`:`<img class="cover" alt="">`}
+    <button type="button" class="title-btn" aria-expanded="${open}"><p class="t">${esc(s.title)}</p>${by?`<div class="a">${esc(by)}</div>`:""}<div class="sub">${stars}${pills}${bits}</div></button>
+    <span class="score ${sc.cls}">${sc.v??"–"}${sc.v!=null?sc.unit:""}</span>
+    ${open?detail(s):""}
+  </li>`;
+}
+const LIST_WORD = {unread:"to read", reading:"in progress", read:"read", all:"on the shelf"};
+function renderHero(list){
+  const top = sorted(list)[0];
+  const all = ITEMS.filter(inList);
+  const narrowed = list.length !== all.length;
+  if(!top){
+    const msg = {unread:["Nothing waiting","Use Add to put books, comics and manga on your shelf."], reading:["Nothing in progress","Open a title and tap Reading."], read:["Nothing read yet","Open a title and tap Read when you finish it."], all:["Your shelf is empty","Use Add to start."]}[state.list];
+    $("hero").innerHTML = `<div></div><div><h1>${msg[0]}</h1><p class="meta">${msg[1]}</p></div>`; return;
+  }
+  const sortLabel = (SORTS.find(([k])=>k===state.sort)||[,""])[1].toLowerCase();
+  const sc = shown(top);
+  const lead = narrowed ? "Top of this view" : {unread:"Read next", reading:"Top of what you're reading", read:"Top of what you've read", all:"Top of your shelf"}[state.list];
+  $("hero").innerHTML = `${top.cover?`<img src="${esc(top.cover)}" alt="" onerror="this.removeAttribute('src')">`:`<div></div>`}
+    <div><p class="lead">${esc(lead)}, ranked by ${esc(sortLabel)}</p>
+    <h1>${esc(top.title)}</h1>
+    ${top.authors.length?`<p class="by">${esc(top.authors.slice(0,2).join(", "))}</p>`:""}
+    ${sc.v!=null?`<span class="big ${sc.cls}">${esc(sc.v)}${esc(sc.unit||"")}</span>`:""}
+    <p class="meta">${[yearSpan(top), lengthText(top,false), narrowed ? `${list.length} of ${all.length} ${LIST_WORD[state.list]}` : `${all.length} ${LIST_WORD[state.list]}`].filter(Boolean).map(esc).join(" · ")}</p></div>`;
+}
+function renderActive(){
+  const parts = [];
+  for(const [f,v] of Object.entries(state.filters)) if(v) parts.push(`<button type="button" class="tagchip" data-clear-filter="${f}">${esc(v)} ✕</button>`);
+  state.tags.forEach((t,i)=>parts.push(`<button type="button" class="tagchip" data-clear-tag="${i}">${esc(t.value)} ✕</button>`));
+  $("active").innerHTML = parts.join("");
+}
+function renderKinds(){
+  const counts = new Map();
+  for(const s of ITEMS) if(inList(s)) counts.set(s.kind,(counts.get(s.kind)||0)+1);
+  const present = Object.keys(KINDS).filter(k=>counts.has(k) || state.kinds.has(k));
+  $("kinds").innerHTML = present.length > 1 || state.kinds.size ? present.map(k=>`<button type="button" class="chip k-${k}" aria-pressed="${state.kinds.has(k)}" data-k="${k}"><span class="dot"></span>${KINDS[k]} <span class="na">${counts.get(k)||0}</span></button>`).join("") : "";
+  $("kinds").hidden = !$("kinds").innerHTML;
+}
+function render(){
+  savePrefs(); renderActive(); renderKinds();
+  const list = filtered();
+  renderHero(list);
+  $("tally").textContent = `${ITEMS.filter(s=>s.reading==="unread").length} to read`;
+  $("count").textContent = plural(list.length, "title");
+  $("pickBtn").hidden = state.list==="read";
+  if(!list.length){
+    const any = ITEMS.some(inList);
+    $("out").innerHTML = `<p class="empty">${any ? "Nothing matches these filters. Clear a filter or the search to see more." : "Titles land here as you add them or change their status."}</p>`;
+    return;
+  }
+  if(!state.group){ $("out").innerHTML = `<ol class="list">${sorted(list).map(row).join("")}</ol>`; return; }
+  const field = state.group, by = new Map();
+  for(const s of list){
+    let vals = field==="kind" ? [KINDS[s.kind]] : Array.isArray(s[field]) ? s[field] : (s[field] ? [s[field]] : []);
+    if(field==="pub_status") vals = [s.kind==="manga" ? (s.pub_status||"Unknown") : "Single books"];
+    for(const v of (vals.length ? vals : ["None listed"])){ if(!by.has(v)) by.set(v,[]); by.get(v).push(s); }
+  }
+  const groups = [...by.entries()].sort((a,b)=>(a[0]==="None listed")-(b[0]==="None listed") ||
+    (field==="decade" ? b[0].localeCompare(a[0]) : b[1].length-a[1].length || a[0].localeCompare(b[0])));
+  $("out").innerHTML = groups.map(([name,ss])=>{
+    const all = state.open.has("group:"+name), sl = sorted(ss);
+    return `<section class="group"><h2>${esc(name)} <small>${ss.length}</small></h2>
+      <ol class="list">${(all?sl:sl.slice(0,5)).map(row).join("")}</ol>
+      ${sl.length>5?`<button type="button" class="more" data-group="${esc(name)}">${all?"Show top 5":`Show all ${sl.length}`}</button>`:""}</section>`;
+  }).join("");
+}
+
+/* ---------------- Sheets ---------------- */
+function sheet(html){ $("sheet").innerHTML = html; if(!$("dlg").open) $("dlg").showModal(); }
+function closeSheet(){ if($("dlg").open) $("dlg").close(); }
+function toast(msg, undo){
+  const t=$("toast"); t.innerHTML = `<span>${esc(msg)}</span>`;
+  if(undo){ const b=document.createElement("button"); b.type="button"; b.textContent="Undo"; b.onclick=()=>{ t.hidden=true; undo(); }; t.append(b); }
+  t.hidden=false; clearTimeout(t._h); t._h=setTimeout(()=>t.hidden=true, undo?6500:3800);
+}
+
+function openSettings(intro){
+  const connected = !!ghToken();
+  const repo = REPO ? `${REPO.owner}/${REPO.repo}` : "unknown";
+  sheet(`<h2>Settings</h2>
+    ${intro?`<p>${esc(intro)}</p>`:""}
+    <h3>GitHub ${connected?"(connected)":""}</h3>
+    <p>${connected ? `Changes you make here are saved to <b>${esc(repo)}</b>.` :
+      `To add, rate and update titles from this app, connect it to your repository <b>${esc(repo)}</b>. The token stays in this browser only.`}</p>
+    ${connected?"":`<ol>
+      <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub's new fine-grained token page</a>.</li>
+      <li>Name it “Book Shelf”, pick an expiration (up to a year).</li>
+      <li>Under <b>Repository access</b>, choose <b>Only select repositories</b> and pick <b>${esc(REPO?REPO.repo:"your repository")}</b>.</li>
+      <li>Under <b>Repository permissions</b>, set <b>Contents</b> to <b>Read and write</b>.</li>
+      <li>Click <b>Generate token</b>, copy it and paste it below.</li>
+    </ol>`}
+    <label>GitHub token<input id="tokIn" type="password" autocomplete="off" placeholder="${connected?"Saved (paste a new one to replace it)":"github_pat_…"}"></label>
+    <p>Search in Add uses Open Library and AniList, which need no key.</p>
+    <div class="btns">
+      ${connected?`<button type="button" class="iconbtn" id="tokClear">Disconnect this device</button>`:""}
+      <button value="cancel" class="iconbtn">Close</button>
+      <button type="button" class="iconbtn primary" id="tokSave">Save</button>
+    </div>`);
+  $("tokSave").onclick = async ()=>{
+    const v = $("tokIn").value.trim();
+    if(!v){ closeSheet(); return; }
+    try{
+      const r = await fetch(`https://api.github.com/repos/${REPO.owner}/${REPO.repo}`, {headers:{Authorization:"Bearer "+v, Accept:"application/vnd.github+json"}, cache:"no-store"});
+      if(r.status===401){ toast("GitHub rejected that token. Check you copied all of it."); return; }
+    }catch{ toast("Couldn't reach GitHub. Check your connection."); return; }
+    store.set("book-gh-token", v);
+    closeSheet(); toast("Saved on this device."); loadShelf();
+  };
+  const c = $("tokClear"); if(c) c.onclick = ()=>{ store.del("book-gh-token"); closeSheet(); toast("Disconnected on this device"); };
+}
+
+/* ---------------- Search: Open Library for books and comics, AniList for manga (both keyless) ---------------- */
+const addState = {kind:"book", status:"unread"};
+async function searchOpenLibrary(q){
+  const u = new URL("https://openlibrary.org/search.json");
+  u.searchParams.set("q", q); u.searchParams.set("limit", "10");
+  u.searchParams.set("fields", "key,title,subtitle,author_name,first_publish_year,cover_i,edition_count");
+  const r = await fetch(u);
+  if(!r.ok) throw new Error(`Open Library said ${r.status}`);
+  return ((await r.json()).docs||[]).map(d=>({
+    ref:{ol:(d.key||"").replace("/works/","")}, title:d.title + (d.subtitle && d.title.length < 30 ? `: ${d.subtitle}` : ""),
+    author:(d.author_name||[])[0]||"", year:d.first_publish_year||null,
+    cover:d.cover_i?`https://covers.openlibrary.org/b/id/${d.cover_i}-L.jpg`:null, thumb:d.cover_i?`https://covers.openlibrary.org/b/id/${d.cover_i}-S.jpg`:null,
+    sub:[(d.author_name||[]).slice(0,2).join(", "), d.edition_count?plural(d.edition_count,"edition"):""].filter(Boolean).join(" · "),
+  })).filter(x=>x.ref.ol);
+}
+async function searchAniList(q){
+  const query = `query($q:String){Page(perPage:10){media(search:$q,type:MANGA,sort:[SEARCH_MATCH]){id title{english romaji} startDate{year} format countryOfOrigin volumes coverImage{large medium} staff(perPage:2,sort:[RELEVANCE]){nodes{name{full}}}}}}`;
+  const r = await fetch("https://graphql.anilist.co", {method:"POST", headers:{"Content-Type":"application/json", Accept:"application/json"}, body:JSON.stringify({query, variables:{q}})});
+  if(r.status===429) throw new Error("AniList is busy. Try again in a minute.");
+  if(!r.ok) throw new Error(`AniList said ${r.status}`);
+  const media = ((await r.json()).data?.Page?.media)||[];
+  const ORIGIN = {KR:"Manhwa", CN:"Manhua", TW:"Manhua"};
+  return media.map(m=>({
+    ref:{anilist:m.id}, title:m.title.english||m.title.romaji, author:(m.staff?.nodes||[])[0]?.name?.full||"", year:m.startDate?.year||null,
+    cover:m.coverImage?.large||null, thumb:m.coverImage?.medium||null,
+    sub:[m.title.english && m.title.romaji!==m.title.english ? m.title.romaji : "", m.format==="NOVEL"?"Light novel":(ORIGIN[m.countryOfOrigin]||""), m.volumes?plural(m.volumes,"volume"):"", (m.staff?.nodes||[]).map(n=>n.name.full).join(", ")].filter(Boolean).join(" · "),
+  }));
+}
+let searchTimer = null, searchSeq = 0;
+function openAdd(manual=false){
+  const kindSeg = Object.entries(KINDS).map(([k,l])=>`<button type="button" data-kind="${k}" aria-pressed="${addState.kind===k}">${l==="Comics (HQ)"?"Comics / HQ":l==="Books"?"Book":l}</button>`).join("");
+  const statusSel = `<label>Add as<select id="addStatus">${Object.entries(STATUS_LABEL).map(([k,l])=>`<option value="${k}" ${addState.status===k?"selected":""}>${l}</option>`).join("")}</select></label>`;
+  const where = addState.kind==="manga" ? "AniList" : "Open Library";
+  sheet(`<h2>Add to your shelf</h2>
+    <div class="seg" id="addKind" role="group" aria-label="Kind">${kindSeg}</div>
+    ${manual ? `<p>Added by title, then matched on ${where} in the next update (about 5 minutes). The author helps it find the right one.</p>
+      <label>Title<input id="addTitle" autocomplete="off" autofocus></label>
+      <div class="two"><label>Author (optional)<input id="addAuthor" autocomplete="off"></label><label>Year (optional)<input id="addYear" inputmode="numeric"></label></div>
+      <label>What you own (optional)<input id="addOwned" autocomplete="off" placeholder="${addState.kind==="book"?"Hardcover, Portuguese edition…":"1-12, Omnibus 1-3…"}"></label>
+      ${statusSel}
+      <div class="btns"><button type="button" class="iconbtn" id="toSearch">Back to search</button><button value="cancel" class="iconbtn">Close</button><button type="button" class="iconbtn primary" id="addSave">Add</button></div>`
+    : `<p>${addState.kind==="manga" ? "Search AniList and pick the series. Manhwa and manhua are included." : `Search Open Library and pick the ${addState.kind==="comic"?"comic or graphic novel":"book"}. Titles in Portuguese work too.`}</p>
+      <label>Title or author<input id="addTitle" type="search" autocomplete="off" placeholder="${addState.kind==="manga"?"Vagabond":addState.kind==="comic"?"Watchmen":"Dune"}" autofocus></label>
+      ${statusSel}
+      <div class="results" id="results"></div>
+      <button type="button" class="linkbtn" id="toManual">Can't find it? Add by title</button>
+      <div class="btns"><button value="cancel" class="iconbtn">Close</button></div>`}`);
+  $("addKind").onclick = e=>{ const b=e.target.closest("[data-kind]"); if(!b) return; addState.kind=b.dataset.kind; openAdd(manual); };
+  $("addStatus").onchange = e=>{ addState.status = e.target.value; };
+  if(manual){
+    $("toSearch").onclick = ()=>openAdd(false);
+    $("addSave").onclick = ()=>{
+      const title = $("addTitle").value.trim(); if(!title){ toast("Enter a title"); return; }
+      const author = $("addAuthor").value.trim(), owned = $("addOwned").value.trim(), year = parseInt($("addYear").value,10);
+      const kind = addState.kind, key = `q:${kind}:${norm(title)}`;
+      if(SH.items[key] || ITEMS.some(s=>s.kind===kind && norm(s.title)===norm(title))){ toast(`${title} is already on your shelf`); return; }
+      closeSheet();
+      act(d=>{ d.items[key] = entry({title, author, year:year>1000?year:null, owned}); },
+          `Add: ${title}`, `Added ${title}. Details and ratings in about 5 minutes.`, true);
+    };
+    return;
+  }
+  $("toManual").onclick = ()=>openAdd(true);
+  $("addTitle").oninput = e=>{ clearTimeout(searchTimer); const q=e.target.value.trim(); searchTimer=setTimeout(()=>runSearch(q), 350); };
+  $("addTitle").onkeydown = e=>{ if(e.key==="Enter"){ e.preventDefault(); clearTimeout(searchTimer); runSearch(e.target.value.trim()); } };
+  $("results").onclick = e=>{ const b=e.target.closest("[data-pick]"); if(b) addPicked(JSON.parse(b.dataset.pick), b); };
+}
+function entry(p){
+  const e = {kind:addState.kind, title:p.title, added:today(), status:addState.status, interest:0, rating:0};
+  if(addState.status==="read") e.read_on = today();
+  for(const k of ["ol","anilist","author","year","cover","owned"]) if(p[k]) e[k] = p[k];
+  return e;
+}
+async function runSearch(q){
+  const box = $("results"); if(!box) return;
+  if(q.length < 2){ box.innerHTML = ""; return; }
+  const seq = ++searchSeq, kind = addState.kind;
+  box.innerHTML = `<p>Searching…</p>`;
+  try{
+    const hits = kind==="manga" ? await searchAniList(q) : await searchOpenLibrary(q);
+    if(seq !== searchSeq) return;
+    if(!hits.length){ box.innerHTML = `<p>Nothing found for “${esc(q)}”. Try the original title, or add it by title.</p>`; return; }
+    box.innerHTML = hits.map(h=>{
+      const key = h.ref.ol ? `ol:${h.ref.ol}` : `al:${h.ref.anilist}`, have = !!SH.items[key] || ITEMS.some(s=>s.key===key);
+      const payload = {key, ...h.ref, title:h.title, author:h.author, year:h.year, cover:h.cover};
+      return `<div class="result">
+        ${h.thumb?`<img src="${esc(h.thumb)}" alt="" loading="lazy" onerror="this.removeAttribute('src')">`:`<img alt="">`}
+        <div><div class="rt">${esc(h.title)}${h.year?` <span class="na">(${esc(h.year)})</span>`:""}</div><div class="rs">${esc(h.sub)}</div></div>
+        <button type="button" class="iconbtn ${have?"":"primary"}" ${have?"disabled":""} data-pick="${esc(JSON.stringify(payload))}">${have?"On shelf":"Add"}</button>
+      </div>`;
+    }).join("");
+  }catch(e){ if(seq===searchSeq) box.innerHTML = `<p>${esc(e.message || "Search failed")}. You can still add it by title.</p>`; }
+}
+async function addPicked(p, btn){
+  btn.disabled = true; btn.textContent = "Adding…";
+  const {key, ...rest} = p;
+  const ok = await act(d=>{ d.items[key] = entry(rest); }, `Add: ${p.title}`, `Added ${p.title}. Ratings arrive in about 5 minutes.`, true);
+  if(ok){ btn.textContent = "On shelf"; btn.classList.remove("primary"); }
+  else { btn.disabled = false; btn.textContent = "Add"; }
+}
+function editOwned(s){
+  sheet(`<h2>What you own</h2>
+    <p>Anything that helps you remember: volumes (1-12), an edition, a language, a box set.</p>
+    <label>${esc(s.title)}<input id="ownIn" autocomplete="off" value="${esc(s.owned||"")}" placeholder="${s.kind==="book"?"Hardcover, Portuguese edition":"1-12, 15"}" autofocus></label>
+    <div class="btns"><button value="cancel" class="iconbtn">Cancel</button><button type="button" class="iconbtn primary" id="ownSave">Save</button></div>`);
+  $("ownSave").onclick = ()=>{ const v=$("ownIn").value.trim(); closeSheet();
+    act(d=>{ if(d.items[s.key]){ if(v) d.items[s.key].owned=v; else delete d.items[s.key].owned; } }, `Owned: ${s.title}`, v?`Saved: ${v}`:"Cleared"); };
+}
+function confirmRemove(s){
+  sheet(`<h2>Remove ${esc(s.title)}?</h2>
+    <p>It disappears from the shelf entirely. To keep a record that you read it, mark it Read instead.</p>
+    <div class="btns"><button value="cancel" class="iconbtn">Cancel</button><button type="button" class="iconbtn primary" id="rmYes">Remove</button></div>`);
+  $("rmYes").onclick = ()=>{ closeSheet(); removeItem(s); };
+}
+
+/* ---------------- Setup ---------------- */
+function fillSelect(id, field, label){
+  const counts = new Map();
+  for(const s of ITEMS) for(const v of s[field]||[]) counts.set(v,(counts.get(v)||0)+1);
+  const min = (field==="themes" && ITEMS.length > 30) ? 2 : 1;
+  const opts = [...counts.entries()].filter(([,n])=>n>=min).sort((a,b)=> field==="decade" ? b[0].localeCompare(a[0]) : a[0].localeCompare(b[0]));
+  $(id).innerHTML = `<option value="">${label}</option>` + opts.map(([v,n])=>`<option value="${esc(v)}">${esc(v)} (${n})</option>`).join("");
+  $(id).value = state.filters[field]||"";
+  $(id).hidden = !opts.length && !state.filters[field];
+}
+function syncSeg(){ for(const x of $("listSeg").querySelectorAll("button")) x.setAttribute("aria-pressed", x.dataset.v===state.list); }
+function setupFilters(){ for(const [f,l] of Object.entries(FILTERS)) fillSelect("f_"+f, f, l); }
+function setup(){
+  $("sort").innerHTML = SORTS.map(([k,l])=>`<option value="${k}">Rank by ${l.charAt(0).toLowerCase()+l.slice(1)}</option>`).join("");
+  $("sort").value = state.sort;
+  $("group").innerHTML = GROUPS.map(([k,l])=>`<option value="${k}">${l}</option>`).join("");
+  $("group").value = state.group;
+  syncSeg();
+  setupFilters();
+  $("srcBoxes").innerHTML = Object.entries(SOURCES).map(([k,v])=>`<label><input type="checkbox" data-src="${k}" ${state.srcOn.has(k)?"checked":""}> ${v.label}</label>`).join("");
+  $("hideUnscored").checked = state.hideUnscored;
+
+  $("q").oninput = e=>{state.q=e.target.value;render()};
+  $("sort").onchange = e=>{state.sort=e.target.value;render()};
+  $("group").onchange = e=>{state.group=e.target.value;render()};
+  for(const f of Object.keys(FILTERS)) $("f_"+f).onchange = e=>{state.filters[f]=e.target.value;render()};
+  $("f_pub").onchange = e=>{state.pub=e.target.value;render()};
+  $("f_len").onchange = e=>{state.len=e.target.value;render()};
+  $("hideUnscored").onchange = e=>{state.hideUnscored=e.target.checked;render()};
+  $("listSeg").onclick = e=>{const b=e.target.closest("button"); if(!b) return; state.list=b.dataset.v; syncSeg(); render()};
+  $("kinds").onclick = e=>{const b=e.target.closest("[data-k]"); if(!b) return;
+    const k=b.dataset.k; state.kinds.has(k)?state.kinds.delete(k):state.kinds.add(k); render()};
+  $("srcBoxes").onchange = e=>{const k=e.target.dataset.src; e.target.checked?state.srcOn.add(k):state.srcOn.delete(k); render()};
+  $("active").onclick = e=>{
+    const f = e.target.closest("[data-clear-filter]"), t = e.target.closest("[data-clear-tag]");
+    if(f){ state.filters[f.dataset.clearFilter]=""; $("f_"+f.dataset.clearFilter).value=""; }
+    if(t){ state.tags.splice(+t.dataset.clearTag,1); }
+    render();
+  };
+  $("pickBtn").onclick = ()=>{
+    const top = sorted(filtered()).slice(0,5);
+    if(!top.length){ toast("Nothing to pick from with these filters"); return; }
+    const pick = top[Math.floor(Math.random()*top.length)];
+    state.open.add(pick.key); render();
+    const r = document.querySelector(`[data-key="${CSS.escape(pick.key)}"]`);
+    if(r){ r.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"center"}); r.classList.add("flash"); setTimeout(()=>r.classList.remove("flash"),2200); }
+    toast(`Next up: ${pick.title}`);
+  };
+  $("addBtn").onclick = ()=>openAdd(false);
+  $("settingsBtn").onclick = ()=>openSettings();
+  $("out").onclick = e=>{
+    const more=e.target.closest(".more");
+    if(more){const k="group:"+more.dataset.group; state.open.has(k)?state.open.delete(k):state.open.add(k); render(); return;}
+    const tag=e.target.closest(".tag");
+    if(tag){ const t={field:tag.dataset.field, value:tag.dataset.value};
+      if(!state.tags.some(x=>x.field===t.field&&x.value===t.value)) state.tags.push(t);
+      window.scrollTo({top:$("out").offsetTop-140, behavior:"smooth"}); render(); return; }
+    const li=e.target.closest(".item"); if(!li) return;
+    const s = ITEMS.find(x=>x.key===li.dataset.key); if(!s) return;
+    const a=e.target.closest("[data-act]");
+    if(a){ const v=a.dataset.act;
+      if(v==="status" && a.dataset.v!==s.reading) setStatus(s, a.dataset.v);
+      if(v==="interest"||v==="rating") setStars(s, v, +a.dataset.n);
+      if(v==="owned") editOwned(s);
+      if(v==="remove") confirmRemove(s);
+      if(v==="full"){ state.full.has(s.key)?state.full.delete(s.key):state.full.add(s.key); render(); }
+      return; }
+    if(e.target.closest(".title-btn")){ state.open.has(s.key)?state.open.delete(s.key):state.open.add(s.key); render(); }
+  };
+
+  const bad = Object.entries(DATA.status||{}).filter(([,v])=>v!=="ok");
+  const names = {openlibrary:"Open Library",goodreads:"Goodreads",hardcover:"Hardcover",anilist:"AniList",mal:"MyAnimeList"};
+  $("status").innerHTML = bad.length ? `<div class="status">${bad.map(([k,v])=>`<p><b>${names[k]||k}:</b> ${esc(v)}</p>`).join("")}</div>` : "";
+  const when = DATA.generated ? new Date(DATA.generated).toLocaleString([], {dateStyle:"medium",timeStyle:"short"}) : "never";
+  $("foot").innerHTML = `<span>Last updated ${esc(when)}. Updates daily and a few minutes after you add something.</span>
+    <span>Book data from Open Library. Manga data from AniList and MyAnimeList (via Jikan). Ratings from Goodreads, Hardcover, Open Library, AniList and MyAnimeList. Scores out of 5 or 10 are shown out of 100 (Goodreads 4.20 is 84).</span>`;
+}
+async function loadShelf(){
+  try{ const r = await readShelf(); if(r){ SH = r.data; liveSH = true; merge(); setupFilters(); render(); } }
+  catch{ /* offline or rate-limited: fall back to what's baked into data.json */ }
+}
+
+fetch("data.json",{cache:"no-store"}).then(r=>r.ok?r.json():{items:[]}).catch(()=>({items:[]}))
+  .then(d=>{ DATA = {items:[], ...d}; merge(); setup(); render(); loadShelf(); });
+</script>
+</body>
+</html>
