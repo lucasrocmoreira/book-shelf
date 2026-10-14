@@ -59,6 +59,18 @@
    "author": "Douglas Adams",
    "year": 2012,
    "cover": "https://covers.openlibrary.org/b/id/11972784-L.jpg"
+  },
+  "ol:OL46390W": {
+   "kind": "book",
+   "title": "The Foundation Trilogy",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL46390W",
+   "author": "Isaac Asimov",
+   "year": 1950,
+   "cover": "https://covers.openlibrary.org/b/id/6502517-L.jpg"
   }
  }
 }
