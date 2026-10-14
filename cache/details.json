@@ -12,7 +12,7 @@
   "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx101517-H3TdM3g5ZUe9.jpg",
   "description": "Although Yuji Itadori looks like your average teenager, his immense physical strength is something to behold! Every sports club wants him to join, but Itadori would rather hang out with the school outcasts in the Occult Research Club. One day, the club manages to get their hands on a sealed cursed object. Little do they know the terror they’ll unleash when they break the seal…",
   "end_year": 2024,
-  "fetched": "2026-10-14T06:03:28+00:00",
+  "fetched": "2026-10-14T06:11:16+00:00",
   "genres": [
    "Action",
    "Drama",
@@ -42,6 +42,45 @@
   "volumes": 30,
   "year": 2018
  },
+ "al:124639": {
+  "anilist": 124639,
+  "anilist_popularity": 8063,
+  "anilist_score": 81,
+  "anilist_url": "https://anilist.co/manga/124639",
+  "artists": [],
+  "authors": [
+   "Shikke"
+  ],
+  "chapters": 11,
+  "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx124639-iD14zSg952oG.jpg",
+  "description": "Country boy Haiga has many questions he wants to learn the answers to when he moves to the bustling capital for his university life - and one of them happens to be, \"do I like guys, too?\" When his upperclassmen dare him to check out a box spa behind Shinjuku's Nichoume District, Haiga uses this opportunity to find out the answer to his question - and runs into his senior Kanae, who has one simple solution for him - clothes, off!",
+  "end_year": 2022,
+  "fetched": "2026-10-14T06:11:18+00:00",
+  "genres": [
+   "Drama",
+   "Music",
+   "Romance"
+  ],
+  "mal_id": 130279,
+  "native_title": "ピンクハートジャム",
+  "origin": "JP",
+  "original_title": null,
+  "status": "Finished",
+  "subtype": "Manga",
+  "tags": [
+   "Boys' Love",
+   "LGBTQ+ Themes",
+   "Bisexual",
+   "Band",
+   "Primarily Adult Cast",
+   "College",
+   "Male Protagonist",
+   "Primarily Male Cast"
+  ],
+  "title": "Pink Heart Jam",
+  "volumes": 2,
+  "year": 2020
+ },
  "al:30013": {
   "anilist": 30013,
   "anilist_popularity": 234820,
@@ -55,7 +94,7 @@
   "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30013-BeslEMqiPhlk.jpg",
   "description": "As a child, Monkey D. Luffy was inspired to become a pirate by listening to the tales of the buccaneer \"Red-Haired\" Shanks. But his life changed when Luffy accidentally ate the Gum-Gum Devil Fruit and gained the power to stretch like rubber...at the cost of never being able to swim again! Years later, still vowing to become the king of the pirates, Luffy sets out on his adventure...one guy alone in a rowboat, in search of the legendary \"One Piece,\" said to be the greatest treasure in the world...",
   "end_year": null,
-  "fetched": "2026-10-14T06:03:30+00:00",
+  "fetched": "2026-10-14T06:11:20+00:00",
   "genres": [
    "Action",
    "Adventure",
@@ -101,7 +140,7 @@
   "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30021-FE6kmrfpuKyb.jpg",
   "description": "Light Yagami is an ace student with great prospects—and he’s bored out of his mind. But all that changes when he finds the Death Note, a notebook dropped by a rogue Shinigami death god. Any human whose name is written in the notebook dies, and Light has vowed to use the power of the Death Note to rid the world of evil. But will Light succeed in his noble goal, or will the Death Note turn him into the very thing he fights against?",
   "end_year": 2006,
-  "fetched": "2026-10-14T06:03:32+00:00",
+  "fetched": "2026-10-14T06:01:08+00:00",
   "genres": [
    "Drama",
    "Mystery",
@@ -145,7 +184,7 @@
   "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30401-siY6wmwnHFi6.png",
   "description": "They arrive in silence and darkness. They descend from the skies. They have a hunger for human flesh. They are everywhere. They are parasites, alien creatures who must invade&ndash;and take control of&ndash;a human host to survive. And once they have infected their victims, they can assume any deadly form they choose: monsters with giant teeth, winged demons, creatures with blades for hands. But most have chosen to conceal their lethal purpose behind ordinary human faces. So no one knows their secret&ndash;except an ordinary high school student. Shin is battling for control of his own body against an alien parasite, but can he find a way to warn humanity of the horrors to come?",
   "end_year": 1995,
-  "fetched": "2026-10-14T06:03:35+00:00",
+  "fetched": "2026-10-14T06:11:22+00:00",
   "genres": [
    "Action",
    "Drama",
