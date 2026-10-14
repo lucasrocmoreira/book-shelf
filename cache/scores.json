@@ -92,6 +92,29 @@
    1
   ]
  },
+ "ol:OL1966480W": {
+  "checked": "2026-10-14T05:40:59+00:00",
+  "gr_genres": [
+   "Science",
+   "Nonfiction",
+   "Evolution",
+   "Biology",
+   "History",
+   "Popular Science",
+   "Anthropology",
+   "Natural History"
+  ],
+  "gr_guessed": false,
+  "gr_id": "17978",
+  "gr_rating": 4.15,
+  "gr_title": "The Ancestor's Tale : A Pilgrimage to the Dawn of Life",
+  "gr_votes": 29068,
+  "hc_tried": true,
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL20201754W": {
   "checked": "2026-10-14T05:33:25+00:00",
   "content_warnings": [],

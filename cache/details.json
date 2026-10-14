@@ -139,6 +139,86 @@
   "title": "Dias Perfeitos",
   "year": 2014
  },
+ "ol:OL1966480W": {
+  "authors": [
+   "Richard Dawkins"
+  ],
+  "characters": [
+   "Charles Darwin (1809-1882)"
+  ],
+  "cover": "https://covers.openlibrary.org/b/id/501730-L.jpg",
+  "description": "*The Ancestor's Tale* describes the various processes involved in the development of life on Earth. Enormously rich and diverse, it includes the results of recent research that, using dna analysis, has led to some surprising insights into evolutionary history. The fundamental, unifying principle of evolution underlies this unique history - our history, and that of all living things. This masterpiece by Dawkins shows us how special we are, how amazing our history is, and how closely related we are to the rest of life on Earth.",
+  "fetched": "2026-10-14T05:40:59+00:00",
+  "goodreads_ids": [
+   "17978",
+   "911323",
+   "632850",
+   "17978",
+   "911323",
+   "17977",
+   "17978",
+   "627995"
+  ],
+  "isbns": [
+   "1474600565",
+   "9781494561321",
+   "9789757638346",
+   "975763834X",
+   "061861916X",
+   "0753819961",
+   "9789046803363",
+   "1494561328",
+   "9781474606455",
+   "9786058138568",
+   "0739453734",
+   "9780618619160",
+   "9780544859937",
+   "2221105052",
+   "6058138566",
+   "0297865412",
+   "9780739453735",
+   "9780753819968",
+   "9046803368",
+   "9780297825036",
+   "9781474600569",
+   "9781474600576",
+   "9788535914412",
+   "0618005838",
+   "0544859936",
+   "9780618005833",
+   "1474600573",
+   "1474606458",
+   "8535914412",
+   "9782221105054"
+  ],
+  "languages": [
+   "tur",
+   "por",
+   "eng",
+   "fre",
+   "dut"
+  ],
+  "ol": "OL1966480W",
+  "ol_rating": 4.8,
+  "ol_readers": 67,
+  "ol_votes": 5,
+  "pages": 673,
+  "places": [],
+  "series": null,
+  "subjects": [
+   "Human evolution",
+   "Evolution",
+   "Evolutie",
+   "History",
+   "Philosophy",
+   "SCIENCE / Life Sciences / Evolution",
+   "Tachyglossidae",
+   "Life, origin"
+  ],
+  "subtitle": null,
+  "title": "The Ancestor's Tale",
+  "year": 2004
+ },
  "ol:OL20201754W": {
   "authors": [
    "H.P. Lovecraft"
