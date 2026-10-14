@@ -1,1 +1,102 @@
-{}
+{
+ "ol:OL81626W": {
+  "authors": [
+   "Stephen King"
+  ],
+  "characters": [
+   "Brucie",
+   "Cindi",
+   "David",
+   "Fern",
+   "Galatea",
+   "Gramma",
+   "Josie and the Moonglows",
+   "Peter"
+  ],
+  "cover": "https://covers.openlibrary.org/b/id/9256043-L.jpg",
+  "description": "The story of misfit high-school girl, Carrie White, who gradually discovers that she has telekinetic powers. Repressed by a domineering, ultra-religious mother and tormented by her peers at school, her efforts to fit in lead to a dramatic confrontation during the senior prom.",
+  "fetched": "2026-10-14T03:33:59+00:00",
+  "goodreads_ids": [
+   "58539207",
+   "55976948",
+   "17396842",
+   "5023608",
+   "51843311",
+   "50664119",
+   "50663856",
+   "50662265",
+   "60384953",
+   "10627"
+  ],
+  "isbns": [
+   "152931111X",
+   "9780816156887",
+   "1567800572",
+   "0450018628",
+   "0452267196",
+   "9781444720693",
+   "0451111494",
+   "1399731297",
+   "0451071697",
+   "0784821291",
+   "9780340770528",
+   "9780385360111",
+   "9780525565338",
+   "9788573023848",
+   "9782290302514",
+   "9785171194291",
+   "3404131215",
+   "0525616802",
+   "1848940807",
+   "9781848940802",
+   "0385394284",
+   "9788401499661",
+   "0345806301",
+   "5170824408",
+   "9780606320917",
+   "5171194297",
+   "9780345806307",
+   "0525565337",
+   "0451072804",
+   "1587674793"
+  ],
+  "languages": [
+   "por",
+   "fre",
+   "eng",
+   "ger",
+   "ita",
+   "spa",
+   "chi",
+   "rus"
+  ],
+  "ol": "OL81626W",
+  "ol_rating": 4.0,
+  "ol_readers": 2883,
+  "ol_votes": 170,
+  "pages": 254,
+  "places": [
+   "Chamberlain",
+   "Maine",
+   "Appalachia"
+  ],
+  "series": null,
+  "subjects": [
+   "Occult & supernatural fiction",
+   "Horror fiction",
+   "Psychological thrillers",
+   "Horror",
+   "Thriller",
+   "Epistolary novel",
+   "Telekinesis",
+   "Menarche",
+   "Proms",
+   "Menstruation",
+   "Telepathy",
+   "Banned book"
+  ],
+  "subtitle": null,
+  "title": "Carrie",
+  "year": 1974
+ }
+}

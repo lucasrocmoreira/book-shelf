@@ -1,1 +1,65 @@
-{}
+{
+ "ol:OL81626W": {
+  "checked": "2026-10-14T03:33:59+00:00",
+  "content_warnings": [
+   "bullying",
+   "Child abuse",
+   "Violence",
+   "Death",
+   "Emotional abuse",
+   "Rape"
+  ],
+  "cover": "https://assets.hardcover.app/edition/30914348/4b9d21af-f33b-4792-b4f8-446534eb837e.jpg",
+  "description": "Carrie may be picked on by her classmates but she has a gift. She can move things with her mind. Doors lock. Candles fall. This is her power and her problem.\n\nTo be invited to Prom Night by Tommy Ross is a dream come true for Carrie — the first step towards social acceptance by her high school colleagues. Until an unexpected cruelty turns her gift into a weapon of terror and destruction that no one will ever forget.",
+  "genres": [
+   "Horror"
+  ],
+  "gr_genres": [
+   "Horror",
+   "Fiction",
+   "Thriller",
+   "Classics",
+   "Fantasy",
+   "Paranormal",
+   "Audiobook",
+   "Supernatural"
+  ],
+  "gr_guessed": false,
+  "gr_id": "58539207",
+  "gr_rating": 3.99,
+  "gr_title": "Carrie",
+  "gr_votes": 891957,
+  "hc_id": 385191,
+  "hc_rating": 3.81,
+  "hc_readers": 2923,
+  "hc_slug": "carrie",
+  "hc_tried": true,
+  "hc_votes": 1567,
+  "moods": [
+   "dark",
+   "tense",
+   "sad",
+   "emotional",
+   "mysterious",
+   "challenging"
+  ],
+  "pages": 248,
+  "series": null,
+  "tags": [
+   "Unloveable Characters",
+   "Not Diverse Characters",
+   "Weak Character Development",
+   "Character driven",
+   "Strong Character Development",
+   "A mix driven",
+   "Diverse Characters",
+   "Loveable Characters",
+   "Horror",
+   "classics"
+  ],
+  "v": [
+   1,
+   1
+  ]
+ }
+}
