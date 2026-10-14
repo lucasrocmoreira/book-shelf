@@ -363,6 +363,18 @@
    "author": "Robert Kirkman",
    "year": 2015,
    "cover": "https://covers.openlibrary.org/b/id/12247778-L.jpg"
+  },
+  "ol:OL19956447W": {
+   "kind": "comic",
+   "title": "Severed",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL19956447W",
+   "author": "Scott Snyder",
+   "year": 2012,
+   "cover": "https://covers.openlibrary.org/b/id/12488184-L.jpg"
   }
  }
 }
