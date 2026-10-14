@@ -1,6 +1,6 @@
 {
  "ol:OL16799356W": {
-  "checked": "2026-10-14T05:42:43+00:00",
+  "checked": "2026-10-14T05:44:06+00:00",
   "hc_tried": true,
   "v": [
    1,
@@ -8,7 +8,7 @@
   ]
  },
  "ol:OL16809836W": {
-  "checked": "2026-10-14T05:42:44+00:00",
+  "checked": "2026-10-14T05:43:27+00:00",
   "hc_tried": true,
   "v": [
    1,
@@ -85,6 +85,22 @@
    1
   ]
  },
+ "ol:OL17356885W": {
+  "checked": "2026-10-14T05:44:12+00:00",
+  "hc_tried": true,
+  "v": [
+   1,
+   1
+  ]
+ },
+ "ol:OL17596671W": {
+  "checked": "2026-10-14T05:43:28+00:00",
+  "hc_tried": true,
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL19363160W": {
   "checked": "2026-10-14T05:38:15+00:00",
   "gr_genres": [
@@ -153,8 +169,45 @@
   ]
  },
  "ol:OL19975567W": {
-  "checked": "2026-10-14T05:42:46+00:00",
+  "checked": "2026-10-14T05:43:31+00:00",
   "hc_tried": true,
+  "v": [
+   1,
+   1
+  ]
+ },
+ "ol:OL20009816W": {
+  "checked": "2026-10-14T05:44:09+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/edition/18878192/44c7c8756e54890e1933e285720286fbc533d1bc.jpeg",
+  "description": "\"While Gwendolyn and Lying Cat risk everything to find a cure for The Will, Marko makes an uneasy alliance with Prince Robot IV to find their missing children, who are trapped on a strange world with terrifying new enemies\"--Page 4 of cover.",
+  "genres": [
+   "Science Fiction"
+  ],
+  "hc_id": 427641,
+  "hc_rating": 4.4,
+  "hc_readers": 609,
+  "hc_slug": "saga-vol-5",
+  "hc_tried": true,
+  "hc_votes": 388,
+  "moods": [
+   "Adventurous",
+   "emotional",
+   "tense",
+   "dark",
+   "funny",
+   "reflective"
+  ],
+  "pages": 152,
+  "series": "Saga",
+  "tags": [
+   "Diverse Characters",
+   "A mix driven",
+   "Strong Character Development",
+   "Unloveable Characters",
+   "Loveable Characters",
+   "Character driven"
+  ],
   "v": [
    1,
    1

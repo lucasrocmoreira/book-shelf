@@ -6,7 +6,7 @@
   "characters": [],
   "cover": "https://covers.openlibrary.org/b/id/12679639-L.jpg",
   "description": "From New York Times bestselling writer BRIAN K.VAUGHAN (Y: THE LAST MAN, EX MACHINA) and critically acclaimed artist FIONA STAPLES (MYSTERY SOCIETY, NORTH 40), SAGA is the sweeping tale of one young family fighting to find their place in the worlds. When two soldiers from opposite sides of a never-ending galactic war fall in love, they risk everything to bring a fragile new life into a dangerous old universe. Fantasy and science fiction are wed like never before in a sexy, subversive drama for adults. This specially priced volume collects the first arc of the smash hit series The Onion A.V. Club calls \"the emotional epic Hollywood wishes it could make.\"",
-  "fetched": "2026-10-14T05:42:39+00:00",
+  "fetched": "2026-10-14T05:43:17+00:00",
   "goodreads_ids": [],
   "isbns": [
    "9788468478876",
@@ -45,7 +45,7 @@
   "characters": [],
   "cover": "https://covers.openlibrary.org/b/id/12648950-L.jpg",
   "description": "\"Après avoir réchappé aux horreurs de la planète Clivage, à ses champs de bataille, et aux chasseurs de primes lancés à leur poursuite, Alana, Marko et leur fille Hazel, symbole d'une paix possible entre les deux peuples, s'apprêtent à relever leur plus grand défi : faire la connaissance des grands-parents !\" [Source : 4e de couv.].",
-  "fetched": "2026-10-14T05:42:41+00:00",
+  "fetched": "2026-10-14T05:43:19+00:00",
   "goodreads_ids": [],
   "isbns": [
    "9782365772570",
@@ -167,6 +167,84 @@
   "subtitle": null,
   "title": "Red Rising",
   "year": 2014
+ },
+ "ol:OL17356885W": {
+  "authors": [
+   "Brian K. Vaughan"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/7434885-L.jpg",
+  "description": "After a dramatic time jump, the three-time Eisner Award winner for Best Continuing Series continues to evolve, as Hazel begins the most exciting adventure of her life: kindergarten. Meanwhile, her starcrossed family learns hard lessons of their own.",
+  "fetched": "2026-10-14T05:43:21+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "9781632157119",
+   "163215711X"
+  ],
+  "languages": [
+   "eng"
+  ],
+  "ol": "OL17356885W",
+  "ol_rating": 4.68,
+  "ol_readers": 41,
+  "ol_votes": 19,
+  "pages": 152,
+  "places": [],
+  "series": null,
+  "subjects": [
+   "Military deserters",
+   "Parents of exceptional children",
+   "Extraterrestrial beings",
+   "Interracial marriage",
+   "Imaginary wars and battles",
+   "Parents of racially mixed children",
+   "Ethnicity",
+   "New York Times bestseller",
+   "Comics & graphic novels, science fiction"
+  ],
+  "subtitle": "Volume Six",
+  "title": "Saga",
+  "year": 2016
+ },
+ "ol:OL17596671W": {
+  "authors": [
+   "Brian K. Vaughan"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/12648948-L.jpg",
+  "description": "\"Saga is the sweeping tale of one young family fighting to find their place in the universe. As they visit a strange new world and encounter even more adversaries, baby Hazel finally becomes a toddler, while her star-crossed parents Marko and Alana struggle to stay on their feet\"--Back cover.",
+  "fetched": "2026-10-14T05:43:23+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "0606367276",
+   "9788468478906",
+   "9781632150776",
+   "9780606367271",
+   "1632150778",
+   "8468478903"
+  ],
+  "languages": [
+   "eng",
+   "spa"
+  ],
+  "ol": "OL17596671W",
+  "ol_rating": 4.42,
+  "ol_readers": 54,
+  "ol_votes": 33,
+  "pages": 144,
+  "places": [],
+  "series": null,
+  "subjects": [
+   "Parents of exceptional children",
+   "Extraterrestrial beings",
+   "Interracial marriage",
+   "Families",
+   "Comics & graphic novels, science fiction",
+   "New York Times bestseller"
+  ],
+  "subtitle": "Volume Four",
+  "title": "Saga",
+  "year": 2012
  },
  "ol:OL19363160W": {
   "authors": [
@@ -348,7 +426,7 @@
   "characters": [],
   "cover": "https://covers.openlibrary.org/b/id/15201861-L.jpg",
   "description": "\"New parents Marko and Alana travel to an alien world to visit their hero, while the family's pursuers finally close in on their targets\" --",
-  "fetched": "2026-10-14T05:42:43+00:00",
+  "fetched": "2026-10-14T05:43:25+00:00",
   "goodreads_ids": [],
   "isbns": [
    "9781607069317",
@@ -372,6 +450,46 @@
   "subtitle": "Volume Three",
   "title": "Saga",
   "year": 2014
+ },
+ "ol:OL20009816W": {
+  "authors": [
+   "Brian K. Vaughan"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/12673670-L.jpg",
+  "description": "\"While Gwendolyn and Lying Cat risk everything to find a cure for The Will, Marko makes an uneasy alliance with Prince Robot IV to find their missing children, who are trapped on a strange world with terrifying new enemies\"--Page 4 of cover.",
+  "fetched": "2026-10-14T05:43:27+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "9781632154385",
+   "1632154382"
+  ],
+  "languages": [
+   "eng"
+  ],
+  "ol": "OL20009816W",
+  "ol_rating": 4.62,
+  "ol_readers": 42,
+  "ol_votes": 24,
+  "pages": null,
+  "places": [
+   "United States"
+  ],
+  "series": null,
+  "subjects": [
+   "Military deserters",
+   "Parents of exceptional children",
+   "Extraterrestrial beings",
+   "Interracial marriage",
+   "Imaginary wars and battles",
+   "Parents of racially mixed children",
+   "Ethnicity",
+   "Comics & graphic novels, science fiction",
+   "New York Times bestseller"
+  ],
+  "subtitle": null,
+  "title": "Saga, Volume Five",
+  "year": 2015
  },
  "ol:OL20201754W": {
   "authors": [
