@@ -25,6 +25,104 @@
   "title": "H. P. Lovecraft Tales of Horror",
   "year": 2017
  },
+ "ol:OL21745884W": {
+  "authors": [
+   "Andy Weir"
+  ],
+  "characters": [
+   "Dr Ryland Grace",
+   "Rocky",
+   "Eva Stratt"
+  ],
+  "cover": "https://covers.openlibrary.org/b/id/11200092-L.jpg",
+  "description": "Ryland Grace is the sole survivor on a desperate, last-chance mission–and if he fails, humanity and the earth itself will perish. Except that right now, he doesn’t know that. He can’t even remember his own name, let alone the nature of his assignment or how to complete it. All he knows is that he’s been asleep for a very, very long time. And he’s just been awakened to find himself millions of miles from home, with nothing but two corpses for company.\r\n\r\nHis crewmates dead, his memories fuzzily returning, he realizes that an impossible task now confronts him. Alone on this tiny ship that’s been cobbled together by every government and space agency on the planet and hurled into the depths of space, it’s up to him to conquer an extinction-level threat to our species.\r\n\r\nAnd thanks to an unexpected ally, he just might have a chance.\r\n\r\nPart scientific mystery, part dazzling interstellar journey, *Project Hail Mary* is a tale of discovery, speculation, and survival to rival *The Martian*–while taking us to places it never dreamed of going.",
+  "fetched": "2026-10-14T05:34:16+00:00",
+  "goodreads_ids": [
+   "58033783",
+   "56049167",
+   "59656600",
+   "58014357",
+   "58033840",
+   "61026000",
+   "57946654",
+   "222697645",
+   "54493402",
+   "54906250"
+  ],
+  "isbns": [
+   "0593395565",
+   "855651121X",
+   "6064310995",
+   "0593135202",
+   "9401614075",
+   "9781529100631",
+   "3453321340",
+   "9788328716803",
+   "8413148464",
+   "9787544787352",
+   "8418037016",
+   "9791028119676",
+   "9789401614085",
+   "9780593355275",
+   "171363029X",
+   "9788925588735",
+   "1529100631",
+   "9780593135228",
+   "3453322835",
+   "1529157463",
+   "9788413148465",
+   "0593135229",
+   "9783453321342",
+   "9786073802536",
+   "9786257442398",
+   "9780593135204",
+   "6073802536",
+   "059335527X",
+   "8328716801",
+   "9781713630296"
+  ],
+  "languages": [
+   "dut",
+   "eng",
+   "kor",
+   "fin",
+   "fre",
+   "spa",
+   "por",
+   "ger"
+  ],
+  "ol": "OL21745884W",
+  "ol_rating": 4.52,
+  "ol_readers": 1334,
+  "ol_votes": 184,
+  "pages": 496,
+  "places": [
+   "Epsilon Eridani",
+   "Earth",
+   "Tau Ceti",
+   "San Francisco (Calif.)",
+   "Pasadena (Calif.)",
+   "Antarctica"
+  ],
+  "series": null,
+  "subjects": [
+   "Hard science-fiction",
+   "Science-fiction",
+   "Sci-fi",
+   "Hard sci-fi",
+   "New York Times bestseller",
+   "New York Times reviewed",
+   "End of the world",
+   "Astronauts",
+   "Space flight",
+   "Memory disorders",
+   "Survival",
+   "Fin du monde"
+  ],
+  "subtitle": null,
+  "title": "Project Hail Mary",
+  "year": 2021
+ },
  "ol:OL27482W": {
   "authors": [
    "J.R.R. Tolkien"
