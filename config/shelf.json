@@ -515,6 +515,18 @@
    "author": "Sebastian J. Plata",
    "year": 2018,
    "cover": "https://covers.openlibrary.org/b/id/8812766-L.jpg"
+  },
+  "ol:OL46881W": {
+   "kind": "book",
+   "title": "Jurassic Park",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL46881W",
+   "author": "Michael Crichton",
+   "year": 1990,
+   "cover": "https://covers.openlibrary.org/b/id/12882940-L.jpg"
   }
  }
 }
