@@ -71,6 +71,18 @@
    "author": "Isaac Asimov",
    "year": 1950,
    "cover": "https://covers.openlibrary.org/b/id/6502517-L.jpg"
+  },
+  "ol:OL29226517W": {
+   "kind": "book",
+   "title": "Fourth Wing",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL29226517W",
+   "author": "Rebecca Yarros",
+   "year": 2023,
+   "cover": "https://covers.openlibrary.org/b/id/14407898-L.jpg"
   }
  }
 }
