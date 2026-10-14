@@ -754,6 +754,42 @@
    1
   ]
  },
+ "ol:OL34989451W": {
+  "checked": "2026-10-14T05:49:57+00:00",
+  "content_warnings": [],
+  "cover": null,
+  "description": null,
+  "genres": [],
+  "gr_genres": [
+   "Comics",
+   "Graphic Novels",
+   "Horror",
+   "Crime",
+   "Comic Book",
+   "Mystery",
+   "Graphic Novels Comics",
+   "Fiction"
+  ],
+  "gr_guessed": true,
+  "gr_id": "48750853",
+  "gr_rating": 3.44,
+  "gr_title": "A Walk Through Hell nº 01/02 (Aftershock A Walk Through Hell 1)",
+  "gr_votes": 724,
+  "hc_id": 2761387,
+  "hc_rating": 5.0,
+  "hc_readers": 1,
+  "hc_slug": "a-walk-through-hell-vol-1",
+  "hc_tried": true,
+  "hc_votes": 1,
+  "moods": [],
+  "pages": 125,
+  "series": "A Walk Through Hell",
+  "tags": [],
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL38056236W": {
   "checked": "2026-10-14T05:38:10+00:00",
   "content_warnings": [],
