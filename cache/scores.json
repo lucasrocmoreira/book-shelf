@@ -1,4 +1,74 @@
 {
+ "ol:OL17076473W": {
+  "checked": "2026-10-14T05:36:41+00:00",
+  "content_warnings": [
+   "Rape",
+   "Murder",
+   "Violence",
+   "Slavery",
+   "Gore",
+   "Death"
+  ],
+  "cover": "https://assets.hardcover.app/editions/26096001/3897005112280259.jpg",
+  "description": "“I live for you,” I say sadly.\nEo kisses my cheek. “Then you must live for more.”\n\nDarrow is a Red, a member of the lowest caste in the color-coded society of the future. Like his fellow Reds, he works all day, believing that he and his people are making the surface of Mars livable for future generations. Yet he toils willingly, trusting that his blood and sweat will one day result in a better world for his children.\n\nBut Darrow and his kind have been betrayed. Soon he discovers that humanity reached the surface generations ago. Vast cities and lush wilds spread across the planet. Darrow—and Reds like him—are nothing more than slaves to a decadent ruling class.\n\nInspired by a longing for justice, and driven by the memory of lost love, Darrow sacrifices everything to infiltrate the legendary Institute, a proving ground for the dominant Gold caste, where the next generation of humanity’s overlords struggle for power.  He will be forced to compete for his life and the very future of civilization against the best and most brutal of Society’s ruling class. There, he will stop at nothing to bring down his enemies . . . even if it means he has to become one of them to do so.",
+  "genres": [
+   "Science Fiction",
+   "Dystopian",
+   "Fantasy",
+   "Science Fiction & Fantasy",
+   "Young Adult",
+   "Adventure",
+   "Dystopia",
+   "War"
+  ],
+  "gr_genres": [
+   "Science Fiction",
+   "Fantasy",
+   "Fiction",
+   "Dystopia",
+   "Audiobook",
+   "Young Adult",
+   "Book Club",
+   "Science Fiction Fantasy"
+  ],
+  "gr_guessed": false,
+  "gr_id": "57770537",
+  "gr_rating": 4.27,
+  "gr_title": "Red Rising",
+  "gr_votes": 1003685,
+  "hc_id": 427473,
+  "hc_rating": 4.19,
+  "hc_readers": 11325,
+  "hc_slug": "red-rising",
+  "hc_tried": true,
+  "hc_votes": 4161,
+  "moods": [
+   "Adventurous",
+   "dark",
+   "tense",
+   "emotional",
+   "challenging",
+   "sad"
+  ],
+  "pages": 382,
+  "series": "Red Rising Saga",
+  "tags": [
+   "Strong Character Development",
+   "A mix driven",
+   "Diverse Characters",
+   "Loveable Characters",
+   "Unloveable Characters",
+   "Not Diverse Characters",
+   "Weak Character Development",
+   "Character driven",
+   "Plot driven",
+   "audiobook"
+  ],
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL20201754W": {
   "checked": "2026-10-14T05:33:25+00:00",
   "content_warnings": [],
@@ -92,7 +162,7 @@
   ]
  },
  "ol:OL24593432W": {
-  "checked": "2026-10-14T05:35:58+00:00",
+  "checked": "2026-10-14T05:36:43+00:00",
   "content_warnings": [
    "Death",
    "Violence",
@@ -368,7 +438,7 @@
   ]
  },
  "ol:OL81613W": {
-  "checked": "2026-10-14T05:35:56+00:00",
+  "checked": "2026-10-14T05:36:38+00:00",
   "content_warnings": [
    "misogyny",
    "Child abuse",
@@ -487,6 +557,76 @@
    "Loveable Characters",
    "Horror",
    "classics"
+  ],
+  "v": [
+   1,
+   1
+  ]
+ },
+ "ol:OL82563W": {
+  "checked": "2026-10-14T05:36:34+00:00",
+  "content_warnings": [
+   "Child abuse",
+   "Death of parent",
+   "bullying",
+   "Death",
+   "abuse",
+   "animal death"
+  ],
+  "cover": "https://assets.hardcover.app/external_data/4257970/a3a1bbb3dae498a7a8316be0cc9bc5e91f6c34c9.jpeg",
+  "description": "Harry Potter has never been the star of a Quidditch team, scoring points while riding a broom far above the ground. He knows no spells, has never helped to hatch a dragon, and has never worn a cloak of invisibility.\n\nAll he knows is a miserable life with the Dursleys, his horrible aunt and uncle, and their abominable son, Dudley - a great big swollen spoiled bully. Harry's room is a tiny closet at the foot of the stairs, and he hasn't had a birthday party in eleven years.\n\nBut all that is about to change when a mysterious letter arrives by owl messenger: a letter with an invitation to an incredible place that Harry - and anyone who reads about him - will find unforgettable.\n\nFor it's there that he finds not only friends, aerial sports, and magic in everything from classes to meals, but a great destiny that's been waiting for him... if Harry can survive the encounter.",
+  "genres": [
+   "Fantasy",
+   "Young Adult",
+   "Magic",
+   "Adventure",
+   "Juvenile Fiction",
+   "Classics",
+   "Children's audiobooks",
+   "Middle Grade"
+  ],
+  "gr_genres": [
+   "Fantasy",
+   "Fiction",
+   "Young Adult",
+   "Harry Potter",
+   "Magic",
+   "Audiobook",
+   "Childrens",
+   "Middle Grade"
+  ],
+  "gr_guessed": false,
+  "gr_id": "22841994",
+  "gr_rating": 4.47,
+  "gr_title": "Harry Potter and the Philosopher's Stone",
+  "gr_votes": 11868048,
+  "hc_id": 328491,
+  "hc_rating": 4.28,
+  "hc_readers": 15979,
+  "hc_slug": "harry-potter-and-the-philosophers-stone",
+  "hc_tried": true,
+  "hc_votes": 9840,
+  "moods": [
+   "Adventurous",
+   "lighthearted",
+   "mysterious",
+   "funny",
+   "hopeful",
+   "inspiring"
+  ],
+  "pages": 309,
+  "series": "Harry Potter",
+  "tags": [
+   "Loveable Characters",
+   "Strong Character Development",
+   "A mix driven",
+   "Not Diverse Characters",
+   "Diverse Characters",
+   "Weak Character Development",
+   "Plot driven",
+   "Character driven",
+   "Unloveable Characters",
+   "Magic"
   ],
   "v": [
    1,
