@@ -69,6 +69,29 @@
    1
   ]
  },
+ "ol:OL19363160W": {
+  "checked": "2026-10-14T05:38:15+00:00",
+  "gr_genres": [
+   "Thriller",
+   "Horror",
+   "Fiction",
+   "Mystery Thriller",
+   "Mystery",
+   "Suspense",
+   "Crime",
+   "Adult"
+  ],
+  "gr_guessed": true,
+  "gr_id": "21405408",
+  "gr_rating": 3.59,
+  "gr_title": "Dias Perfeitos",
+  "gr_votes": 16144,
+  "hc_tried": true,
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL20201754W": {
   "checked": "2026-10-14T05:33:25+00:00",
   "content_warnings": [],
@@ -301,6 +324,60 @@
    1
   ]
  },
+ "ol:OL26417336W": {
+  "checked": "2026-10-14T05:38:25+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/edition/31226208/6ddaa722-bbd3-4b39-ab46-301750de38ca.jpg",
+  "description": "Romance com mais de 100 mil exemplares vendidos, Jantar secreto conta a história de um grupo de amigos que se muda para o Rio de Janeiro e passa a organizar jantares misteriosos. Do criador da série original Netflix Bom dia, Verônica. Um grupo de jovens deixa uma pequena cidade no Paraná para viver no Rio de Janeiro. Eles alugam um apartamento em Copacabana e fazem o possível para pagar a faculdade e manter vivos seus sonhos de sucesso na capital fluminense. Mas o dinheiro está curto e o aluguel está vencido. Para sair do buraco e manter o apartamento, os amigos adotam uma estratégia heterodoxa: arrecadar fundos por meio de jantares secretos, divulgados pela internet para uma clientela exclusiva da elite carioca. A partir daí, eles se envolvem em uma espiral de crimes, descobrem uma rede de contrabando de corpos, matadouros clandestinos e grã-finos excêntricos, e levam ao limite uma índole perversa que jamais imaginaram existir em cada um deles.",
+  "genres": [
+   "Fiction",
+   "LGBTQ"
+  ],
+  "gr_genres": [
+   "Thriller",
+   "Horror",
+   "Suspense",
+   "Fiction",
+   "Mystery",
+   "Mystery Thriller",
+   "Crime",
+   "Audiobook"
+  ],
+  "gr_guessed": true,
+  "gr_id": "32681160",
+  "gr_rating": 4.05,
+  "gr_title": "Jantar Secreto",
+  "gr_votes": 23534,
+  "hc_id": 1201387,
+  "hc_rating": 4.16,
+  "hc_readers": 71,
+  "hc_slug": "jantar-secreto",
+  "hc_tried": true,
+  "hc_votes": 48,
+  "moods": [
+   "dark",
+   "mysterious",
+   "tense"
+  ],
+  "pages": 389,
+  "series": null,
+  "tags": [
+   "A mix driven",
+   "Strong Character Development",
+   "Unloveable Characters",
+   "Diverse Characters",
+   "thriller",
+   "Horror",
+   "suspense",
+   "fiction",
+   "Crime",
+   "mystery"
+  ],
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL27482W": {
   "checked": "2026-10-14T03:38:41+00:00",
   "gr_genres": [
@@ -394,6 +471,55 @@
    1
   ]
  },
+ "ol:OL38056236W": {
+  "checked": "2026-10-14T05:38:10+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/edition/31226087/7c091d4b-536e-4bea-84ef-ee0250463d70.jpg",
+  "description": "Em Uma família feliz, o mestre do suspense Raphael Montes desbrava as tensões das relações familiares e do mundo de aparências de um condomínio perfeito, em uma trama complexa sobre infância e maternidade. \r\nDo criador da série original Bom dia, Verônica (Netflix) e da novela Beleza fatal (HBO). \r\n\r\nEva tem a vida perfeita. Seu marido é um jovem advogado em ascensão. Suas filhas gêmeas são lindas, inteligentes e saudáveis. Seu trabalho, a arte reborn, é um sucesso na internet. À sua volta, tudo está à mã o Blue Paradise, condomínio fechado de classe média-alta na Barra da Tijuca, oferece todo tipo de serviço para que ela não precise sair do conforto de seu lar. Eva tem a vida perfeita - até descobrir que está grávida e seu mundo virar de cabeça para baixo. \r\n\r\nConhecido por seus suspenses de tirar o fôlego, com mais de 500 mil exemplares vendidos, Raphael Montes inova ao começar este thriller psicológico pelo último capítulo. Assim, como uma bomba-relógio prestes a detonar, acompanhamos os caminhos surpreendentes e as tensões que levam essa família feliz a um final avassalador. O livro deu origem ao longa-metragem Uma família feliz, com Grazi Massafera e Reynaldo Gianecchini, direção de José Eduardo Belmonte e roteiro de Raphael Montes.",
+  "genres": [
+   "Fiction",
+   "Suspense"
+  ],
+  "gr_genres": [
+   "Thriller",
+   "Suspense",
+   "Ebooks",
+   "Mystery",
+   "Mystery Thriller",
+   "Horror",
+   "Fiction",
+   "Audiobook"
+  ],
+  "gr_guessed": true,
+  "gr_id": "205841037",
+  "gr_rating": 3.82,
+  "gr_title": "Uma família feliz",
+  "gr_votes": 6651,
+  "hc_id": 1201265,
+  "hc_rating": 3.59,
+  "hc_readers": 32,
+  "hc_slug": "uma-familia-feliz",
+  "hc_tried": true,
+  "hc_votes": 17,
+  "moods": [
+   "dark",
+   "emotional",
+   "mysterious",
+   "tense"
+  ],
+  "pages": 367,
+  "series": null,
+  "tags": [
+   "Character driven",
+   "Strong Character Development",
+   "Unloveable Characters",
+   "Diverse Characters"
+  ],
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL42427055W": {
   "checked": "2026-10-14T05:37:27+00:00",
   "content_warnings": [
@@ -452,6 +578,71 @@
  "ol:OL43485765W": {
   "checked": "2026-10-14T05:37:31+00:00",
   "hc_tried": true,
+  "v": [
+   1,
+   1
+  ]
+ },
+ "ol:OL44983691W": {
+  "checked": "2026-10-14T05:38:19+00:00",
+  "content_warnings": [
+   "Car accident",
+   "Child abuse",
+   "child death",
+   "Alcoholism"
+  ],
+  "cover": "https://assets.hardcover.app/edition/32698489/34100992-b2a5-4bf0-8b62-8867a3ddc24a.jpeg",
+  "description": "From the bestselling author of Strange Houses and Strange Pictures comes a new unsettling mystery—eleven strange buildings, each with its own twisted floor plan and eerie backstory, and a terrible secret that connects them all.\n\nA lonely hut in the woods.\n\nA murder house.\n\nA hidden chamber.\n\nA mysterious shrine.\n\nA home in flames.\n\nA nightmarish prison.\n\nAfter receiving multiple tips from his devoted readership, a writer fascinated by the occult put together eleven case files, each featuring its very own strange building. Each of the eleven structures in this book has a floor plan that conceals a disturbing architectural quirk: from disappearing rooms to apartments with no means of escape. Each buildings tells its own chilling story. And each is part of a grander puzzle. Look closely . . . and you'll see that everything is connected. All leading to a revelation so horrifying you won't want to believe it.\n\nMillions of readers have become addicted to solving Uketsu's dark mysteries. Strange Buildings is the strangest, and darkest, of them all.",
+  "genres": [
+   "Horror",
+   "Mystery",
+   "Suspense",
+   "Fiction; Horror; Mystery; Thrillers",
+   "Thrillers",
+   "Crime",
+   "International Crime & Mystery",
+   "Mystery & Detective"
+  ],
+  "gr_genres": [
+   "Horror",
+   "Mystery",
+   "Fiction",
+   "Thriller",
+   "Mystery Thriller",
+   "Japanese Literature",
+   "Japan",
+   "Crime"
+  ],
+  "gr_guessed": true,
+  "gr_id": "247527532",
+  "gr_rating": 3.92,
+  "gr_title": "Strange Buildings",
+  "gr_votes": 35351,
+  "hc_id": 2156505,
+  "hc_rating": 3.85,
+  "hc_readers": 319,
+  "hc_slug": "strange-buildings",
+  "hc_tried": true,
+  "hc_votes": 116,
+  "moods": [
+   "mysterious",
+   "dark",
+   "tense"
+  ],
+  "pages": 384,
+  "series": "Strange Houses",
+  "tags": [
+   "Weak Character Development",
+   "Not Diverse Characters",
+   "Unloveable Characters",
+   "mystery",
+   "thriller",
+   "dark",
+   "mysterious",
+   "Tense",
+   "fast-paced",
+   "A mix driven"
+  ],
   "v": [
    1,
    1
