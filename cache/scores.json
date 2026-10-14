@@ -101,6 +101,33 @@
   ],
   "volumes": null
  },
+ "al:30042": {
+  "checked": "2026-10-14T06:35:33+00:00",
+  "demographics": [
+   "Shounen"
+  ],
+  "mal_genres": [
+   "Action",
+   "Adventure",
+   "Fantasy"
+  ],
+  "mal_members": 186326,
+  "mal_rank": 205,
+  "mal_score": 8.46,
+  "mal_themes": [
+   "Martial Arts"
+  ],
+  "mal_url": "https://myanimelist.net/manga/42",
+  "mal_votes": 112399,
+  "serialization": [
+   "Shounen Jump (Weekly)"
+  ],
+  "v": [
+   2,
+   2
+  ],
+  "volumes": null
+ },
  "al:30401": {
   "checked": "2026-10-14T06:23:52+00:00",
   "demographics": [

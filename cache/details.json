@@ -172,6 +172,51 @@
   "volumes": 12,
   "year": 2003
  },
+ "al:30042": {
+  "anilist": 30042,
+  "anilist_popularity": 54478,
+  "anilist_score": 84,
+  "anilist_url": "https://anilist.co/manga/30042",
+  "artists": [],
+  "authors": [
+   "Akira Toriyama"
+  ],
+  "chapters": 520,
+  "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30042-4SetGiEbGc9x.jpg",
+  "demographics": [
+   "Shounen"
+  ],
+  "description": "Dragon Ball follows the adventures of Son Goku from his childhood through adulthood as he trains in martial arts and explores the world in search of the seven mystical orbs known as the Dragon Balls, which can summon a wish-granting dragon when gathered. Along his journey, Goku makes several friends and battles a wide variety of villains, many of whom also seek the Dragon Balls for their own desires. Along the way becoming the strongest warrior in the universe.\n\nPart II of Dragon Ball is also known as \"Dragon Ball Z\" in North America.",
+  "end_year": 1995,
+  "fetched": "2026-10-14T06:35:33+00:00",
+  "genres": [
+   "Action",
+   "Adventure",
+   "Comedy",
+   "Fantasy",
+   "Sci-Fi",
+   "Supernatural"
+  ],
+  "mal_id": 42,
+  "native_title": "ドラゴンボール",
+  "origin": "JP",
+  "original_title": null,
+  "status": "Finished",
+  "subtype": "Manga",
+  "tags": [
+   "Martial Arts",
+   "Travel",
+   "Super Power",
+   "Male Protagonist",
+   "Cultivation",
+   "Aliens",
+   "Coming of Age",
+   "Anachronism"
+  ],
+  "title": "Dragon Ball",
+  "volumes": 42,
+  "year": 1984
+ },
  "al:30401": {
   "anilist": 30401,
   "anilist_popularity": 33147,
