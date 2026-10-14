@@ -279,6 +279,18 @@
    "author": "Brian K. Vaughan",
    "year": 2013,
    "cover": "https://covers.openlibrary.org/b/id/12648950-L.jpg"
+  },
+  "ol:OL19975567W": {
+   "kind": "comic",
+   "title": "Saga: Volume Three",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL19975567W",
+   "author": "Brian K. Vaughan",
+   "year": 2014,
+   "cover": "https://covers.openlibrary.org/b/id/15201861-L.jpg"
   }
  }
 }
