@@ -339,6 +339,18 @@
    "author": "Scott Snyder",
    "year": 2015,
    "cover": "https://covers.openlibrary.org/b/id/9257148-L.jpg"
+  },
+  "ol:OL20002422W": {
+   "kind": "comic",
+   "title": "Black science",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL20002422W",
+   "author": "Rick Remender",
+   "year": 2015,
+   "cover": "https://covers.openlibrary.org/b/id/11392298-L.jpg"
   }
  }
 }
