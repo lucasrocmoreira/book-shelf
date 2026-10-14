@@ -1,4 +1,30 @@
 {
+ "ol:OL20201754W": {
+  "authors": [
+   "H.P. Lovecraft"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/8851911-L.jpg",
+  "description": null,
+  "fetched": "2026-10-14T05:33:25+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "1607109328",
+   "9781607109327"
+  ],
+  "languages": [],
+  "ol": "OL20201754W",
+  "ol_rating": null,
+  "ol_readers": 2,
+  "ol_votes": 0,
+  "pages": 768,
+  "places": [],
+  "series": null,
+  "subjects": [],
+  "subtitle": null,
+  "title": "H. P. Lovecraft Tales of Horror",
+  "year": 2017
+ },
  "ol:OL27482W": {
   "authors": [
    "J.R.R. Tolkien"
