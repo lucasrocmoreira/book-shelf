@@ -11,6 +11,18 @@
    "author": "Stephen King",
    "year": 1974,
    "cover": "https://covers.openlibrary.org/b/id/9256043-L.jpg"
+  },
+  "ol:OL27482W": {
+   "kind": "book",
+   "title": "The Hobbit",
+   "added": "2026-10-13",
+   "status": "reading",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL27482W",
+   "author": "J.R.R. Tolkien",
+   "year": 1937,
+   "cover": "https://covers.openlibrary.org/b/id/14627509-L.jpg"
   }
  }
 }
