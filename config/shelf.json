@@ -599,6 +599,15 @@
    "author": "Gege Akutami",
    "year": 2018,
    "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx101517-H3TdM3g5ZUe9.jpg"
+  },
+  "q:manga:the stories of edgar allan poe": {
+   "kind": "manga",
+   "title": "The stories of Edgar Allan Poe",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "year": 2017
   }
  }
 }
