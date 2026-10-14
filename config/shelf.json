@@ -453,6 +453,18 @@
    "author": "Brenden Fletcher",
    "year": 2018,
    "cover": "https://covers.openlibrary.org/b/id/12794617-L.jpg"
+  },
+  "ol:OL20033584W": {
+   "kind": "comic",
+   "title": "Monstress, Vol. 1: Awakening",
+   "added": "2026-10-14",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL20033584W",
+   "author": "Marjorie M. Liu",
+   "year": 2016,
+   "cover": "https://covers.openlibrary.org/b/id/8746080-L.jpg"
   }
  }
 }
