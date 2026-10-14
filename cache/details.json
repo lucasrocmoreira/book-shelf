@@ -1219,6 +1219,34 @@
   "title": "Fourth Wing",
   "year": 2023
  },
+ "ol:OL34989424W": {
+  "authors": [
+   "Garth Ennis",
+   "Goran Sudžuka",
+   "Ignacio Bentz"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/13944568-L.jpg",
+  "description": null,
+  "fetched": "2026-10-14T05:50:25+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "8413416507",
+   "9788413416502"
+  ],
+  "languages": [],
+  "ol": "OL34989424W",
+  "ol_rating": null,
+  "ol_readers": 0,
+  "ol_votes": 0,
+  "pages": 176,
+  "places": [],
+  "series": null,
+  "subjects": [],
+  "subtitle": null,
+  "title": "A Walk Through Hell nº 02/02",
+  "year": 2021
+ },
  "ol:OL34989451W": {
   "authors": [
    "Garth Ennis",
@@ -1228,7 +1256,7 @@
   "characters": [],
   "cover": "https://covers.openlibrary.org/b/id/13944606-L.jpg",
   "description": null,
-  "fetched": "2026-10-14T05:49:57+00:00",
+  "fetched": "2026-10-14T05:50:28+00:00",
   "goodreads_ids": [],
   "isbns": [
    "8491737391",
