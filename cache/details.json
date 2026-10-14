@@ -977,7 +977,7 @@
   "characters": [],
   "cover": "https://covers.openlibrary.org/b/id/14281745-L.jpg",
   "description": null,
-  "fetched": "2026-10-14T05:46:34+00:00",
+  "fetched": "2026-10-14T05:47:04+00:00",
   "goodreads_ids": [],
   "isbns": [
    "9781956731262",
@@ -999,6 +999,37 @@
   "subtitle": null,
   "title": "Animosity Vol 1",
   "year": 2022
+ },
+ "ol:OL28748393W": {
+  "authors": [
+   "Marguerite Bennett",
+   "Rafael De Latorre"
+  ],
+  "characters": [],
+  "cover": null,
+  "description": null,
+  "fetched": "2026-10-14T05:47:07+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "9781956731286",
+   "1956731288"
+  ],
+  "languages": [
+   "eng"
+  ],
+  "ol": "OL28748393W",
+  "ol_rating": null,
+  "ol_readers": 0,
+  "ol_votes": 0,
+  "pages": null,
+  "places": [],
+  "series": null,
+  "subjects": [
+   "Comics & graphic novels, general"
+  ],
+  "subtitle": null,
+  "title": "Animosity Vol 2",
+  "year": 2023
  },
  "ol:OL2897798W": {
   "authors": [
