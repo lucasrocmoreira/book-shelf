@@ -102,7 +102,7 @@
   "volumes": null
  },
  "al:30042": {
-  "checked": "2026-10-14T06:39:40+00:00",
+  "checked": "2026-10-14T06:35:33+00:00",
   "demographics": [
    "Shounen"
   ],
@@ -158,7 +158,7 @@
   "volumes": null
  },
  "al:43841": {
-  "checked": "2026-10-14T06:37:50+00:00",
+  "checked": "2026-10-14T06:42:01+00:00",
   "demographics": [],
   "mal_genres": [
    "Horror"
@@ -664,6 +664,53 @@
   "moods": [],
   "pages": 386,
   "series": null,
+  "tags": [],
+  "v": [
+   2,
+   2
+  ]
+ },
+ "ol:OL19724083W": {
+  "checked": "2026-10-14T06:43:49+00:00",
+  "content_warnings": [],
+  "cover": "https://assets.hardcover.app/external_data/508055/53eb41cd30e60bb55bb0825eb90cea47a47df8b1.jpeg",
+  "description": "The Stories of Edgar Allan Poe is a brilliant collection of some of his best-known stories: The Tell Tale Heart (a murder’s haunting guilt), The Cask of Amontillado (a story of brilliant revenge), and The Fall of the House of Usher (an ancient house full of very dark secretes). Also included in this collection are The Mask of the Red Death (horrors of ‘the Plague’), and the most famous of all his poems: The Raven (a lover’s decline into madness). Best read in a dimly-lit room with the curtains drawn, Poe’s brilliant works come to life in darkly thrilling ways in this Manga Classic adaptation.",
+  "genres": [
+   "Young Adult",
+   "Fantasy",
+   "Graphic Novels",
+   "Literature",
+   "Classics",
+   "Comics",
+   "Short stories",
+   " American"
+  ],
+  "gr_genres": [
+   "Manga",
+   "Horror",
+   "Classics",
+   "Graphic Novels",
+   "Mystery",
+   "Short Stories",
+   "Fiction",
+   "Comics"
+  ],
+  "gr_guessed": false,
+  "gr_id": "33776413-the-stories-of-edgar-allan-poe",
+  "gr_rating": 3.98,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "The Stories of Edgar Allan Poe",
+  "gr_votes": 894,
+  "hc_id": 718885,
+  "hc_rating": 3.8,
+  "hc_readers": 12,
+  "hc_slug": "manga-classics-the-stories-of-edgar-allan-poe",
+  "hc_tried": true,
+  "hc_votes": 5,
+  "moods": [],
+  "pages": 308,
+  "series": "Manga Classics",
   "tags": [],
   "v": [
    2,
