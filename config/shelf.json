@@ -40,13 +40,14 @@
    "kind": "book",
    "title": "Project Hail Mary",
    "added": "2026-10-14",
-   "status": "unread",
+   "status": "read",
    "interest": 0,
    "rating": 0,
    "ol": "OL21745884W",
    "author": "Andy Weir",
    "year": 2021,
-   "cover": "https://covers.openlibrary.org/b/id/11200092-L.jpg"
+   "cover": "https://covers.openlibrary.org/b/id/11200092-L.jpg",
+   "read_on": "2026-10-14"
   },
   "ol:OL25125779W": {
    "kind": "book",
