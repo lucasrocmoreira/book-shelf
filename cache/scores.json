@@ -176,6 +176,42 @@
    1
   ]
  },
+ "ol:OL19763085W": {
+  "checked": "2026-10-14T05:51:09+00:00",
+  "content_warnings": [],
+  "cover": null,
+  "description": null,
+  "genres": [],
+  "gr_genres": [
+   "Comics",
+   "Graphic Novels",
+   "Fantasy",
+   "Graphic Novels Comics",
+   "LGBT",
+   "Comic Book",
+   "Fiction",
+   "Adventure"
+  ],
+  "gr_guessed": true,
+  "gr_id": "39654574",
+  "gr_rating": 3.67,
+  "gr_title": "Isola, Vol. 1",
+  "gr_votes": 3088,
+  "hc_id": 2064409,
+  "hc_rating": 3.0,
+  "hc_readers": 2,
+  "hc_slug": "isola-vol-1",
+  "hc_tried": true,
+  "hc_votes": 1,
+  "moods": [],
+  "pages": null,
+  "series": null,
+  "tags": [],
+  "v": [
+   1,
+   1
+  ]
+ },
  "ol:OL19956447W": {
   "checked": "2026-10-14T05:45:55+00:00",
   "content_warnings": [],
@@ -290,6 +326,56 @@
    "Unloveable Characters",
    "Loveable Characters",
    "Character driven"
+  ],
+  "v": [
+   1,
+   1
+  ]
+ },
+ "ol:OL20033584W": {
+  "checked": "2026-10-14T05:51:14+00:00",
+  "content_warnings": [
+   "Torture",
+   "War",
+   "Murder",
+   "Death"
+  ],
+  "cover": "https://assets.hardcover.app/edition/30390454/063df9fd1167f69aa5d985b2e77eccb92cb67908.jpeg",
+  "description": "Set in an alternate world of art deco beauty and steampunk horror, Monstress tells the epic story of Maika Halfwolf, a teenage survivor of a cataclysmic war between humans and their hated enemies, the Arcanics. In the face of oppression and terrible danger, Maika is both hunter and hunted, searching for answers about her mysterious past as those who seek to use her remain just one step behind ... and all the while, the monster within begins to awaken ...",
+  "genres": [
+   "Science Fiction",
+   "Young Adult",
+   "Adventure",
+   "Comics",
+   "War",
+   "LGBTQ",
+   "Dystopian",
+   "Comics & Graphic Novels"
+  ],
+  "hc_id": 427882,
+  "hc_rating": 4.0,
+  "hc_readers": 692,
+  "hc_slug": "monstress-vol-1",
+  "hc_tried": true,
+  "hc_votes": 304,
+  "moods": [
+   "dark",
+   "tense",
+   "Adventurous",
+   "mysterious",
+   "challenging",
+   "emotional"
+  ],
+  "pages": 192,
+  "series": "Monstress",
+  "tags": [
+   "Diverse Characters",
+   "A mix driven",
+   "Weak Character Development",
+   "Unloveable Characters",
+   "Loveable Characters",
+   "Plot driven",
+   "physical"
   ],
   "v": [
    1,

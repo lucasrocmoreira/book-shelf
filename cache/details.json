@@ -449,6 +449,42 @@
   "title": "Improbable destinies",
   "year": 2017
  },
+ "ol:OL19763085W": {
+  "authors": [
+   "Brenden Fletcher"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/12794617-L.jpg",
+  "description": "An evil spell has been cast on the Queen of Maar and her Captain of the Guard will do anything to reverse it. Their only hope lies on an island half a world away--a place known in myth as Isola, land of the dead.",
+  "fetched": "2026-10-14T05:51:06+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "1534309225",
+   "9781534309227"
+  ],
+  "languages": [
+   "eng"
+  ],
+  "ol": "OL19763085W",
+  "ol_rating": 4.0,
+  "ol_readers": 6,
+  "ol_votes": 1,
+  "pages": 144,
+  "places": [],
+  "series": null,
+  "subjects": [
+   "Imaginary places",
+   "Magic",
+   "Quests",
+   "Imaginary wars and battles",
+   "Comics & graphic novels, fantasy",
+   "FICTION / Fantasy / Epic",
+   "FICTION / Sagas"
+  ],
+  "subtitle": null,
+  "title": "Isola, Vol. 1",
+  "year": 2018
+ },
  "ol:OL19956447W": {
   "authors": [
    "Scott Snyder"
@@ -656,6 +692,57 @@
   "subtitle": null,
   "title": "Saga, Volume Five",
   "year": 2015
+ },
+ "ol:OL20033584W": {
+  "authors": [
+   "Marjorie M. Liu",
+   "Sana Takeda"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/8746080-L.jpg",
+  "description": "Set in an alternate world of art deco beauty and steampunk horror, Monstress tells the epic story of Maika Halfwolf, a teenage survivor of a cataclysmic war between humans and their hated enemies, the Arcanics. In the face of oppression and terrible danger, Maika is both hunter and hunted, searching for answers about her mysterious past as those who seek to use her remain just one step behind... and all the while, the monster within begins to awaken...",
+  "fetched": "2026-10-14T05:51:09+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "2756086800",
+   "1632157098",
+   "9781632157096",
+   "3959810571",
+   "9788467927139",
+   "9783959810579",
+   "8467927135",
+   "9782756086804"
+  ],
+  "languages": [
+   "ger",
+   "eng",
+   "fre"
+  ],
+  "ol": "OL20033584W",
+  "ol_rating": 4.75,
+  "ol_readers": 29,
+  "ol_votes": 4,
+  "pages": 205,
+  "places": [
+   "United States",
+   "Asia"
+  ],
+  "series": null,
+  "subjects": [
+   "Series:Monstress",
+   "Psychic ability",
+   "Monsters",
+   "Teenage girls",
+   "Comics & graphic novels, fantasy",
+   "New York Times bestseller",
+   "Teenage girls--comic books, strips, etc",
+   "Monsters--comic books, strips, etc",
+   "Pn6728.m658 l58 2016",
+   "741.5/973"
+  ],
+  "subtitle": "Awakening",
+  "title": "Monstress, Vol. 1",
+  "year": 2016
  },
  "ol:OL20201754W": {
   "authors": [
