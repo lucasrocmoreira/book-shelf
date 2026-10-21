@@ -51,7 +51,7 @@
   "volumes": null
  },
  "al:30013": {
-  "checked": "2026-10-14T06:21:01+00:00",
+  "checked": "2026-10-21T15:58:25+00:00",
   "demographics": [
    "Shounen"
   ],
@@ -66,14 +66,14 @@
   "mal_themes": [],
   "mal_url": "https://myanimelist.net/manga/13",
   "mal_votes": 427122,
+  "retry": true,
   "serialization": [
    "Shounen Jump (Weekly)"
   ],
   "v": [
    2,
    2
-  ],
-  "volumes": null
+  ]
  },
  "al:30021": {
   "checked": "2026-10-14T06:29:01+00:00",
