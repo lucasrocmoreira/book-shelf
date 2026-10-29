@@ -84,7 +84,7 @@
  },
  "al:30013": {
   "anilist": 30013,
-  "anilist_popularity": 235385,
+  "anilist_popularity": 235823,
   "anilist_score": 91,
   "anilist_url": "https://anilist.co/manga/30013",
   "artists": [],
@@ -98,7 +98,7 @@
   ],
   "description": "As a child, Monkey D. Luffy was inspired to become a pirate by listening to the tales of the buccaneer \"Red-Haired\" Shanks. But his life changed when Luffy accidentally ate the Gum-Gum Devil Fruit and gained the power to stretch like rubber...at the cost of never being able to swim again! Years later, still vowing to become the king of the pirates, Luffy sets out on his adventure...one guy alone in a rowboat, in search of the legendary \"One Piece,\" said to be the greatest treasure in the world...",
   "end_year": null,
-  "fetched": "2026-10-22T15:53:39+00:00",
+  "fetched": "2026-10-29T17:27:02+00:00",
   "genres": [
    "Action",
    "Adventure",
@@ -123,7 +123,7 @@
    "Fugitive",
    "Politics",
    "Military",
-   "Crime"
+   "Conspiracy"
   ],
   "title": "One Piece",
   "volumes": null,
