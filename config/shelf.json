@@ -649,6 +649,18 @@
    "author": "Stacy King",
    "year": 2017,
    "cover": "https://covers.openlibrary.org/b/id/11281740-L.jpg"
+  },
+  "ol:OL28409270W": {
+   "kind": "comic",
+   "title": "Creepshow, Volume 1",
+   "added": "2026-10-29",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "ol": "OL28409270W",
+   "author": "Chris Burnham",
+   "year": 2023,
+   "cover": "https://covers.openlibrary.org/b/id/14775283-L.jpg"
   }
  }
 }
