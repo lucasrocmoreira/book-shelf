@@ -1588,6 +1588,37 @@
   "title": "The Hobbit",
   "year": 1937
  },
+ "ol:OL28409270W": {
+  "authors": [
+   "Chris Burnham",
+   "Paul Dini",
+   "Steve Langford",
+   "David Lapham"
+  ],
+  "characters": [],
+  "cover": "https://covers.openlibrary.org/b/id/14775283-L.jpg",
+  "description": null,
+  "fetched": "2026-10-30T00:51:08+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "1534324801",
+   "9781534324800"
+  ],
+  "languages": [
+   "eng"
+  ],
+  "ol": "OL28409270W",
+  "ol_rating": 5.0,
+  "ol_readers": 4,
+  "ol_votes": 1,
+  "pages": null,
+  "places": [],
+  "series": null,
+  "subjects": [],
+  "subtitle": null,
+  "title": "Creepshow, Volume 1",
+  "year": 2023
+ },
  "ol:OL28466499W": {
   "authors": [
    "Marguerite Bennett",
