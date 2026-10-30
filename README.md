@@ -56,6 +56,8 @@ repository only (https://github.com/settings/personal-access-tokens/new). It sta
 - **Rank and filter**: change "Rank by", tap Books / Comics / Manga, or open the filters. Tap any genre, theme, mood or series tag inside a title to filter by it.
 - **Pick for me**: picks at random from the top 5 of the current view.
 - **Without the app**: Issues > New issue > **Add or change a book**.
+- **Wrong or empty Hardcover match**: in `config/shelf.json`, add `"hardcover": "https://hardcover.app/books/<slug>"`
+  to that title's entry (the book page address, its slug, or its id). The next update uses that book.
 
 Status, stars, what you own and remove are instant and don't rebuild. Adding a title triggers a rebuild.
 
@@ -67,7 +69,8 @@ Status, stars, what you own and remove are instant and don't rebuild. Adding a t
 - Comics coverage is thinner than books on every source, especially Brazilian and European albums. A title
   with no score still shows and sorts below scored ones (or hide them under "other options").
 - Manga scores are for the whole series; book scores are for the work across all editions and translations.
-- Goodreads needs 50+ ratings, Hardcover and Open Library 10+, before their score counts.
+- Goodreads needs 50+ ratings, Hardcover and Open Library 10+, before their score counts. Below that the
+  score is still fetched but left out, since one or two ratings say little.
 - Hardcover's API is in beta and its tokens expire; the token is used only by the GitHub Action, never in the browser.
 
 ## Run locally

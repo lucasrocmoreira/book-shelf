@@ -13,7 +13,9 @@ from .util import log, session, similarity
 ENDPOINT = "https://api.hardcover.app/v1/graphql"
 
 SEARCH = """query($q: String!) { search(query: $q, query_type: "Book", per_page: 8, page: 1) { ids results } }"""
-ISBN = """query($isbns: [String!]) { editions(where: {_or: [{isbn_13: {_in: $isbns}}, {isbn_10: {_in: $isbns}}]}, limit: 1) { book_id } }"""
+ISBN = """query($isbns: [String!]) { editions(where: {_or: [{isbn_13: {_in: $isbns}}, {isbn_10: {_in: $isbns}}]}, limit: 10) {
+  book { id ratings_count } } }"""
+BY_SLUG = """query($slug: String!) { books(where: {slug: {_eq: $slug}}, limit: 1) { id } }"""
 DETAIL = """query($id: Int!) { books_by_pk(id: $id) {
   id slug title pages release_year rating ratings_count users_count description
   image { url } cached_tags book_series { position series { name } } } }"""
@@ -75,12 +77,22 @@ class Hardcover:
         return docs
 
     def by_isbn(self, isbns):
-        """Hardcover book id for any of these ISBNs (exact edition match), or None."""
+        """{"id", "ratings_count"} of the most-rated Hardcover book owning any of these ISBNs, or None.
+        Hardcover often has the same work twice (a stray record per edition), so take the one people rate."""
         isbns = [str(i).replace("-", "") for i in isbns or [] if str(i).strip()][:20]
         if not isbns:
             return None
-        rows = self._q(ISBN, isbns=isbns).get("editions") or []
-        return (rows[0] or {}).get("book_id") if rows else None
+        books = [((r or {}).get("book") or {}) for r in self._q(ISBN, isbns=isbns).get("editions") or []]
+        books = [b for b in books if b.get("id")]
+        return max(books, key=lambda b: b.get("ratings_count") or 0) if books else None
+
+    def by_slug(self, ref):
+        """Book id from a Hardcover id, slug or book page address you pasted into the shelf entry."""
+        ref = str(ref).strip().rstrip("/").split("/books/")[-1].split("/")[0]
+        if ref.isdigit():
+            return int(ref)
+        rows = self._q(BY_SLUG, slug=ref).get("books") or []
+        return rows[0]["id"] if rows else None
 
     def best_match(self, title, author=None, isbns=()):
         """Search by title and author; accept only the same work (and volume), by a matching author when both are known."""

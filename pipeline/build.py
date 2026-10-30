@@ -14,7 +14,7 @@ from .util import CACHE_DIR, SITE_DIR, days_since, load_json, log, norm, now_iso
 MAX_LOOKUPS = int(os.environ.get("MAX_LOOKUPS", "150"))
 UNMATCHED_RETRY_DAYS = 3
 PAGES_PER_VOLUME = 190  # a typical tankōbon; used only to compare series length with books
-SCORES_VERSION = 2
+SCORES_VERSION = 3
 
 # Shelf names that only repeat the kind or say nothing about the book.
 GENRE_JUNK = {
@@ -101,7 +101,8 @@ def _keep(old, prefix_keys):
     return {k: v for k, v in old.items() if any(k.startswith(p) for p in prefix_keys)}
 
 
-def refresh_scores(refs, shelf_titles, details, sc, hc, status):
+def refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins=None):
+    hc_pins = hc_pins or {}
     """Goodreads + Hardcover for books and comics, MyAnimeList for manga. Cached and rechecked monthly
     (weekly for ongoing series), stalest first, at most MAX_LOOKUPS per run. A source that fails this run
     keeps its last known values and is retried on the next run."""
@@ -114,7 +115,8 @@ def refresh_scores(refs, shelf_titles, details, sc, hc, status):
         due = 7 if rec.get("status") in ("Ongoing", "On hiatus") else 30
         stale_version = c.get("v") != [SCORES_VERSION, goodreads.PARSER_VERSION]
         hc_new = bool(hc) and ref.startswith("ol:") and not c.get("hc_tried")  # token added after the first runs
-        if stale_version or days_since(c.get("checked")) >= due or hc_new or c.get("retry"):
+        pin_changed = bool(hc) and hc_pins.get(ref) and str(hc_pins.get(ref)) != str(c.get("hc_pin"))
+        if stale_version or days_since(c.get("checked")) >= due or hc_new or c.get("retry") or pin_changed:
             todo.append((days_since(c.get("checked")), ref))
     todo.sort(key=lambda x: -x[0])
     todo = [r for _, r in todo[:MAX_LOOKUPS]]
@@ -151,11 +153,21 @@ def refresh_scores(refs, shelf_titles, details, sc, hc, status):
                     entry.update(_keep(old, ("gr_",)))
                 if hc:
                     entry["hc_tried"] = True
+                    if hc_pins.get(ref):
+                        entry["hc_pin"] = str(hc_pins[ref])
                     try:
                         from .hardcover import parse
 
-                        book_id = hc.by_isbn(isbns) if isbns else None
-                        doc = {"id": book_id} if book_id else hc.best_match(title, author, isbns)
+                        pinned = hc_pins.get(ref)
+                        if pinned:  # you pointed this entry at a Hardcover book yourself
+                            pid = hc.by_slug(pinned)
+                            doc = {"id": pid} if pid else None
+                        else:
+                            # Try both the exact edition (ISBN) and a title search, keep the more-rated book.
+                            by_isbn = hc.by_isbn(isbns) if isbns else None
+                            found = hc.best_match(title, author, isbns)
+                            cands = [d for d in (by_isbn, found) if d and d.get("id")]
+                            doc = max(cands, key=lambda d: d.get("ratings_count") or 0) if cands else None
                         if doc:
                             det = hc.detail(doc.get("id")) if doc.get("id") else {}
                             entry.update(parse(doc, det))
@@ -332,7 +344,8 @@ def main():
     refs = resolve(sh, matches, status)
     fetch_details(refs, details, status)
     shelf_titles = {refs[k]: e.get("title") for k, e in sh["items"].items() if k in refs}
-    refresh_scores(refs, shelf_titles, details, sc, hc, status)
+    hc_pins = {refs[k]: e["hardcover"] for k, e in sh["items"].items() if k in refs and e.get("hardcover")}
+    refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins)
     items = assemble(sh, refs, details, sc)
 
     live = set(refs.values())
