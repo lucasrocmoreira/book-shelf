@@ -39,6 +39,12 @@ bunch up between 3.6 and 4.4, so compare books with books on the same source whe
 Without it the site works; books just have no Hardcover score, moods or tags (genres still come from Goodreads).
 When the token expires the site shows a warning; make a new one and replace the secret.
 
+### 2b. Comic Vine key (optional, for comic issue counts)
+1. Create a free account at https://comicvine.gamespot.com and open https://comicvine.gamespot.com/api/ to get your key.
+2. Add it as a repository secret named `COMICVINE_KEY`.
+
+Without it, comics still get collected-volume counts from Hardcover where it knows the series.
+
 ### 3. Run it
 1. **Actions** tab: enable workflows if GitHub asks.
 2. **Update book shelf > Run workflow**.
@@ -53,8 +59,10 @@ repository only (https://github.com/settings/personal-access-tokens/new). It sta
   Can't find it? **Add by title** (with the author if you know it) and it's matched on the next update.
 - **Status**: open a title and tap To read, Reading or Read. Read titles get your own 1 to 5 stars.
 - **Progress** (manga and comics): open the title and use − / + or type how many you've read, in volumes, chapters
-  or issues. Manga take the total from AniList unless you type your own. Starting moves a title to Reading;
-  reaching the end of a finished series marks it Read (ongoing series stay Reading). "Rank by progress" sorts by % read.
+  or issues. The total fills in by itself when the data has it: manga volumes and chapters from AniList, or
+  MangaUpdates for ongoing series; comic issues from Comic Vine (needs the optional `COMICVINE_KEY` secret);
+  collected comic volumes from Hardcover. Type your own total to override. Progress never changes the
+  To read / Reading / Read status; only you do. "Rank by progress" sorts by % read.
 - **Barcode**: in Add, tap **Scan barcode** (or **Use a photo**) and point at the barcode on the back cover, or type
   the ISBN into the search box. Books, graphic novels and manga volumes have ISBN barcodes. For manga it finds the
   volume, then asks you to pick the series. Single comic issues carry a UPC, which the book databases don't know.

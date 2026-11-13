@@ -4,17 +4,19 @@ Run locally:  python -m pipeline.build          (HARDCOVER_TOKEN optional)
 Environment:  HARDCOVER_TOKEN, MAX_LOOKUPS (default 150 per source per run).
 """
 import os
+import re
 import sys
 import traceback
 
-from . import goodreads, manga, openlibrary, shelf, titles
+from . import counts, goodreads, manga, openlibrary, shelf, titles
 from .hardcover import Hardcover, HardcoverError, check as hc_check
 from .util import CACHE_DIR, SITE_DIR, days_since, load_json, log, norm, now_iso, save_json
 
 MAX_LOOKUPS = int(os.environ.get("MAX_LOOKUPS", "150"))
+CV_KEY = os.environ.get("COMICVINE_KEY", "").strip() or None
 UNMATCHED_RETRY_DAYS = 3
 PAGES_PER_VOLUME = 190  # a typical tankōbon; used only to compare series length with books
-SCORES_VERSION = 3
+SCORES_VERSION = 4
 
 # Shelf names that only repeat the kind or say nothing about the book.
 GENRE_JUNK = {
@@ -105,7 +107,8 @@ def _keep(old, prefix_keys):
     return {k: v for k, v in old.items() if any(k.startswith(p) for p in prefix_keys)}
 
 
-def refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins=None, shelf_isbns=None):
+def refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins=None, shelf_isbns=None, shelf_kinds=None):
+    shelf_kinds = shelf_kinds or {}
     shelf_isbns = shelf_isbns or {}
     hc_pins = hc_pins or {}
     """Goodreads + Hardcover for books and comics, MyAnimeList for manga. Cached and rechecked monthly
@@ -148,6 +151,10 @@ def refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins=None, sh
                 elif rec.get("mal_id"):
                     entry.update(_keep(old, ("mal_", "demographics", "serialization")))
                     entry["retry"] = True
+                # AniList leaves volume and chapter counts blank until a series ends; MangaUpdates tracks them.
+                if not rec.get("volumes") or not rec.get("chapters"):
+                    mu = counts.mangaupdates([rec.get("title"), rec.get("original_title"), shelf_titles.get(ref)], rec.get("year"))
+                    entry.update(mu or _keep(old, ("mu_",)))
             else:
                 gr_tries += 1
                 g = goodreads.lookup(rec.get("goodreads_ids") or [], isbns, title, author)
@@ -176,6 +183,8 @@ def refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins=None, sh
                         if doc:
                             det = hc.detail(doc.get("id")) if doc.get("id") else {}
                             entry.update(parse(doc, det))
+                            if shelf_kinds.get(ref) == "comic" and entry.get("hc_series_id"):
+                                entry["hc_series_books"] = hc.series_books(entry["hc_series_id"])
                         elif old.get("hc_rating") is not None:
                             entry.update(_keep(old, ("hc_", "genres", "moods", "tags", "content_warnings", "series", "pages", "description", "cover")))
                     except HardcoverError as e:
@@ -186,6 +195,12 @@ def refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins=None, sh
                         if "token" in str(e):
                             status["hardcover"] = str(e)
                             hc = None
+            if shelf_kinds.get(ref) == "comic" and CV_KEY:
+                # Issue count of the comic series, for progress. The series name comes from your title
+                # ("Saga: Volume Two" -> Saga), else Goodreads or Hardcover's series, else the title itself.
+                name = titles.series_name(mine) or entry.get("gr_series") or entry.get("series") or titles.base_title(title)
+                cv = counts.comicvine(CV_KEY, re.sub(r"\s*\(\d{4}\)\s*$", "", name), rec.get("year"))
+                entry.update(cv or _keep(old, ("cv_",)))
         except Exception as e:  # a parser bug must not sink the run
             log(f"  {title}: {type(e).__name__}: {e}")
             continue
@@ -259,12 +274,14 @@ def assemble(sh, refs, details, sc):
         c = sc.get(ref) or {}
         item = {**base, "matched": True, "ref": ref}
         if kind == "manga":
-            vols = rec.get("volumes") or c.get("volumes")
+            vols = rec.get("volumes") or c.get("volumes") or c.get("mu_volumes")
+            chapters = rec.get("chapters") or c.get("mu_chapters")
             item.update({
                 "title": rec.get("title"), "original_title": rec.get("original_title"), "native_title": rec.get("native_title"),
                 "subtype": rec.get("subtype"), "authors": rec.get("authors") or [], "artists": rec.get("artists") or [],
                 "year": rec.get("year"), "end_year": rec.get("end_year"), "pub_status": rec.get("status"),
-                "volumes": vols, "chapters": rec.get("chapters"),
+                "volumes": vols, "chapters": chapters,
+                "counts_from": "MangaUpdates" if (not rec.get("volumes") and c.get("mu_volumes")) or (not rec.get("chapters") and c.get("mu_chapters")) else "AniList",
                 "pages": vols * PAGES_PER_VOLUME if vols else None, "pages_estimated": bool(vols),
                 "series": rec.get("title"),
                 "genres": _merge(rec.get("genres"), c.get("mal_genres"), junk=GENRE_JUNK),
@@ -296,6 +313,9 @@ def assemble(sh, refs, details, sc):
                 "year": rec.get("year") or e.get("year"), "end_year": None, "pub_status": None,
                 "pages": rec.get("pages") or hc_pages, "pages_estimated": False,
                 "volumes": None, "chapters": None,
+                # Series length for comic progress: issues from Comic Vine, collected volumes from Hardcover.
+                "issues_total": c.get("cv_issues") if kind == "comic" else None,
+                "volumes_total": c.get("hc_series_books") if kind == "comic" else None,
                 "series": None,
                 "genres": _merge(c.get("genres"), c.get("gr_genres"), junk=GENRE_JUNK),
                 "themes": _merge(c.get("tags"), rec.get("subjects") if not c.get("tags") else [], limit=12),
@@ -359,7 +379,8 @@ def main():
     for k, e in sh["items"].items():
         if k in refs and e.get("isbn"):
             shelf_isbns.setdefault(refs[k], []).append(str(e["isbn"]))
-    refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins, shelf_isbns)
+    shelf_kinds = {refs[k]: shelf.kind_of(e) for k, e in sh["items"].items() if k in refs}
+    refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins, shelf_isbns, shelf_kinds)
     items = assemble(sh, refs, details, sc)
 
     live = set(refs.values())

@@ -437,14 +437,21 @@ function rows(){
 
 /* ---------------- Reading progress (manga and comics) ---------------- */
 // Stored on the entry as progress (how many read), total (only when you set it) and unit.
-// Without a total of your own, manga use the volume or chapter count from AniList, which grows with ongoing series.
+// Without a total of your own, the count comes from the data: manga volumes and chapters from AniList
+// (MangaUpdates for ongoing series), comic issues from Comic Vine, collected comic volumes from Hardcover.
+// Ongoing series' counts grow as new volumes come out.
 const UNITS = {volumes:"volumes", chapters:"chapters", issues:"issues"};
-const unitOf = s => s.unit || (s.kind==="manga" ? (s.volumes ? "volumes" : "chapters") : "issues");
-function totalOf(s){
-  if(s.total) return s.total;
-  const u = unitOf(s);
-  return u==="volumes" ? (s.volumes||null) : u==="chapters" ? (s.chapters||null) : null;
+const unitOf = s => s.unit || (s.kind==="manga" ? (s.volumes ? "volumes" : "chapters")
+  : s.issues_total ? "issues" : s.volumes_total ? "volumes" : "issues");
+function autoTotal(s, u){
+  if(s.kind==="manga") return u==="volumes" ? (s.volumes||null) : u==="chapters" ? (s.chapters||null) : null;
+  return u==="issues" ? (s.issues_total||null) : u==="volumes" ? (s.volumes_total||null) : null;
 }
+function totalSource(s, u){
+  if(s.kind==="manga") return s.counts_from || "AniList";
+  return u==="issues" ? "Comic Vine" : "Hardcover";
+}
+function totalOf(s){ return s.total || autoTotal(s, unitOf(s)); }
 const tracksProgress = s => !s.isGroup && (s.kind==="manga" || s.kind==="comic");
 function progressText(s, short){
   if(!tracksProgress(s) || !s.progress) return "";
@@ -460,18 +467,14 @@ function setProgress(s, patch){
   Object.assign(e, patch);
   for(const k of ["total","unit"]) if(e[k]==null || e[k]==="") delete e[k];
   e.progress = Math.max(0, Math.round(e.progress||0));
-  const view = {...s, ...e, volumes:s.volumes, chapters:s.chapters};
-  const t = totalOf(view), ongoing = s.pub_status==="Ongoing" || s.pub_status==="On hiatus";
-  // Status follows progress: started means Reading; finishing a finished series means Read.
-  if(e.progress>0 && e.status==="unread"){ e.status = "reading"; }
-  if(t && e.progress>=t && !ongoing && e.status!=="read"){ e.status = "read"; e.read_on = today(); }
-  if(t && e.progress<t && e.status==="read"){ e.status = "reading"; e.read_on = null; }
-  if(e.progress===0 && e.status==="reading"){ e.status = "unread"; }
+  // Progress never changes To read / Reading / Read; only your taps on those buttons do.
+  const view = {...s, progress:e.progress, total:e.total ?? null, unit:e.unit || null};
+  const t = totalOf(view);
   merge(); render();
   // One save for a burst of + taps.
   clearTimeout(progTimers[s.key]);
   progTimers[s.key] = setTimeout(async ()=>{
-    const snap = {progress:e.progress, total:e.total, unit:e.unit, status:e.status, read_on:e.read_on};
+    const snap = {progress:e.progress, total:e.total, unit:e.unit};
     try{
       await writeShelf(d=>{ const x=d.items[s.key]; if(!x) return;
         for(const [k,v] of Object.entries(snap)){ if(v==null || v==="" || (k==="progress" && !v)) delete x[k]; else x[k]=v; } },
@@ -484,7 +487,7 @@ function progressBlock(s){
   if(!tracksProgress(s)) return "";
   const u = unitOf(s), t = totalOf(s), n = s.progress||0;
   const pct = t ? Math.min(100, Math.round(n/t*100)) : 0;
-  const auto = !s.total && t ? ` <span class="na">(from ${s.kind==="manga"?"AniList":"the data"})</span>` : "";
+  const auto = !s.total && t ? ` <span class="na">(from ${totalSource(s,u)})</span>` : !t ? ` <span class="na">type the total</span>` : "";
   return `<div class="prog">
     <span class="k">Progress</span>
     <span class="stepper">

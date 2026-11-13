@@ -18,7 +18,7 @@ ISBN = """query($isbns: [String!]) { editions(where: {_or: [{isbn_13: {_in: $isb
 BY_SLUG = """query($slug: String!) { books(where: {slug: {_eq: $slug}}, limit: 1) { id } }"""
 DETAIL = """query($id: Int!) { books_by_pk(id: $id) {
   id slug title pages release_year rating ratings_count users_count description
-  image { url } cached_tags book_series { position series { name } } } }"""
+  image { url } cached_tags book_series { position series { id name } } } }"""
 
 
 class HardcoverError(Exception):
@@ -114,6 +114,20 @@ class Hardcover:
                 best = (s, d)
         return best[1] if best else None
 
+    def series_books(self, series_id):
+        """How many main entries a Hardcover series has (its collected volumes, for a comic), or None.
+        Asked separately so a schema change here can't break the main lookup."""
+        if not series_id:
+            return None
+        for q in ("query($id: Int!) { series_by_pk(id: $id) { primary_books_count books_count } }",
+                  "query($id: Int!) { series_by_pk(id: $id) { books_count } }"):
+            try:
+                s = self._q(q, id=int(series_id)).get("series_by_pk") or {}
+                return s.get("primary_books_count") or s.get("books_count") or None
+            except (HardcoverError, ValueError):
+                continue
+        return None
+
     def detail(self, book_id):
         try:
             return (self._q(DETAIL, id=int(book_id)).get("books_by_pk")) or {}
@@ -142,15 +156,16 @@ def parse(doc, det):
             cached = {}
     rating = det.get("rating", doc.get("rating"))
     count = det.get("ratings_count", doc.get("ratings_count")) or 0
-    series = None
+    series = series_id = None
     for bs in det.get("book_series") or []:
         name = ((bs or {}).get("series") or {}).get("name")
         if name:
-            series = name
+            series, series_id = name, ((bs or {}).get("series") or {}).get("id")
             break
     slug = det.get("slug") or doc.get("slug")
     return {
         "hc_id": det.get("id") or doc.get("id"),
+        "hc_series_id": series_id,
         "hc_slug": slug,
         "hc_rating": round(float(rating), 2) if rating else None,
         "hc_votes": count,
