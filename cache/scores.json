@@ -180,6 +180,76 @@
   ],
   "volumes": null
  },
+ "isbn:9788551011935": {
+  "checked": "2026-11-13T20:25:32+00:00",
+  "content_warnings": [
+   "Car accident",
+   "Child abuse",
+   "child death",
+   "Alcoholism"
+  ],
+  "cover": "https://assets.hardcover.app/edition/32698489/34100992-b2a5-4bf0-8b62-8867a3ddc24a.jpeg",
+  "description": "From the bestselling author of Strange Houses and Strange Pictures comes a mesmerizing novel of eleven strange buildings and one terrible secret.\n\nA lonely hut in the woods.\nA murder house.\nA hidden chamber.\nA mysterious shrine.\nA home in flames.\nA nightmarish prison. . . .\n\nEach of the buildings in this book tells a chilling story. Each one is part of a puzzle. Look closely . . . and you'll see that everything is connected. All leading to a revelation so horrifying you won't want to believe it.\n\nMillions of readers have become addicted to solving Uketsu's dark mysteries. Strange Buildings is the strangest, and darkest, of them all.",
+  "genres": [
+   "Horror",
+   "Mystery",
+   "Suspense",
+   "Fiction; Horror; Mystery; Thrillers",
+   "Thrillers",
+   "Crime",
+   "International Crime & Mystery",
+   "Mystery & Detective"
+  ],
+  "gr_genres": [
+   "Horror",
+   "Mystery",
+   "Fiction",
+   "Thriller",
+   "Mystery Thriller",
+   "Japanese Literature",
+   "Japan",
+   "Crime"
+  ],
+  "gr_guessed": false,
+  "gr_id": "247530657-casas-estranhas-2",
+  "gr_rating": 3.91,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Casas estranhas 2: O mistério das onze plantas baixas",
+  "gr_votes": 38313,
+  "hc_id": 2156505,
+  "hc_rating": 3.81,
+  "hc_readers": 376,
+  "hc_series_id": 315147,
+  "hc_slug": "strange-buildings",
+  "hc_tried": true,
+  "hc_votes": 137,
+  "moods": [
+   "mysterious",
+   "dark",
+   "sad",
+   "challenging",
+   "tense"
+  ],
+  "pages": 384,
+  "series": "The Strange Series ",
+  "tags": [
+   "Weak Character Development",
+   "Unloveable Characters",
+   "Not Diverse Characters",
+   "Plot driven",
+   "Character driven",
+   "male author",
+   "dark",
+   "mysterious",
+   "Tense",
+   "fast-paced"
+  ],
+  "v": [
+   4,
+   2
+  ]
+ },
  "isbn:9788556512543": {
   "checked": "2026-11-13T20:24:25+00:00",
   "content_warnings": [
