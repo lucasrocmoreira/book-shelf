@@ -180,6 +180,79 @@
   ],
   "volumes": null
  },
+ "isbn:9788556512543": {
+  "checked": "2026-11-13T20:24:25+00:00",
+  "content_warnings": [
+   "Murder",
+   "Death",
+   "Sexual assault",
+   "Animal cruelty",
+   "Cancer",
+   "Child abuse"
+  ],
+  "cover": "https://assets.hardcover.app/edition/31833489/46937d75b58ac756f2c5dc6df419ce744f0c0f23.jpeg",
+  "description": "An exploration of the macabre, where the seemingly mundane takes on a terrifying significance. . . .\n\nA pregnant woman's sketches on a seemingly innocuous blog conceal a chilling warning.\n\nA child's picture of his home contains a dark secret message.\n\nA sketch made by a murder victim in his final moments leads an amateur sleuth down a rabbithole that will reveal a horrifying reality.\n\nStructured around these nine childlike drawings, each holding a disturbing clue, Uketsu invites readers to piece together the mystery behind each and the over-arching backstory that connects them all. Strange Pictures is the internationally bestselling debut from mystery horror YouTube sensation Uketsu—an enigmatic masked figure who has become one of Japan's most talked about contemporary authors.",
+  "genres": [
+   "Horror",
+   "Mystery",
+   "Thriller",
+   "Thrillers",
+   "Fiction; Horror; Mystery; Thrillers",
+   "Literary Fiction",
+   "Short stories",
+   "Crime"
+  ],
+  "gr_genres": [
+   "Horror",
+   "Mystery",
+   "Thriller",
+   "Fiction",
+   "Japan",
+   "Crime",
+   "Mystery Thriller",
+   "Japanese Literature"
+  ],
+  "gr_guessed": false,
+  "gr_id": "227982124-imagens-estranhas",
+  "gr_rating": 3.91,
+  "gr_series": null,
+  "gr_series_pos": null,
+  "gr_title": "Imagens estranhas",
+  "gr_votes": 144535,
+  "hc_id": 1570320,
+  "hc_rating": 3.83,
+  "hc_readers": 1201,
+  "hc_series_id": 315147,
+  "hc_slug": "strange-pictures",
+  "hc_tried": true,
+  "hc_votes": 481,
+  "moods": [
+   "mysterious",
+   "dark",
+   "tense",
+   "sad",
+   "emotional",
+   "challenging"
+  ],
+  "pages": 240,
+  "series": "The Strange Series ",
+  "tags": [
+   "Unloveable Characters",
+   "Weak Character Development",
+   "Not Diverse Characters",
+   "A mix driven",
+   "Plot driven",
+   "Diverse Characters",
+   "Strong Character Development",
+   "fiction",
+   "mystery",
+   "Character driven"
+  ],
+  "v": [
+   4,
+   2
+  ]
+ },
  "ol:OL16799356W": {
   "checked": "2026-11-13T19:32:36+00:00",
   "content_warnings": [
