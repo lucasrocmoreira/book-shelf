@@ -237,6 +237,20 @@ def _decade(y):
     return f"{y // 10 * 10}s" if isinstance(y, int) else None
 
 
+def _series_books(kind, e, c):
+    """Hardcover's count of books in the series, used as a comic's volume total only when it's believable:
+    your title names a volume (so the entry really is one volume of a run) and the count is at least that
+    volume number. Hardcover series sometimes mean a publisher line ("Manga Classics") or list one book."""
+    of = re.search(r"\b\d{1,3}\s*/\s*(\d{1,3})\b", e.get("title") or "")  # "nº 01/02": the edition says how many
+    if kind == "comic" and of and int(of.group(1)) > 1:
+        return int(of.group(1))
+    n = c.get("hc_series_books")
+    pos = titles.volume(e.get("title"))
+    if kind != "comic" or not n or pos is None or n <= 1 or n < pos:
+        return None
+    return n
+
+
 def series_of(kind, e, rec, c):
     """(series name, volume number) for a book or comic. Your own title decides for comics, so every
     volume you add as "Saga: Volume N" lands in the same series; then Goodreads, then Hardcover.
@@ -315,7 +329,7 @@ def assemble(sh, refs, details, sc):
                 "volumes": None, "chapters": None,
                 # Series length for comic progress: issues from Comic Vine, collected volumes from Hardcover.
                 "issues_total": c.get("cv_issues") if kind == "comic" else None,
-                "volumes_total": c.get("hc_series_books") if kind == "comic" else None,
+                "volumes_total": _series_books(kind, e, c),
                 "series": None,
                 "genres": _merge(c.get("genres"), c.get("gr_genres"), junk=GENRE_JUNK),
                 "themes": _merge(c.get("tags"), rec.get("subjects") if not c.get("tags") else [], limit=12),
