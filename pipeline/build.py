@@ -13,7 +13,6 @@ from .hardcover import Hardcover, HardcoverError, check as hc_check
 from .util import CACHE_DIR, SITE_DIR, days_since, load_json, log, norm, now_iso, save_json
 
 MAX_LOOKUPS = int(os.environ.get("MAX_LOOKUPS", "150"))
-CV_KEY = os.environ.get("COMICVINE_KEY", "").strip() or None
 UNMATCHED_RETRY_DAYS = 3
 PAGES_PER_VOLUME = 190  # a typical tankōbon; used only to compare series length with books
 SCORES_VERSION = 4
@@ -195,12 +194,6 @@ def refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins=None, sh
                         if "token" in str(e):
                             status["hardcover"] = str(e)
                             hc = None
-            if shelf_kinds.get(ref) == "comic" and CV_KEY:
-                # Issue count of the comic series, for progress. The series name comes from your title
-                # ("Saga: Volume Two" -> Saga), else Goodreads or Hardcover's series, else the title itself.
-                name = titles.series_name(mine) or entry.get("gr_series") or entry.get("series") or titles.base_title(title)
-                cv = counts.comicvine(CV_KEY, re.sub(r"\s*\(\d{4}\)\s*$", "", name), rec.get("year"))
-                entry.update(cv or _keep(old, ("cv_",)))
         except Exception as e:  # a parser bug must not sink the run
             log(f"  {title}: {type(e).__name__}: {e}")
             continue
@@ -327,8 +320,7 @@ def assemble(sh, refs, details, sc):
                 "year": rec.get("year") or e.get("year"), "end_year": None, "pub_status": None,
                 "pages": rec.get("pages") or hc_pages, "pages_estimated": False,
                 "volumes": None, "chapters": None,
-                # Series length for comic progress: issues from Comic Vine, collected volumes from Hardcover.
-                "issues_total": c.get("cv_issues") if kind == "comic" else None,
+                # Series length shown on a comic's series row, from Hardcover.
                 "volumes_total": _series_books(kind, e, c),
                 "series": None,
                 "genres": _merge(c.get("genres"), c.get("gr_genres"), junk=GENRE_JUNK),

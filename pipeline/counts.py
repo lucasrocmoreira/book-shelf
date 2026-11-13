@@ -1,19 +1,14 @@
-"""How long a series is: volumes and chapters for manga, issues for comics. Used as the default total for
-reading progress. Every function returns None instead of raising; a missing count only means you type it.
+"""How long a manga series is, in volumes and chapters. Used as the default total for reading progress. Every function returns None instead of raising; a missing count only means you type it.
 
 - MangaUpdates (free, no key): volume and chapter counts for ongoing manga, which AniList leaves blank
   until a series ends. https://api.mangaupdates.com
-- Comic Vine (free key, optional COMICVINE_KEY secret): issue count of a comic series ("volume" in
-  Comic Vine's terms). https://comicvine.gamespot.com/api/
 """
 import re
 import time
 
-from .titles import base_title
 from .util import _last_call, log, polite_get, session, similarity
 
 MU = "https://api.mangaupdates.com/v1"
-CV = "https://comicvine.gamespot.com/api"
 UA = "book-shelf/1.0 (personal reading list)"
 
 
@@ -66,57 +61,3 @@ def mangaupdates(titles, year=None):
     return {"mu_id": sid, "mu_status": status.split("\n")[0][:80],
             "mu_volumes": int(m.group(1)) if m else None,
             "mu_chapters": _num(d.get("latest_chapter")) or None}
-
-
-def comicvine(key, name, year=None, publisher=None):
-    """{"cv_issues", "cv_id", "cv_name", "cv_year"} for the comic series named `name`, or None."""
-    if not key or not name:
-        return None
-    q = base_title(name)
-    if q in _CV_SEEN:  # every volume of a series asks the same question; ask Comic Vine once per run
-        body = _CV_SEEN[q]
-    else:
-        body = _cv_search(key, q)
-        _CV_SEEN[q] = body
-    if body is None:
-        return None
-    return _cv_pick(body, q, year, publisher)
-
-
-_CV_SEEN = {}
-
-
-def _cv_search(key, q):
-    r = polite_get(f"{CV}/search/", host_delay=1.5, headers={"User-Agent": UA}, params={
-        "api_key": key, "format": "json", "resources": "volume", "query": q, "limit": 20,
-        "field_list": "id,name,start_year,count_of_issues,publisher"})
-    if r is None or r.status_code != 200:
-        log(f"    Comic Vine {q}: {'no response' if r is None else 'HTTP ' + str(r.status_code)}")
-        return None
-    body = r.json() or {}
-    if body.get("status_code") not in (1, None):
-        log(f"    Comic Vine {q}: {body.get('error')}")
-        return None
-    return body
-
-
-def _cv_pick(body, q, year, publisher):
-    best = None
-    for v in body.get("results") or []:
-        s = similarity(q, v.get("name") or "")
-        if s < 0.9:
-            continue
-        y = _num(v.get("start_year"))
-        if year and y:
-            if y > int(year) + 1:
-                continue  # a series that started after this book came out isn't it
-            s -= min(abs(int(year) - y), 10) * 0.02  # prefer the run that started closest to it
-        if publisher and similarity(publisher, ((v.get("publisher") or {}).get("name")) or "") >= 0.8:
-            s += 0.1
-        n = _num(v.get("count_of_issues")) or 0
-        if best is None or (s, n) > (best[0], best[2]):
-            best = (s, v, n)
-    if not best or not best[2]:
-        return None
-    v = best[1]
-    return {"cv_issues": best[2], "cv_id": v.get("id"), "cv_name": v.get("name"), "cv_year": _num(v.get("start_year"))}

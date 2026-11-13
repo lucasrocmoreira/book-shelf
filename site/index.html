@@ -394,7 +394,7 @@ function buildSeries(){
   for(const s of ITEMS){ const k = seriesKey(s); if(k){ if(!by.has(k)) by.set(k,[]); by.get(k).push(s); } }
   SERIES = new Map();
   for(const [k, ms] of by){
-    if(ms.length < 2) continue;
+    if(ms.length < 2 && ms[0].series_pos == null) continue;  // a lone unnumbered comic stays a plain title
     ms.sort((a,b)=>(a.series_pos??999)-(b.series_pos??999) || (a.year||0)-(b.year||0) || a.title.localeCompare(b.title));
     const union = f => [...new Set(ms.flatMap(m=>m[f]||[]))];
     const scores = {}, votes = {};
@@ -407,8 +407,9 @@ function buildSeries(){
     }
     const st = ms.map(m=>m.reading), rated = ms.filter(m=>m.rating);
     const sumOf = f => ms.some(m=>m[f]!=null) ? ms.reduce((a,m)=>a+(m[f]||0),0) : null;
+    const known = Math.max(0, ...ms.map(m=>m.volumes_total||0)) || null;
     const g = {
-      key:k, isGroup:true, members:ms, kind:"comic", subtype:"Comics", title:ms[0].series[0],
+      key:k, isGroup:true, series_total:known, issueStyle:ms.some(m=>/#\s*\d/.test(m.title)), members:ms, kind:"comic", subtype:"Comics", title:ms[0].series[0],
       authors:union("authors").slice(0,3), artists:[], cover:(ms.find(m=>m.cover)||{}).cover||null,
       year:Math.min(...ms.map(m=>m.year||9999))<9999 ? Math.min(...ms.map(m=>m.year||9999)) : null,
       end_year:Math.max(...ms.map(m=>m.year||0))||null,
@@ -452,7 +453,8 @@ function totalSource(s, u){
   return u==="issues" ? "Comic Vine" : "Hardcover";
 }
 function totalOf(s){ return s.total || autoTotal(s, unitOf(s)); }
-const tracksProgress = s => !s.isGroup && (s.kind==="manga" || s.kind==="comic");
+// Manga get a counter. Comics track progress through their volumes or issues, nested under the series.
+const tracksProgress = s => !s.isGroup && s.kind==="manga";
 function progressText(s, short){
   if(!tracksProgress(s) || !s.progress) return "";
   const t = totalOf(s), u = unitOf(s);
@@ -501,6 +503,16 @@ function progressBlock(s){
     ${auto}
     ${t?`<div class="pbar big" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div><span class="na">${pct}%${t>n?`, ${t-n} ${u} left`:""}</span>`:""}
   </div>`;
+}
+
+// Adds "<Series>, Vol. N" (or "<Series> #N" for issues) by title; the next update finds and scores it.
+function addNextVolume(g, n){
+  const title = g.issueStyle ? `${g.title} #${n}` : `${g.title}, Vol. ${n}`;
+  const key = `q:comic:${norm(title)}`;
+  if(SH.items[key]){ toast(`${title} is already on your shelf`); return; }
+  const author = (g.members.find(m=>m.authors?.length)||{}).authors?.[0];
+  act(d=>{ d.items[key] = {kind:"comic", title, added:today(), status:"unread", interest:0, rating:0, series:g.title, volume:n, ...(author?{author}:{})}; },
+      `Add: ${title}`, `Added ${title}. Details and ratings in about 5 minutes.`, true);
 }
 
 function setStatus(s, st){
@@ -663,12 +675,25 @@ function groupDetail(s){
     </div>`;
   }).join("");
   const read = s.members.filter(m=>m.reading==="read").length;
+  const word = s.issueStyle ? "issue" : "volume";
+  const last = Math.max(0, ...s.members.map(m=>m.series_pos||0));
+  const next = last + 1;
+  const total = s.series_total && s.series_total >= last ? s.series_total : null;
+  const left = total ? total - read : null;
+  const counts = total
+    ? `${read} of ${plural(total, word)} read${left>0?`, ${left} left`:""}. ${s.members.length < total ? `${s.members.length} on your shelf.` : ""}`
+    : `${read} of ${plural(s.members.length, word)} on your shelf read.`;
+  const addNext = !total || next <= total
+    ? `<button type="button" class="iconbtn" data-act="addnext" data-n="${next}">Add ${word} ${next}</button>` : "";
   const srcs = Object.keys(SOURCES).filter(k=>SOURCES[k].kinds.includes("comic"));
   const breakdown = srcs.map(k=>{ const v=s.scores[k], n=s.members.filter(m=>m.scores?.[k]!=null).length;
     return `<div><span>${SOURCES[k].label}</span><b class="${tone(v)}">${v??"–"}${v!=null?` <span class="na">${n} of ${s.members.length} vols</span>`:""}</b></div>`; }).join("");
   return `<div class="detail">
-    <p class="note" style="color:var(--muted)">${read} of ${s.members.length} volumes read. Scores are the mean of each volume's score. Turn off “Merge comic volumes” under other options to rate or remove single volumes.</p>
+    <p class="note" style="color:var(--ink)">${counts}${total?` <span class="na">(series length from Hardcover)</span>`:""}</p>
+    ${total ? `<div class="pbar big" style="max-width:none"><i style="width:${Math.min(100,Math.round(read/total*100))}%"></i></div>` : ""}
     <div class="vols">${vols}</div>
+    <div class="actions">${addNext}</div>
+    <p class="note" style="color:var(--muted)">Scores are each ${word}'s score averaged. Turn off “Merge comic volumes” under other options to rate or remove single ${word}s.</p>
     ${s.description?`<p class="summary clamp">${esc(s.description)}</p>`:""}
     <div class="breakdown">${breakdown}</div>
     <div class="facts">
@@ -1168,6 +1193,8 @@ function setup(){
       if(!state.tags.some(x=>x.field===t.field&&x.value===t.value)) state.tags.push(t);
       window.scrollTo({top:$("out").offsetTop-140, behavior:"smooth"}); render(); return; }
     const li=e.target.closest(".item"); if(!li) return;
+    const nx = e.target.closest("[data-act=addnext]");
+    if(nx){ const g = rows().find(x=>x.key===li.dataset.key); if(g && g.isGroup) addNextVolume(g, +nx.dataset.n); return; }
     const mem = e.target.closest("[data-member]");
     const s = mem ? ITEMS.find(x=>x.key===mem.dataset.member) : rows().find(x=>x.key===li.dataset.key); if(!s) return;
     const a=e.target.closest("[data-act]");

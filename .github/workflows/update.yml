@@ -37,7 +37,6 @@ jobs:
       - name: Fetch details and ratings
         env:
           HARDCOVER_TOKEN: ${{ secrets.HARDCOVER_TOKEN }}
-          COMICVINE_KEY: ${{ secrets.COMICVINE_KEY }}
           MAX_LOOKUPS: "150"
         run: python -m pipeline.build
 
