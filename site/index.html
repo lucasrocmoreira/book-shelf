@@ -939,6 +939,18 @@ async function lookupIsbn(isbn){
       cover:d.cover_i?`https://covers.openlibrary.org/b/id/${d.cover_i}-L.jpg`:null, thumb:d.cover_i?`https://covers.openlibrary.org/b/id/${d.cover_i}-S.jpg`:null,
       sub:[(d.author_name||[]).slice(0,2).join(", "), `ISBN ${isbn}`].filter(Boolean).join(" · ")};
   }catch{}
+  // BrasilAPI asks the Brazilian ISBN agency (CBL) and Mercado Editorial, so it knows Brazilian editions
+  // that Open Library and Google Books miss.
+  try{
+    const r = await fetch(`https://brasilapi.com.br/api/isbn/v1/${isbn}`);
+    const b = r.ok ? await r.json() : null;
+    if(b && b.title){
+      const title = b.title + (b.subtitle && b.title.length<30 ? `: ${b.subtitle}` : "");
+      return {ref:{}, title, author:(b.authors||[])[0]||"", year:b.year||null, isbn, cover:b.cover_url||null, thumb:b.cover_url||null,
+        sub:[(b.authors||[]).slice(0,2).join(", "), b.publisher, `ISBN ${isbn}`].filter(Boolean).join(" · "),
+        via:{cbl:"the Brazilian ISBN registry", "mercado-editorial":"Mercado Editorial", "google-books":"Google Books", "open-library":"Open Library"}[b.provider] || "BrasilAPI"};
+    }
+  }catch{}
   try{
     const r = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`);
     const v = r.ok ? (((await r.json()).items||[])[0]||{}).volumeInfo : null;
@@ -946,7 +958,7 @@ async function lookupIsbn(isbn){
       const img = (v.imageLinks?.thumbnail || v.imageLinks?.smallThumbnail || "").replace(/^http:/,"https:");
       const title = v.title + (v.subtitle && v.title.length<30 ? `: ${v.subtitle}` : "");
       return {ref:{}, title, author:(v.authors||[])[0]||"", year:parseInt(v.publishedDate,10)||null, isbn, cover:img||null, thumb:img||null,
-        sub:[(v.authors||[]).slice(0,2).join(", "), v.publisher, `ISBN ${isbn}`, "matched by title in the next update"].filter(Boolean).join(" · ")};
+        sub:[(v.authors||[]).slice(0,2).join(", "), v.publisher, `ISBN ${isbn}`].filter(Boolean).join(" · "), via:"Google Books"};
     }
   }catch{}
   return null;
@@ -1072,7 +1084,7 @@ async function runSearch(q){
     if(isbn){
       const found = await lookupIsbn(isbn);
       if(seq !== searchSeq) return;
-      if(!found){ box.innerHTML = `<p>No book found for ISBN ${esc(isbn)} in Open Library or Google Books. Search by title, or add it by title.</p>`; return; }
+      if(!found){ box.innerHTML = `<p>No book found for ISBN ${esc(isbn)} in Open Library, the Brazilian ISBN registry or Google Books. Search by title, or add it by title.</p>`; return; }
       if(kind==="manga"){
         // A manga ISBN identifies one volume; the shelf tracks the series, so look the series up on AniList.
         const name = seriesTitle(found.title);
@@ -1082,7 +1094,7 @@ async function runSearch(q){
         if(!hits.length){ box.innerHTML = `${note}<p>Nothing on AniList for “${esc(name)}”. Try the Japanese title, or add it as Comics if it isn't Asian in origin.</p>`; return; }
       } else {
         hits = [found];
-        note = found.ref.ol ? "" : `<p>Open Library doesn't have this edition; found it on Google Books. It's added by title and matched in the next update.</p>`;
+        note = found.ref.ol ? "" : `<p>Found in ${esc(found.via)}. Ratings are looked up by this ISBN in the next update.</p>`;
       }
     } else {
       hits = kind==="manga" ? await searchAniList(q) : await searchOpenLibrary(q);

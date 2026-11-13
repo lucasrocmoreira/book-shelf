@@ -8,7 +8,7 @@ import re
 import sys
 import traceback
 
-from . import counts, goodreads, manga, openlibrary, shelf, titles
+from . import brasilapi, counts, goodreads, manga, openlibrary, shelf, titles
 from .hardcover import Hardcover, HardcoverError, check as hc_check
 from .util import CACHE_DIR, SITE_DIR, days_since, load_json, log, norm, now_iso, save_json
 
@@ -62,6 +62,9 @@ def resolve(sh, matches, status):
             else:
                 found = openlibrary.best_match(title, author, year)
                 ref = f"ol:{found}" if found else None
+                if not ref and brasilapi.isbn13(e.get("isbn")):
+                    # Open Library doesn't know this edition (common for Brazilian books): follow the ISBN itself.
+                    ref = f"isbn:{brasilapi.isbn13(e['isbn'])}"
         except Exception as err:
             log(f"  search failed for {title}: {err}")
             continue
@@ -82,14 +85,32 @@ def detail_due(rec):
     return days_since(rec.get("fetched")) >= 30
 
 
-def fetch_details(refs, cache, status):
+def isbn_record(isbn, entry):
+    """Details for a book known only by its ISBN: BrasilAPI, else what you entered."""
+    b = brasilapi.lookup(isbn) or {}
+    e = entry or {}
+    return {
+        "isbn": isbn, "title": b.get("title") or e.get("title"), "subtitle": b.get("subtitle"),
+        "authors": b.get("authors") or ([e["author"]] if e.get("author") else []),
+        "year": b.get("year") or e.get("year"), "pages": b.get("pages"), "description": b.get("description"),
+        "subjects": openlibrary.clean_subjects(b.get("subjects")), "cover": b.get("cover") or e.get("cover"),
+        "publisher": b.get("publisher"), "isbns": [isbn], "goodreads_ids": [], "characters": [], "places": [],
+        "ol_rating": None, "ol_votes": None, "ol_readers": None,
+    }
+
+
+def fetch_details(refs, cache, status, entries=None):
+    entries = entries or {}
     todo = [r for r in sorted(set(refs.values())) if detail_due(cache.get(r))][: MAX_LOOKUPS * 2]
-    ok = {"ol": 0, "al": 0}
-    fail = {"ol": 0, "al": 0}
+    ok = {"ol": 0, "al": 0, "isbn": 0}
+    fail = {"ol": 0, "al": 0, "isbn": 0}
     for ref in todo:
         src, ident = ref.split(":", 1)
         try:
-            rec = openlibrary.work(ident) if src == "ol" else manga.anilist(ident)
+            if src == "isbn":
+                rec = isbn_record(ident, entries.get(ref))
+            else:
+                rec = openlibrary.work(ident) if src == "ol" else manga.anilist(ident)
         except Exception as e:
             fail[src] += 1
             log(f"  {ref}: {type(e).__name__}: {e}")
@@ -99,7 +120,7 @@ def fetch_details(refs, cache, status):
             ok[src] += 1
     status["openlibrary"] = "ok" if not fail["ol"] else f"{fail['ol']} books failed to refresh; showing saved details"
     status["anilist"] = "ok" if not fail["al"] else f"{fail['al']} series failed to refresh; showing saved details"
-    log(f"Details: {ok['ol']} from Open Library, {ok['al']} from AniList")
+    log(f"Details: {ok['ol']} from Open Library, {ok['al']} from AniList, {ok['isbn']} by ISBN")
 
 
 def _keep(old, prefix_keys):
@@ -121,7 +142,7 @@ def refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins=None, sh
         c = sc.get(ref) or {}
         due = 7 if rec.get("status") in ("Ongoing", "On hiatus") else 30
         stale_version = c.get("v") != [SCORES_VERSION, goodreads.PARSER_VERSION]
-        hc_new = bool(hc) and ref.startswith("ol:") and not c.get("hc_tried")  # token added after the first runs
+        hc_new = bool(hc) and not ref.startswith("al:") and not c.get("hc_tried")  # token added after the first runs
         pin_changed = bool(hc) and hc_pins.get(ref) and str(hc_pins.get(ref)) != str(c.get("hc_pin"))
         if stale_version or days_since(c.get("checked")) >= due or hc_new or c.get("retry") or pin_changed:
             todo.append((days_since(c.get("checked")), ref))
@@ -344,7 +365,7 @@ def assemble(sh, refs, details, sc):
                 "openlibrary": _score5(rec.get("ol_rating"), rec.get("ol_votes"), "openlibrary"),
             }
             item["votes"] = {"goodreads": c.get("gr_votes"), "hardcover": c.get("hc_votes"), "openlibrary": rec.get("ol_votes")}
-            links = {"openlibrary": f"https://openlibrary.org/works/{rec['ol']}"}
+            links = {"openlibrary": f"https://openlibrary.org/works/{rec['ol']}"} if rec.get("ol") else {}
             if c.get("gr_id"):
                 links["goodreads"] = f"https://www.goodreads.com/book/show/{c['gr_id']}"
             if c.get("hc_slug"):
@@ -378,7 +399,7 @@ def main():
     sc = load_json(CACHE_DIR / "scores.json", {})
 
     refs = resolve(sh, matches, status)
-    fetch_details(refs, details, status)
+    fetch_details(refs, details, status, {refs[k]: e for k, e in sh["items"].items() if k in refs})
     shelf_titles = {refs[k]: e.get("title") for k, e in sh["items"].items() if k in refs}
     hc_pins = {refs[k]: e["hardcover"] for k, e in sh["items"].items() if k in refs and e.get("hardcover")}
     shelf_isbns = {}
