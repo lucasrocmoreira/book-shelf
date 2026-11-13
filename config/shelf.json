@@ -663,6 +663,17 @@
    "author": "Chris Burnham",
    "year": 2023,
    "cover": "https://covers.openlibrary.org/b/id/14775283-L.jpg"
+  },
+  "q:book:imagens estranhas": {
+   "kind": "book",
+   "title": "IMAGENS ESTRANHAS",
+   "added": "2026-11-13",
+   "status": "unread",
+   "interest": 0,
+   "rating": 0,
+   "author": "Maria Luísa Vanik",
+   "year": 2025,
+   "isbn": "9788556512543"
   }
  }
 }
