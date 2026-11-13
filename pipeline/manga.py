@@ -4,6 +4,7 @@ MAL score, rank, member count, themes and demographic. Both free, no key.
 AniList: https://docs.anilist.co (90 requests a minute, currently cut to 30 while degraded)
 Jikan, an unofficial MyAnimeList API: https://docs.api.jikan.moe (60 a minute)
 """
+import html as htmllib
 import re
 import time
 
@@ -14,6 +15,7 @@ JIKAN = "https://api.jikan.moe/v4"
 
 FIELDS = """id idMal siteUrl title { romaji english native } synonyms format status countryOfOrigin
   startDate { year } endDate { year } volumes chapters averageScore meanScore popularity favourites
+  stats { scoreDistribution { score amount } }
   genres tags { name rank isMediaSpoiler isGeneralSpoiler category }
   description(asHtml: false) coverImage { extraLarge large }
   staff(perPage: 8, sort: [RELEVANCE]) { edges { role node { name { full } } } }"""
@@ -84,6 +86,7 @@ def _clean_desc(d):
         return None
     d = re.sub(r"<br\s*/?>", "\n", d)
     d = re.sub(r"<[^>]+>", "", d)
+    d = htmllib.unescape(d)  # AniList sends entities such as &ndash;
     d = re.split(r"\n\s*\(Source:|\(Source:|\n\s*Note:", d)[0]
     return re.sub(r"\n{3,}", "\n\n", d).strip() or None
 
@@ -132,6 +135,8 @@ def anilist(al_id):
         "cover": cover.get("extraLarge") or cover.get("large"),
         "anilist_score": m.get("averageScore") or m.get("meanScore"),
         "anilist_popularity": m.get("popularity"),
+        # How many people actually scored it (AniList's average is over these), for weighting the score.
+        "anilist_votes": sum((d or {}).get("amount") or 0 for d in ((m.get("stats") or {}).get("scoreDistribution") or [])) or None,
         "anilist_url": m.get("siteUrl") or f"https://anilist.co/manga/{m['id']}",
     }
 

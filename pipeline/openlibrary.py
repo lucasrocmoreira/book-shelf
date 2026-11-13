@@ -62,6 +62,15 @@ def search(title, author=None, limit=10):
     return docs
 
 
+def by_isbn(isbn):
+    """Work id for an ISBN (what a scanned barcode gives), or None."""
+    isbn = re.sub(r"[^0-9Xx]", "", str(isbn or ""))
+    if len(isbn) not in (10, 13):
+        return None
+    res = _get("/search.json", isbn=isbn, fields="key", limit=1) or {}
+    return work_id(((res.get("docs") or [{}])[0]).get("key"))
+
+
 def best_match(title, author=None, year=None):
     """Work id (OL...W) of the closest match, or None when nothing is a confident match."""
     scored = []

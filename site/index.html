@@ -105,6 +105,8 @@ ol.list{list-style:none;margin:0;padding:0}
 .breakdown{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px 14px;font-size:13px}
 .breakdown div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted var(--line);padding:2px 0}
 .breakdown b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.breakdown .low b{opacity:.55}
+.breakdown .weak{display:block;font-size:11px;color:var(--muted)}
 .summary{font-size:14px;margin:0;max-width:68ch;white-space:pre-line}
 .summary.clamp{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
 .morebtn{background:none;border:0;padding:0;color:var(--accent);cursor:pointer;font-size:13px;font-weight:600;justify-self:start}
@@ -120,6 +122,16 @@ ol.list{list-style:none;margin:0;padding:0}
 .vol .seg{grid-column:2/4;justify-self:start}
 .vol .seg button{padding:3px 10px;font-size:13px;border-radius:0}
 .vol .seg button.on{background:var(--ink);color:var(--bg)}
+.prog{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:14px}
+.prog .k{font-size:13px;color:var(--muted);min-width:64px}
+.prog input,.prog select{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:4px 6px;width:64px;text-align:center}
+.prog select{width:auto}
+.stepper{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.stepper button{border:0;background:var(--panel);width:34px;height:32px;font-size:18px;cursor:pointer}
+.stepper input{border:0 !important;border-radius:0 !important;width:52px !important}
+.pbar{height:4px;background:var(--line);border-radius:2px;margin-top:6px;overflow:hidden;max-width:220px}
+.pbar i{display:block;height:100%;background:var(--hi)}
+.pbar.big{flex:1 1 140px;max-width:none;margin:0;height:6px}
 .links{font-size:13px;color:var(--muted)}
 .links a{margin-right:12px}
 .note{font-size:13px;color:var(--mid);margin:0}
@@ -147,6 +159,11 @@ dialog::backdrop{background:rgba(20,14,8,.45)}
 .linkbtn{background:none;border:0;padding:0;color:var(--accent);cursor:pointer;font-weight:600;justify-self:start}
 .results{display:grid;gap:2px}
 .result{display:grid;grid-template-columns:40px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.scanrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.scanbox{display:grid;gap:8px;justify-items:start}
+.scanbox[hidden]{display:none}
+.scanbox video{width:100%;max-height:46vh;object-fit:cover;border-radius:10px;background:#000}
+.scanbox p{margin:0}
 .result img{width:40px;aspect-ratio:2/3;object-fit:cover;border-radius:3px;background:var(--line)}
 .result .rt{font-weight:600;overflow-wrap:anywhere}
 .result .rs{font-size:12px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -220,6 +237,7 @@ dialog::backdrop{background:rgba(20,14,8,.45)}
     <details class="opts">
       <summary>Scores in the average and other options</summary>
       <div id="srcBoxes"></div>
+      <label><input type="checkbox" id="adjust"> Weigh scores by how many people rated them</label>
       <label><input type="checkbox" id="hideUnscored"> Hide titles with no score</label>
       <label><input type="checkbox" id="mergeSeries"> Merge comic volumes into one series</label>
     </details>
@@ -236,18 +254,21 @@ dialog::backdrop{background:rgba(20,14,8,.45)}
 <script>
 const KINDS = {book:"Books", comic:"Comics (HQ)", manga:"Manga"};
 const KIND_ONE = {book:"book", comic:"comic", manga:"manga"};
+// half: the number of ratings at which a source's score gets half its full weight (see confidence()).
+// Each site's raters behave differently: Goodreads has many casual raters, AniList and MAL huge user bases.
 const SOURCES = {
-  goodreads:   {label:"Goodreads",    kinds:["book","comic"], scale:5},
-  hardcover:   {label:"Hardcover",    kinds:["book","comic"], scale:5},
-  openlibrary: {label:"Open Library", kinds:["book","comic"], scale:5},
-  anilist:     {label:"AniList",      kinds:["manga"], scale:100},
-  mal:         {label:"MyAnimeList",  kinds:["manga"], scale:10},
+  goodreads:   {label:"Goodreads",    kinds:["book","comic"], scale:5,   half:100, prior:78},
+  hardcover:   {label:"Hardcover",    kinds:["book","comic"], scale:5,   half:20,  prior:76},
+  openlibrary: {label:"Open Library", kinds:["book","comic"], scale:5,   half:20,  prior:74},
+  anilist:     {label:"AniList",      kinds:["manga"], scale:100,        half:300, prior:70},
+  mal:         {label:"MyAnimeList",  kinds:["manga"], scale:10,         half:300, prior:72},
 };
+const IGNORE_BELOW = 0.15;  // confidence under this (e.g. fewer than 4 Hardcover or 18 Goodreads ratings): left out
 const SORTS = [
   ["avg","Average score"], ...Object.entries(SOURCES).map(([k,v])=>[k,v.label]),
   ["popularity","Popularity (number of readers)"], ["interest","My interest"], ["rating","My rating"],
   ["short","Shortest"], ["long","Longest"], ["year","Newest"], ["oldest","Oldest"], ["added","Recently added"],
-  ["read_on","Recently read"], ["title","Title A to Z"], ["author","Author A to Z"],
+  ["read_on","Recently read"], ["progress","Progress (% read)"], ["title","Title A to Z"], ["author","Author A to Z"],
 ];
 const GROUPS = [["","No grouping"],["kind","Group by kind"],["genres","Group by genre"],["themes","Group by theme"],["moods","Group by mood"],
   ["authors","Group by author"],["series","Group by series"],["decade","Group by decade"],["demographics","Group by demographic"],["pub_status","Group by publication status"]];
@@ -264,10 +285,10 @@ const store = {
 const prefs = store.get("book-prefs", {});
 const state = {
   q:"", sort:prefs.sort||"avg", group:prefs.group||"", list:prefs.list||"unread", kinds:new Set(prefs.kinds||[]),
-  filters:{}, pub:"", len:"", tags:[], hideUnscored:!!prefs.hideUnscored, mergeSeries:prefs.mergeSeries!==false,
+  filters:{}, pub:"", len:"", tags:[], hideUnscored:!!prefs.hideUnscored, adjust:prefs.adjust!==false, mergeSeries:prefs.mergeSeries!==false,
   srcOn:new Set(prefs.srcOn||Object.keys(SOURCES)), open:new Set(), full:new Set(),
 };
-function savePrefs(){ store.set("book-prefs",{sort:state.sort,group:state.group,list:state.list,kinds:[...state.kinds],hideUnscored:state.hideUnscored,mergeSeries:state.mergeSeries,srcOn:[...state.srcOn]}); }
+function savePrefs(){ store.set("book-prefs",{sort:state.sort,group:state.group,list:state.list,kinds:[...state.kinds],hideUnscored:state.hideUnscored,adjust:state.adjust,mergeSeries:state.mergeSeries,srcOn:[...state.srcOn]}); }
 
 // Which repository this site belongs to: <owner>.github.io/<repo>/
 const REPO = store.get("book-repo", null) || (()=>{
@@ -359,6 +380,7 @@ function mergeItems(){
     const base = built ? {...built} : {key, kind:e.kind||"book", title:e.title||key, authors:e.author?[e.author]:[], year:e.year, cover:e.cover||null, matched:false, pending:true, scores:{}, links:{}};
     base.reading = ["unread","reading","read"].includes(e.status) ? e.status : "unread";
     base.read_on = e.read_on||null; base.interest = e.interest||0; base.rating = e.rating||0; base.owned = e.owned||""; base.added = e.added||base.added;
+    base.progress = e.progress||0; base.total = e.total ?? null; base.unit = e.unit || null; if(e.isbn) base.isbn = e.isbn;
     ITEMS.push(tidy(base));
   }
 }
@@ -375,10 +397,13 @@ function buildSeries(){
     if(ms.length < 2) continue;
     ms.sort((a,b)=>(a.series_pos??999)-(b.series_pos??999) || (a.year||0)-(b.year||0) || a.title.localeCompare(b.title));
     const union = f => [...new Set(ms.flatMap(m=>m[f]||[]))];
-    const scores = {};
+    const scores = {}, votes = {};
     for(const src of Object.keys(SOURCES)){
-      const v = ms.map(m=>m.scores?.[src]).filter(x=>typeof x==="number");
-      scores[src] = v.length ? Math.round(v.reduce((a,b)=>a+b,0)/v.length) : null;
+      const have = ms.filter(m=>typeof m.scores?.[src]==="number");
+      const wt = m => m.votes ? Math.max(m.votes[src]||0, 1) : 1;  // a volume rated by more people counts more
+      const W = have.reduce((a,m)=>a+wt(m),0);
+      scores[src] = have.length ? Math.round(have.reduce((a,m)=>a+m.scores[src]*wt(m),0)/W) : null;
+      if(have.some(m=>m.votes)) votes[src] = have.reduce((a,m)=>a+(m.votes?.[src]||0),0);
     }
     const st = ms.map(m=>m.reading), rated = ms.filter(m=>m.rating);
     const sumOf = f => ms.some(m=>m[f]!=null) ? ms.reduce((a,m)=>a+(m[f]||0),0) : null;
@@ -388,7 +413,7 @@ function buildSeries(){
       year:Math.min(...ms.map(m=>m.year||9999))<9999 ? Math.min(...ms.map(m=>m.year||9999)) : null,
       end_year:Math.max(...ms.map(m=>m.year||0))||null,
       genres:union("genres").slice(0,8), themes:union("themes").slice(0,10), moods:union("moods").slice(0,6), demographics:[], magazine:[], characters:[], places:[], content_warnings:[],
-      series:[ms[0].series[0]], decade:union("decade"), scores, matched:ms.some(m=>m.matched), pending:ms.every(m=>m.pending),
+      series:[ms[0].series[0]], decade:union("decade"), scores, votes:Object.keys(votes).length?votes:null, matched:ms.some(m=>m.matched), pending:ms.every(m=>m.pending),
       popularity:sumOf("popularity"), pages:sumOf("pages"), interest:Math.max(...ms.map(m=>m.interest||0)),
       rating:rated.length ? Math.round(rated.reduce((a,m)=>a+m.rating,0)/rated.length) : 0,
       reading: st.every(x=>x==="read") ? "read" : st.some(x=>x!=="unread") ? "reading" : "unread",
@@ -410,6 +435,71 @@ function rows(){
   return out;
 }
 
+/* ---------------- Reading progress (manga and comics) ---------------- */
+// Stored on the entry as progress (how many read), total (only when you set it) and unit.
+// Without a total of your own, manga use the volume or chapter count from AniList, which grows with ongoing series.
+const UNITS = {volumes:"volumes", chapters:"chapters", issues:"issues"};
+const unitOf = s => s.unit || (s.kind==="manga" ? (s.volumes ? "volumes" : "chapters") : "issues");
+function totalOf(s){
+  if(s.total) return s.total;
+  const u = unitOf(s);
+  return u==="volumes" ? (s.volumes||null) : u==="chapters" ? (s.chapters||null) : null;
+}
+const tracksProgress = s => !s.isGroup && (s.kind==="manga" || s.kind==="comic");
+function progressText(s, short){
+  if(!tracksProgress(s) || !s.progress) return "";
+  const t = totalOf(s), u = unitOf(s);
+  const abbr = short ? {volumes:"vol", chapters:"ch", issues:"#"}[u] : u;
+  return t ? `${s.progress}/${t} ${abbr}` : `${s.progress} ${abbr} read`;
+}
+const progTimers = {};
+function setProgress(s, patch){
+  if(!ghToken()){ openSettings("Connect GitHub to save changes. It takes about two minutes, once per device."); return; }
+  const e = SH.items[s.key];
+  if(!liveSH || !e){ toast("Couldn't reach your shelf on GitHub. Try again in a moment."); return; }
+  Object.assign(e, patch);
+  for(const k of ["total","unit"]) if(e[k]==null || e[k]==="") delete e[k];
+  e.progress = Math.max(0, Math.round(e.progress||0));
+  const view = {...s, ...e, volumes:s.volumes, chapters:s.chapters};
+  const t = totalOf(view), ongoing = s.pub_status==="Ongoing" || s.pub_status==="On hiatus";
+  // Status follows progress: started means Reading; finishing a finished series means Read.
+  if(e.progress>0 && e.status==="unread"){ e.status = "reading"; }
+  if(t && e.progress>=t && !ongoing && e.status!=="read"){ e.status = "read"; e.read_on = today(); }
+  if(t && e.progress<t && e.status==="read"){ e.status = "reading"; e.read_on = null; }
+  if(e.progress===0 && e.status==="reading"){ e.status = "unread"; }
+  merge(); render();
+  // One save for a burst of + taps.
+  clearTimeout(progTimers[s.key]);
+  progTimers[s.key] = setTimeout(async ()=>{
+    const snap = {progress:e.progress, total:e.total, unit:e.unit, status:e.status, read_on:e.read_on};
+    try{
+      await writeShelf(d=>{ const x=d.items[s.key]; if(!x) return;
+        for(const [k,v] of Object.entries(snap)){ if(v==null || v==="" || (k==="progress" && !v)) delete x[k]; else x[k]=v; } },
+        `Progress ${snap.progress}${snap.total||t?"/"+(snap.total||t):""}: ${s.title}`, false);
+      merge(); render(); toast(`${s.title}: ${progressText({...view, ...snap}, false) || "progress cleared"}`);
+    }catch(err){ if(err.message!=="not-connected") toast(err.message); }
+  }, 1200);
+}
+function progressBlock(s){
+  if(!tracksProgress(s)) return "";
+  const u = unitOf(s), t = totalOf(s), n = s.progress||0;
+  const pct = t ? Math.min(100, Math.round(n/t*100)) : 0;
+  const auto = !s.total && t ? ` <span class="na">(from ${s.kind==="manga"?"AniList":"the data"})</span>` : "";
+  return `<div class="prog">
+    <span class="k">Progress</span>
+    <span class="stepper">
+      <button type="button" data-act="prog" data-d="-1" aria-label="One less">−</button>
+      <input type="number" inputmode="numeric" min="0" data-pin="progress" value="${n}" aria-label="Read so far">
+      <button type="button" data-act="prog" data-d="1" aria-label="One more">+</button>
+    </span>
+    <span>of</span>
+    <input type="number" inputmode="numeric" min="1" data-pin="total" value="${s.total??""}" placeholder="${t??"?"}" aria-label="Total">
+    <select data-pin="unit" aria-label="Unit">${Object.keys(UNITS).map(k=>`<option value="${k}" ${k===u?"selected":""}>${k}</option>`).join("")}</select>
+    ${auto}
+    ${t?`<div class="pbar big" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div><span class="na">${pct}%${t>n?`, ${t-n} ${u} left`:""}</span>`:""}
+  </div>`;
+}
+
 function setStatus(s, st){
   const prev = {status:s.reading, read_on:s.read_on};
   act(d=>{ const e=d.items[s.key]; if(e){ e.status = st; e.read_on = st==="read" ? (e.read_on && prev.status==="read" ? e.read_on : today()) : null; } },
@@ -424,13 +514,37 @@ function setStars(s, field, n){
 function removeItem(s){ act(d=>{ delete d.items[s.key]; }, `Remove: ${s.title}`, `Removed ${s.title}`); }
 
 /* ---------------- Scores, sorting, filtering ---------------- */
+/* A score from 3 ratings shouldn't count like one from 3,000. With weighting on:
+   - each source's confidence is n/(n+half): 0.5 at `half` ratings, near 1 with many;
+   - scores under IGNORE_BELOW confidence are left out;
+   - the rest are pulled toward a typical score for that site in proportion to how unsure they are
+     (a Bayesian average, like IMDb's Top 250), so a lone 4.8 can't top the list;
+   - the average weighs each source by its confidence.
+   Titles built before rating counts were kept have no counts; those count at full weight. */
+function confidence(s,k){
+  const n = s.votes?.[k];
+  return n==null ? 1 : n/(n+SOURCES[k].half);
+}
+function srcScore(s,k){
+  const v = s.scores?.[k];
+  if(typeof v!=="number") return null;
+  if(!state.adjust) return v;
+  const c = confidence(s,k);
+  if(c < IGNORE_BELOW) return null;
+  return Math.round(c*v + (1-c)*SOURCES[k].prior);
+}
 function avg(s){
-  const vals = [...state.srcOn].map(k=>s.scores?.[k]).filter(v=>typeof v==="number");
-  return vals.length ? Math.round(vals.reduce((a,b)=>a+b,0)/vals.length) : null;
+  let sum=0, w=0;
+  for(const k of state.srcOn){
+    const v = srcScore(s,k); if(v==null) continue;
+    const c = state.adjust ? confidence(s,k) : 1;
+    sum += c*v; w += c;
+  }
+  return w ? Math.round(sum/w) : null;
 }
 function value(s,key){
   if(key==="avg") return avg(s);
-  if(key in SOURCES) return s.scores?.[key] ?? null;
+  if(key in SOURCES) return srcScore(s,key);
   if(key==="popularity") return s.popularity ?? null;
   if(key==="interest") return s.interest || null;
   if(key==="rating") return s.rating || null;
@@ -439,6 +553,7 @@ function value(s,key){
   if(key==="oldest") return s.year ?? null;
   if(key==="added") return s.added ? Date.parse(s.added) : null;
   if(key==="read_on") return s.read_on ? Date.parse(s.read_on) : null;
+  if(key==="progress"){ const t = tracksProgress(s) && s.progress ? totalOf(s) : null; return t ? s.progress/t : null; }
   return null;
 }
 const firstAuthor = s => (s.authors||[])[0] || "";
@@ -491,6 +606,7 @@ function shown(s){
   if(k==="short"||k==="long") return {v:s.pages!=null ? (s.volumes ? `${s.volumes}v` : s.pages) : null, unit:"", cls:""};
   if(k==="year"||k==="oldest") return {v:s.year, unit:"", cls:""};
   if(k==="popularity") return {v:fmtN(s.popularity), unit:"", cls:""};
+  if(k==="progress"){ const v=value(s,k); return {v:v==null?null:Math.round(v*100), unit:"%", cls:""}; }
   if(k==="rating" && s.rating) return {v:"★"+s.rating, unit:"", cls:"mid"};
   if(["interest","added","title","author","read_on","rating"].includes(k)) { const a=avg(s); return {v:a,unit:"",cls:tone(a)}; }
   const v=value(s,k); return {v, unit:"", cls:tone(v)};
@@ -518,14 +634,16 @@ function tagList(label, field, items){
   return `<div class="tags"><span class="k">${label}</span>${items.map(v=>`<button type="button" class="tag" data-field="${field}" data-value="${esc(v)}">${esc(v)}</button>`).join("")}</div>`;
 }
 function scoreCell(s,k){
-  const v = s.scores?.[k];
+  const v = s.scores?.[k], c = confidence(s,k), n = s.votes?.[k];
+  const weak = state.adjust && v!=null && s.votes && n!=null && c < 0.5
+    ? `<span class="weak">${c < IGNORE_BELOW ? `only ${plural(n,"rating")}, left out` : `${plural(n,"rating")}, counts ${Math.round(c*100)}%`}</span>` : "";
   let raw = "";
   if(k==="goodreads" && s.gr_rating!=null) raw = `${s.gr_rating.toFixed(2)}${s.gr_votes?` · ${fmtN(s.gr_votes)}`:""}`;
   if(k==="hardcover" && s.hc_rating!=null) raw = `${s.hc_rating.toFixed(2)}${s.hc_votes?` · ${fmtN(s.hc_votes)}`:""}`;
   if(k==="openlibrary" && s.ol_rating!=null) raw = `${s.ol_rating.toFixed(2)}${s.ol_votes?` · ${fmtN(s.ol_votes)}`:""}`;
   if(k==="mal" && s.mal_score!=null) raw = `${s.mal_score.toFixed(2)}${s.mal_rank?` · #${s.mal_rank}`:""}`;
   if(k==="anilist" && s.anilist_popularity) raw = `${fmtN(s.anilist_popularity)} readers`;
-  return `<div><span>${SOURCES[k].label}</span><b class="${tone(v)}">${v??"–"}${raw?` <span class="na">${esc(raw)}</span>`:""}</b></div>`;
+  return `<div class="${weak?"low":""}"><span>${SOURCES[k].label}${weak}</span><b class="${tone(v)}">${v??"–"}${raw?` <span class="na">${esc(raw)}</span>`:""}</b></div>`;
 }
 function starset(s, field, n, label, cls=""){
   return `<span class="starset ${cls}"><span>${label}</span>${Array.from({length:n},(_,i)=>i+1).map(i=>`<button type="button" data-act="${field}" data-n="${i}" class="${(s[field]||0)>=i?"lit":""}" aria-label="${label} ${i} of ${n}">★</button>`).join("")}</span>`;
@@ -585,6 +703,7 @@ function detail(s){
       <button type="button" data-act="remove" class="danger">Remove</button>
     </div>
     ${s.reading==="read" ? `<div class="actions">${starset(s,"interest",3,"Interest")}</div>` : ""}
+    ${progressBlock(s)}
     ${note}
     ${s.description?`<p class="summary ${long&&!full?"clamp":""}">${esc(s.description)}</p>${long?`<button type="button" class="morebtn" data-act="full">${full?"Less":"More"}</button>`:""}`:""}
     ${s.matched?`<div class="breakdown">${breakdown}</div>`:""}
@@ -617,12 +736,13 @@ function row(s,i){
     + (s.pending?`<span class="pill warn">Updating</span>`:(!s.matched?`<span class="pill warn">Not found</span>`:""));
   const stars = s.reading==="read" && s.rating ? `<span class="mine" aria-label="Your rating ${s.rating} of 5">★${s.rating}</span>`
     : s.interest ? `<span class="stars" aria-label="Interest ${s.interest} of 3">${"★".repeat(s.interest)}</span>` : "";
-  const bits = [yearSpan(s), s.isGroup ? (s.pages?`${s.pages} pages`:"") : lengthText(s,false), s.owned?`own ${s.owned}`:"", (s.genres||[]).slice(0,2).join(", ")].filter(Boolean).map(esc).join(" · ");
+  const prog = progressText(s, true);
+  const bits = [prog, yearSpan(s), s.isGroup ? (s.pages?`${s.pages} pages`:"") : lengthText(s,false), s.owned?`own ${s.owned}`:"", (s.genres||[]).slice(0,2).join(", ")].filter(Boolean).map(esc).join(" · ");
   const by = s.authors.slice(0,2).join(", ");
   return `<li class="item k-${s.kind}" data-key="${esc(s.key)}">
     <span class="rank">${i+1}</span>
     ${s.cover?`<img class="cover" src="${esc(s.cover)}" alt="" loading="lazy" onerror="this.removeAttribute('src')">`:`<img class="cover" alt="">`}
-    <button type="button" class="title-btn" aria-expanded="${open}"><p class="t">${esc(s.title)}</p>${by?`<div class="a">${esc(by)}</div>`:""}<div class="sub">${stars}${pills}${bits}</div></button>
+    <button type="button" class="title-btn" aria-expanded="${open}"><p class="t">${esc(s.title)}</p>${by?`<div class="a">${esc(by)}</div>`:""}<div class="sub">${stars}${pills}${bits}</div>${prog && totalOf(s) ? `<div class="pbar"><i style="width:${Math.min(100,Math.round(s.progress/totalOf(s)*100))}%"></i></div>` : ""}</button>
     <span class="score ${sc.cls}">${sc.v??"–"}${sc.v!=null?sc.unit:""}</span>
     ${open?detail(s):""}
   </li>`;
@@ -760,6 +880,106 @@ async function searchAniList(q){
     sub:[m.title.english && m.title.romaji!==m.title.english ? m.title.romaji : "", m.format==="NOVEL"?"Light novel":(ORIGIN[m.countryOfOrigin]||""), m.volumes?plural(m.volumes,"volume"):"", (m.staff?.nodes||[]).map(n=>n.name.full).join(", ")].filter(Boolean).join(" · "),
   }));
 }
+/* ---------------- Barcodes and ISBNs ---------------- */
+// The barcode on a book, graphic novel or manga volume is its ISBN (EAN-13 starting 978 or 979).
+// Single comic issues carry a UPC instead, which none of the book databases know.
+function isbnFrom(text){
+  const d = String(text||"").replace(/[\s-]/g,"").toUpperCase();
+  if(/^97[89]\d{10}$/.test(d)){
+    const sum = [...d.slice(0,12)].reduce((a,c,i)=>a + (+c)*(i%2?3:1), 0);
+    return (10 - sum%10)%10 === +d[12] ? d : null;
+  }
+  if(/^\d{9}[\dX]$/.test(d)){  // ISBN-10 -> ISBN-13
+    const sum = [...d].reduce((a,c,i)=>a + (c==="X"?10:+c)*(10-i), 0);
+    if(sum % 11) return null;
+    const core = "978"+d.slice(0,9), s13 = [...core].reduce((a,c,i)=>a + (+c)*(i%2?3:1), 0);
+    return core + ((10 - s13%10)%10);
+  }
+  return null;
+}
+async function lookupIsbn(isbn){
+  // Open Library first (it's what the ratings pipeline uses); Google Books for editions it lacks,
+  // which is common for Brazilian and other non-US printings.
+  try{
+    const u = new URL("https://openlibrary.org/search.json");
+    u.searchParams.set("isbn", isbn); u.searchParams.set("limit","1");
+    u.searchParams.set("fields","key,title,subtitle,author_name,first_publish_year,cover_i,edition_count");
+    const r = await fetch(u);
+    const d = r.ok ? ((await r.json()).docs||[])[0] : null;
+    if(d && d.key) return {ref:{ol:d.key.replace("/works/","")}, title:d.title + (d.subtitle && d.title.length<30 ? `: ${d.subtitle}` : ""),
+      author:(d.author_name||[])[0]||"", year:d.first_publish_year||null, isbn,
+      cover:d.cover_i?`https://covers.openlibrary.org/b/id/${d.cover_i}-L.jpg`:null, thumb:d.cover_i?`https://covers.openlibrary.org/b/id/${d.cover_i}-S.jpg`:null,
+      sub:[(d.author_name||[]).slice(0,2).join(", "), `ISBN ${isbn}`].filter(Boolean).join(" · ")};
+  }catch{}
+  try{
+    const r = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`);
+    const v = r.ok ? (((await r.json()).items||[])[0]||{}).volumeInfo : null;
+    if(v && v.title){
+      const img = (v.imageLinks?.thumbnail || v.imageLinks?.smallThumbnail || "").replace(/^http:/,"https:");
+      const title = v.title + (v.subtitle && v.title.length<30 ? `: ${v.subtitle}` : "");
+      return {ref:{}, title, author:(v.authors||[])[0]||"", year:parseInt(v.publishedDate,10)||null, isbn, cover:img||null, thumb:img||null,
+        sub:[(v.authors||[]).slice(0,2).join(", "), v.publisher, `ISBN ${isbn}`, "matched by title in the next update"].filter(Boolean).join(" · ")};
+    }
+  }catch{}
+  return null;
+}
+// Strip the volume from a scanned manga title so AniList finds the series: "Berserk, Vol. 3" -> "Berserk".
+const seriesTitle = t => String(t||"").replace(/\s*[,:(#-]?\s*\b(vol(ume)?\.?|book|tomo|n[ºo°])\s*\d+.*$/i,"").replace(/\s*,?\s*\d+\s*$/,"").trim();
+
+let zxingP = null;
+function loadZXing(){
+  return zxingP ||= new Promise((res, rej)=>{
+    const sc = document.createElement("script");
+    sc.src = "https://cdn.jsdelivr.net/npm/@zxing/browser@0.1.5/umd/zxing-browser.min.js";
+    sc.onload = ()=> window.ZXingBrowser ? res(window.ZXingBrowser) : rej(new Error("Scanner didn't load"));
+    sc.onerror = ()=>{ zxingP = null; rej(new Error("Couldn't load the barcode scanner. Check your connection.")); };
+    document.head.append(sc);
+  });
+}
+let scanControls = null;
+function stopScan(){ try{ scanControls?.stop(); }catch{} scanControls = null; const b=$("scanBox"); if(b) b.hidden = true; }
+function onCode(text){
+  stopScan();
+  const isbn = isbnFrom(text);
+  const input = $("addTitle");
+  if(!isbn){
+    const box = $("results");
+    if(box) box.innerHTML = /^\d{12}$/.test(text)
+      ? `<p>That's a UPC (${esc(text)}), the barcode on single comic issues. The book databases only know collected editions by ISBN, so search by title instead.</p>`
+      : `<p>Read “${esc(text)}”, which isn't an ISBN. Try the barcode on the back cover, or search by title.</p>`;
+    return;
+  }
+  if(input){ input.value = isbn; }
+  runSearch(isbn);
+}
+async function startScan(){
+  const box = $("scanBox"), video = $("scanVideo");
+  box.hidden = false; $("scanMsg").textContent = "Starting camera…";
+  try{
+    const ZX = await loadZXing();
+    const reader = new ZX.BrowserMultiFormatOneDReader();
+    scanControls = await reader.decodeFromConstraints({video:{facingMode:{ideal:"environment"}}}, video, (result)=>{
+      if(result) onCode(result.getText());
+    });
+    $("scanMsg").textContent = "Point at the barcode on the back cover.";
+  }catch(e){
+    stopScan();
+    const denied = /Permission|NotAllowed|denied/i.test(String(e && (e.name||e.message)));
+    toast(denied ? "Camera access was blocked. Allow it for this site, or use a photo." : (e.message || "Couldn't start the camera. Try a photo instead."));
+  }
+}
+async function scanPhoto(file){
+  if(!file) return;
+  const url = URL.createObjectURL(file);
+  try{
+    const ZX = await loadZXing();
+    const result = await new ZX.BrowserMultiFormatOneDReader().decodeFromImageUrl(url);
+    onCode(result.getText());
+  }catch(e){
+    toast(/load/i.test(e.message||"") ? e.message : "No barcode found in that photo. Get closer, hold it flat, and try again.");
+  }finally{ URL.revokeObjectURL(url); }
+}
+
 let searchTimer = null, searchSeq = 0;
 function openAdd(manual=false){
   const kindSeg = Object.entries(KINDS).map(([k,l])=>`<button type="button" data-kind="${k}" aria-pressed="${addState.kind===k}">${l==="Comics (HQ)"?"Comics / HQ":l==="Books"?"Book":l}</button>`).join("");
@@ -774,12 +994,17 @@ function openAdd(manual=false){
       ${statusSel}
       <div class="btns"><button type="button" class="iconbtn" id="toSearch">Back to search</button><button value="cancel" class="iconbtn">Close</button><button type="button" class="iconbtn primary" id="addSave">Add</button></div>`
     : `<p>${addState.kind==="manga" ? "Search AniList and pick the series. Manhwa and manhua are included." : `Search Open Library and pick the ${addState.kind==="comic"?"comic or graphic novel":"book"}. Titles in Portuguese work too.`}</p>
-      <label>Title or author<input id="addTitle" type="search" autocomplete="off" placeholder="${addState.kind==="manga"?"Vagabond":addState.kind==="comic"?"Watchmen":"Dune"}" autofocus></label>
+      <label>Title, author or ISBN<input id="addTitle" type="search" autocomplete="off" placeholder="${addState.kind==="manga"?"Vagabond":addState.kind==="comic"?"Watchmen":"Dune"}" autofocus></label>
+      <div class="scanrow">
+        <button type="button" class="iconbtn" id="scanBtn">Scan barcode</button>
+        <label class="linkbtn">Use a photo<input type="file" accept="image/*" capture="environment" id="scanFile" hidden></label>
+      </div>
+      <div id="scanBox" class="scanbox" hidden><video id="scanVideo" playsinline muted></video><p id="scanMsg"></p><button type="button" class="iconbtn" id="scanStop">Stop</button></div>
       ${statusSel}
       <div class="results" id="results"></div>
       <button type="button" class="linkbtn" id="toManual">Can't find it? Add by title</button>
       <div class="btns"><button value="cancel" class="iconbtn">Close</button></div>`}`);
-  $("addKind").onclick = e=>{ const b=e.target.closest("[data-kind]"); if(!b) return; addState.kind=b.dataset.kind; openAdd(manual); };
+  $("addKind").onclick = e=>{ const b=e.target.closest("[data-kind]"); if(!b) return; stopScan(); addState.kind=b.dataset.kind; openAdd(manual); };
   $("addStatus").onchange = e=>{ addState.status = e.target.value; };
   if(manual){
     $("toSearch").onclick = ()=>openAdd(false);
@@ -794,7 +1019,10 @@ function openAdd(manual=false){
     };
     return;
   }
-  $("toManual").onclick = ()=>openAdd(true);
+  $("toManual").onclick = ()=>{ stopScan(); openAdd(true); };
+  $("scanBtn").onclick = startScan;
+  $("scanStop").onclick = stopScan;
+  $("scanFile").onchange = e=>{ scanPhoto(e.target.files[0]); e.target.value = ""; };
   $("addTitle").oninput = e=>{ clearTimeout(searchTimer); const q=e.target.value.trim(); searchTimer=setTimeout(()=>runSearch(q), 350); };
   $("addTitle").onkeydown = e=>{ if(e.key==="Enter"){ e.preventDefault(); clearTimeout(searchTimer); runSearch(e.target.value.trim()); } };
   $("results").onclick = e=>{ const b=e.target.closest("[data-pick]"); if(b) addPicked(JSON.parse(b.dataset.pick), b); };
@@ -802,7 +1030,7 @@ function openAdd(manual=false){
 function entry(p){
   const e = {kind:addState.kind, title:p.title, added:today(), status:addState.status, interest:0, rating:0};
   if(addState.status==="read") e.read_on = today();
-  for(const k of ["ol","anilist","author","year","cover","owned"]) if(p[k]) e[k] = p[k];
+  for(const k of ["ol","anilist","author","year","cover","owned","isbn"]) if(p[k]) e[k] = p[k];
   return e;
 }
 async function runSearch(q){
@@ -811,12 +1039,32 @@ async function runSearch(q){
   const seq = ++searchSeq, kind = addState.kind;
   box.innerHTML = `<p>Searching…</p>`;
   try{
-    const hits = kind==="manga" ? await searchAniList(q) : await searchOpenLibrary(q);
+    let hits, note = "";
+    const isbn = isbnFrom(q);
+    if(isbn){
+      const found = await lookupIsbn(isbn);
+      if(seq !== searchSeq) return;
+      if(!found){ box.innerHTML = `<p>No book found for ISBN ${esc(isbn)} in Open Library or Google Books. Search by title, or add it by title.</p>`; return; }
+      if(kind==="manga"){
+        // A manga ISBN identifies one volume; the shelf tracks the series, so look the series up on AniList.
+        const name = seriesTitle(found.title);
+        hits = (await searchAniList(name)).map(h=>({...h, isbn}));
+        if(seq !== searchSeq) return;
+        note = `<p>ISBN ${esc(isbn)} is <b>${esc(found.title)}</b>. Pick the series:</p>`;
+        if(!hits.length){ box.innerHTML = `${note}<p>Nothing on AniList for “${esc(name)}”. Try the Japanese title, or add it as Comics if it isn't Asian in origin.</p>`; return; }
+      } else {
+        hits = [found];
+        note = found.ref.ol ? "" : `<p>Open Library doesn't have this edition; found it on Google Books. It's added by title and matched in the next update.</p>`;
+      }
+    } else {
+      hits = kind==="manga" ? await searchAniList(q) : await searchOpenLibrary(q);
+    }
     if(seq !== searchSeq) return;
     if(!hits.length){ box.innerHTML = `<p>Nothing found for “${esc(q)}”. Try the original title, or add it by title.</p>`; return; }
-    box.innerHTML = hits.map(h=>{
-      const key = h.ref.ol ? `ol:${h.ref.ol}` : `al:${h.ref.anilist}`, have = !!SH.items[key] || ITEMS.some(s=>s.key===key);
-      const payload = {key, ...h.ref, title:h.title, author:h.author, year:h.year, cover:h.cover};
+    box.innerHTML = note + hits.map(h=>{
+      const key = h.ref.ol ? `ol:${h.ref.ol}` : h.ref.anilist ? `al:${h.ref.anilist}` : `q:${kind}:${norm(h.title)}`;
+      const have = !!SH.items[key] || ITEMS.some(s=>s.key===key);
+      const payload = {key, ...h.ref, title:h.title, author:h.author, year:h.year, cover:h.cover, isbn:h.isbn};
       return `<div class="result">
         ${h.thumb?`<img src="${esc(h.thumb)}" alt="" loading="lazy" onerror="this.removeAttribute('src')">`:`<img alt="">`}
         <div><div class="rt">${esc(h.title)}${h.year?` <span class="na">(${esc(h.year)})</span>`:""}</div><div class="rs">${esc(h.sub)}</div></div>
@@ -876,6 +1124,8 @@ function setup(){
   $("f_pub").onchange = e=>{state.pub=e.target.value;render()};
   $("f_len").onchange = e=>{state.len=e.target.value;render()};
   $("hideUnscored").onchange = e=>{state.hideUnscored=e.target.checked;render()};
+  $("adjust").checked = state.adjust;
+  $("adjust").onchange = e=>{state.adjust=e.target.checked;render()};
   $("mergeSeries").checked = state.mergeSeries;
   $("mergeSeries").onchange = e=>{state.mergeSeries=e.target.checked;render()};
   $("listSeg").onclick = e=>{const b=e.target.closest("button"); if(!b) return; state.list=b.dataset.v; syncSeg(); render()};
@@ -898,7 +1148,15 @@ function setup(){
     toast(`Next up: ${pick.title}`);
   };
   $("addBtn").onclick = ()=>openAdd(false);
+  $("dlg").addEventListener("close", stopScan);  // never leave the camera running behind a closed sheet
   $("settingsBtn").onclick = ()=>openSettings();
+  $("out").onchange = e=>{
+    const f = e.target.closest("[data-pin]"); if(!f) return;
+    const li = f.closest(".item"), s = li && ITEMS.find(x=>x.key===li.dataset.key); if(!s) return;
+    const k = f.dataset.pin, v = f.value.trim();
+    if(k==="unit") setProgress(s, {unit:v, total:null});
+    else setProgress(s, {[k]: v==="" ? null : Math.max(k==="total"?1:0, parseInt(v,10)||0)});
+  };
   $("out").onclick = e=>{
     const more=e.target.closest(".more");
     if(more){const k="group:"+more.dataset.group; state.open.has(k)?state.open.delete(k):state.open.add(k); render(); return;}
@@ -914,6 +1172,7 @@ function setup(){
       if(v==="status" && a.dataset.v!==s.reading) setStatus(s, a.dataset.v);
       if(v==="interest"||v==="rating") setStars(s, v, +a.dataset.n);
       if(v==="owned") editOwned(s);
+      if(v==="prog") setProgress(s, {progress:(s.progress||0) + (+a.dataset.d)});
       if(v==="remove") confirmRemove(s);
       if(v==="full"){ state.full.has(s.key)?state.full.delete(s.key):state.full.add(s.key); render(); }
       return; }
@@ -925,7 +1184,7 @@ function setup(){
   $("status").innerHTML = bad.length ? `<div class="status">${bad.map(([k,v])=>`<p><b>${names[k]||k}:</b> ${esc(v)}</p>`).join("")}</div>` : "";
   const when = DATA.generated ? new Date(DATA.generated).toLocaleString([], {dateStyle:"medium",timeStyle:"short"}) : "never";
   $("foot").innerHTML = `<span>Last updated ${esc(when)}. Updates daily and a few minutes after you add something.</span>
-    <span>Book data from Open Library. Manga data from AniList and MyAnimeList (via Jikan). Ratings from Goodreads, Hardcover, Open Library, AniList and MyAnimeList. Scores out of 5 or 10 are shown out of 100 (Goodreads 4.20 is 84).</span>`;
+    <span>Book data from Open Library. Manga data from AniList and MyAnimeList (via Jikan). Ratings from Goodreads, Hardcover, Open Library, AniList and MyAnimeList. Scores out of 5 or 10 are shown out of 100 (Goodreads 4.20 is 84). With weighting on, a score counts by how many people rated it: under 4 Hardcover or Open Library ratings (18 on Goodreads) it's left out, and thin scores are pulled toward a typical score so they can't top the list.</span>`;
 }
 async function loadShelf(){
   try{ const r = await readShelf(); if(r){ SH = r.data; liveSH = true; merge(); setupFilters(); render(); } }

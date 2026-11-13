@@ -22,7 +22,6 @@ GENRE_JUNK = {
     "comics", "comic", "manga", "graphic novels", "graphic novel", "graphic novels comics", "comic book",
     "comics manga", "manhwa", "manhua", "ebooks", "kindle", "unfinished", "school", "abandoned", "owned",
 }
-MIN_VOTES = {"goodreads": 50, "hardcover": 10, "openlibrary": 10}
 
 
 def env(name):
@@ -53,7 +52,10 @@ def resolve(sh, matches, status):
             continue
         title, author, year = e.get("title", ""), e.get("author"), e.get("year")
         try:
-            if shelf.kind_of(e) == "manga":
+            by_isbn = openlibrary.by_isbn(e["isbn"]) if shelf.kind_of(e) != "manga" and e.get("isbn") else None
+            if by_isbn:
+                ref = f"ol:{by_isbn}"
+            elif shelf.kind_of(e) == "manga":
                 found = manga.best_match(title, year)
                 ref = f"al:{found}" if found else None
             else:
@@ -71,6 +73,8 @@ def resolve(sh, matches, status):
 
 def detail_due(rec):
     if not rec:
+        return True
+    if rec.get("anilist") and "anilist_votes" not in rec:  # fetched before vote counts were kept
         return True
     if rec.get("status") in ("Ongoing", "Upcoming", "On hiatus"):
         return days_since(rec.get("fetched")) >= 7
@@ -101,7 +105,8 @@ def _keep(old, prefix_keys):
     return {k: v for k, v in old.items() if any(k.startswith(p) for p in prefix_keys)}
 
 
-def refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins=None):
+def refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins=None, shelf_isbns=None):
+    shelf_isbns = shelf_isbns or {}
     hc_pins = hc_pins or {}
     """Goodreads + Hardcover for books and comics, MyAnimeList for manga. Cached and rechecked monthly
     (weekly for ongoing series), stalest first, at most MAX_LOOKUPS per run. A source that fails this run
@@ -132,7 +137,7 @@ def refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins=None):
         mine = shelf_titles.get(ref) or ""
         title = mine if titles.volume(mine) is not None or not rec.get("title") else rec["title"]
         author = next((a for a in rec.get("authors") or [] if not a.startswith("[")), None)
-        isbns = rec.get("isbns") or []
+        isbns = list(dict.fromkeys(shelf_isbns.get(ref, []) + (rec.get("isbns") or [])))  # your scanned edition first
         try:
             if ref.startswith("al:"):
                 mal_tries += 1
@@ -208,7 +213,9 @@ def _merge(*lists, junk=(), limit=12):
 
 
 def _score5(v, n, src):
-    return round(float(v) * 20) if v is not None and (n or 0) >= MIN_VOTES[src] else None
+    """0-100 from a 5-star average. Every score with at least one rating is kept; the app weighs it by
+    how many ratings it has (see confidence() in site/index.html), so a 4.8 from 3 people counts for little."""
+    return round(float(v) * 20) if v is not None and (n or 0) >= 1 else None
 
 
 def _decade(y):
@@ -239,6 +246,7 @@ def assemble(sh, refs, details, sc):
             "reading": e.get("status") if e.get("status") in ("unread", "reading", "read") else "unread",
             "read_on": e.get("read_on"), "interest": e.get("interest") or 0, "rating": e.get("rating") or 0,
             "owned": e.get("owned") or "",
+            "progress": e.get("progress") or 0, "total": e.get("total"), "unit": e.get("unit"),
         }
         ref = refs.get(key)
         rec = details.get(ref) if ref else None
@@ -272,6 +280,7 @@ def assemble(sh, refs, details, sc):
                 "anilist": rec.get("anilist_score"),
                 "mal": round(c["mal_score"] * 10) if c.get("mal_score") else None,
             }
+            item["votes"] = {"anilist": rec.get("anilist_votes") or rec.get("anilist_popularity"), "mal": c.get("mal_votes")}
             links = {"anilist": rec.get("anilist_url")}
             if c.get("mal_url") or rec.get("mal_id"):
                 links["mal"] = c.get("mal_url") or f"https://myanimelist.net/manga/{rec['mal_id']}"
@@ -308,6 +317,7 @@ def assemble(sh, refs, details, sc):
                 "hardcover": _score5(c.get("hc_rating"), c.get("hc_votes"), "hardcover"),
                 "openlibrary": _score5(rec.get("ol_rating"), rec.get("ol_votes"), "openlibrary"),
             }
+            item["votes"] = {"goodreads": c.get("gr_votes"), "hardcover": c.get("hc_votes"), "openlibrary": rec.get("ol_votes")}
             links = {"openlibrary": f"https://openlibrary.org/works/{rec['ol']}"}
             if c.get("gr_id"):
                 links["goodreads"] = f"https://www.goodreads.com/book/show/{c['gr_id']}"
@@ -345,7 +355,11 @@ def main():
     fetch_details(refs, details, status)
     shelf_titles = {refs[k]: e.get("title") for k, e in sh["items"].items() if k in refs}
     hc_pins = {refs[k]: e["hardcover"] for k, e in sh["items"].items() if k in refs and e.get("hardcover")}
-    refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins)
+    shelf_isbns = {}
+    for k, e in sh["items"].items():
+        if k in refs and e.get("isbn"):
+            shelf_isbns.setdefault(refs[k], []).append(str(e["isbn"]))
+    refresh_scores(refs, shelf_titles, details, sc, hc, status, hc_pins, shelf_isbns)
     items = assemble(sh, refs, details, sc)
 
     live = set(refs.values())

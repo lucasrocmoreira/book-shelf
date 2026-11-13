@@ -52,6 +52,12 @@ repository only (https://github.com/settings/personal-access-tokens/new). It sta
 - **Add**: pick Book, Comics / HQ or Manga, search, tap Add. Choose "Add as" Read to log things you've already read.
   Can't find it? **Add by title** (with the author if you know it) and it's matched on the next update.
 - **Status**: open a title and tap To read, Reading or Read. Read titles get your own 1 to 5 stars.
+- **Progress** (manga and comics): open the title and use − / + or type how many you've read, in volumes, chapters
+  or issues. Manga take the total from AniList unless you type your own. Starting moves a title to Reading;
+  reaching the end of a finished series marks it Read (ongoing series stay Reading). "Rank by progress" sorts by % read.
+- **Barcode**: in Add, tap **Scan barcode** (or **Use a photo**) and point at the barcode on the back cover, or type
+  the ISBN into the search box. Books, graphic novels and manga volumes have ISBN barcodes. For manga it finds the
+  volume, then asks you to pick the series. Single comic issues carry a UPC, which the book databases don't know.
 - **Interest stars** (1 to 3): your priority for what to read next; "Rank by my interest" sorts by it, ties broken by average score.
 - **Rank and filter**: change "Rank by", tap Books / Comics / Manga, or open the filters. Tap any genre, theme, mood or series tag inside a title to filter by it.
 - **Pick for me**: picks at random from the top 5 of the current view.
@@ -69,8 +75,12 @@ Status, stars, what you own and remove are instant and don't rebuild. Adding a t
 - Comics coverage is thinner than books on every source, especially Brazilian and European albums. A title
   with no score still shows and sorts below scored ones (or hide them under "other options").
 - Manga scores are for the whole series; book scores are for the work across all editions and translations.
-- Goodreads needs 50+ ratings, Hardcover and Open Library 10+, before their score counts. Below that the
-  score is still fetched but left out, since one or two ratings say little.
+- Scores are weighed by how many people rated them (on by default; "Weigh scores by how many people rated
+  them" under other options). Each source counts n/(n+h) of full weight, where h is 100 ratings for Goodreads,
+  20 for Hardcover and Open Library, 300 for AniList and MyAnimeList. Under 15% weight (fewer than 18 Goodreads
+  or 4 Hardcover / Open Library ratings) a score is left out; above that, thin scores are pulled toward a typical
+  score for that site, so a 5.00 from two people can't top the list. Change `half` and `prior` in `SOURCES` in
+  `site/index.html` to tune it.
 - Hardcover's API is in beta and its tokens expire; the token is used only by the GitHub Action, never in the browser.
 
 ## Run locally
