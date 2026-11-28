@@ -1175,32 +1175,6 @@
   "title": "Freak 'N' Gorgeous",
   "year": 2018
  },
- "ol:OL20201754W": {
-  "authors": [
-   "H.P. Lovecraft"
-  ],
-  "characters": [],
-  "cover": "https://covers.openlibrary.org/b/id/8851911-L.jpg",
-  "description": null,
-  "fetched": "2026-11-13T18:33:08+00:00",
-  "goodreads_ids": [],
-  "isbns": [
-   "1607109328",
-   "9781607109327"
-  ],
-  "languages": [],
-  "ol": "OL20201754W",
-  "ol_rating": null,
-  "ol_readers": 2,
-  "ol_votes": 0,
-  "pages": 768,
-  "places": [],
-  "series": null,
-  "subjects": [],
-  "subtitle": null,
-  "title": "H. P. Lovecraft Tales of Horror",
-  "year": 2017
- },
  "ol:OL21745884W": {
   "authors": [
    "Andy Weir"
@@ -2044,6 +2018,30 @@
   "subtitle": null,
   "title": "A Walk Through Hell nº 01/02",
   "year": 2019
+ },
+ "ol:OL35404694W": {
+  "authors": [],
+  "characters": [],
+  "cover": null,
+  "description": null,
+  "fetched": "2026-11-28T03:39:52+00:00",
+  "goodreads_ids": [],
+  "isbns": [
+   "1435171209",
+   "9781435171206"
+  ],
+  "languages": [],
+  "ol": "OL35404694W",
+  "ol_rating": null,
+  "ol_readers": 0,
+  "ol_votes": 0,
+  "pages": null,
+  "places": [],
+  "series": null,
+  "subjects": [],
+  "subtitle": null,
+  "title": "Illustrated HP Lovecraft (Illustrated Classic Editions)",
+  "year": null
  },
  "ol:OL38056236W": {
   "authors": [
